@@ -1,23 +1,29 @@
 package com.jekatim.tt2clicker.service;
 
+import android.app.ActivityManager;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.jekatim.tt2clicker.R;
-import com.jekatim.tt2clicker.utils.Converters;
+import com.jekatim.tt2clicker.SettingsActivity;
+import com.jekatim.tt2clicker.utils.Toasts;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.jekatim.tt2clicker.SettingsActivity.SETTINGS_KEY;
 
 public class FloatingClickService extends Service {
 
@@ -29,20 +35,16 @@ public class FloatingClickService extends Service {
     private int xForRecord;
     private int yForRecord;
     private final int[] location = new int[2];
-    private int startDragDistance;
     private Timer timer;
     private boolean isOn;
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+    private SettingsModel settings;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        this.startDragDistance = Converters.dp2px(this, 10.0F);
+        settings = new SettingsModel();
+
         this.view = LayoutInflater.from(this).inflate(R.layout.widget, null);
 
         int overlayParam = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
@@ -59,30 +61,73 @@ public class FloatingClickService extends Service {
         this.manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         manager.addView(view, params);
 
-        view.setOnTouchListener(new TouchAndDragListener(params, startDragDistance, this::viewOnClick, () -> manager.updateViewLayout(view, params)));
+        MyBroadcastReceiver handler = new MyBroadcastReceiver();
+        IntentFilter receiveFilter = new IntentFilter(handler.getClass().getName());
+        LocalBroadcastManager.getInstance(this).registerReceiver(handler, receiveFilter);
+
+        view.setOnTouchListener(new DragListener(params, () -> manager.updateViewLayout(view, params)));
+        view.findViewById(R.id.toggleButton).setOnClickListener(v -> {
+            if (isOn) {
+                stopMachine();
+            } else {
+                launchMachine();
+            }
+        });
+        view.findViewById(R.id.settingsButton).setOnClickListener(v -> {
+            stopMachine();
+            Intent launchSettings = new Intent(this, SettingsActivity.class);
+            launchSettings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(launchSettings);
+        });
     }
 
-    private void viewOnClick() {
-        if (this.isOn) {
+    private void launchMachine() {
+        if (isOn) {
+            Log.d(TAG, "Already launched, skipping");
+        } else {
+            boolean isServiceRunning = isMyServiceRunning(AutoClickerService.class);
+            Log.d(TAG, "AutoClickerService is running? :" + isServiceRunning);
+            if (isServiceRunning) {
+                this.timer = new Timer();
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        view.getLocationOnScreen(location);
+                        Log.d(TAG, "will click on  x: " + location[0] + view.getRight() + 100 + ", y: " + location[1] + view.getBottom() + 100);
+                        AutoClickerService.instance.click(location[0] + view.getRight() + 100,
+                                location[1] + view.getBottom() + 100);
+                    }
+                }, 100, settings.getCqTapPeriod());
+                Log.d(TAG, "Launched");
+                isOn = true;
+            } else {
+                Log.d(TAG, "Service is stopped, skipping");
+            }
+        }
+    }
+
+    private void stopMachine() {
+        if (isOn) {
             if (timer != null) {
                 timer.cancel();
             }
+            isOn = false;
         } else {
-            this.timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    view.getLocationOnScreen(location);
-                    AutoClickerService.getAutoClickService().click(location[0] + view.getRight() + 10,
-                            location[1] + view.getBottom() + 10);
-                }
-            }, 0, 10);
+            Log.d(TAG, "Already stopped, skipping");
         }
-
-        this.isOn = !this.isOn;
-        ((TextView) view).setText(this.isOn ? "ON" : "OFF");
     }
 
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "FloatingClickService onDestroy");
@@ -92,6 +137,7 @@ public class FloatingClickService extends Service {
         manager.removeView(view);
     }
 
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d(TAG, "FloatingClickService onConfigurationChanged");
@@ -104,5 +150,25 @@ public class FloatingClickService extends Service {
         yForRecord = y;
 
         manager.updateViewLayout(view, params);
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    public void onSettingsChange(SettingsModel newSettings) {
+        settings.setCQMode(newSettings.isCQMode());
+        settings.setCqTapPeriod(newSettings.getCqTapPeriod());
+    }
+
+    public class MyBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "MyBroadcastReceiver() {...}.onReceive()");
+            Toasts.longToast(FloatingClickService.this, "Message received");
+            SettingsModel model = (SettingsModel) intent.getExtras().get(SETTINGS_KEY);
+            onSettingsChange(model);
+        }
     }
 }

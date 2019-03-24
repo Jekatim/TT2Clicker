@@ -2,5 +2,4 @@
     <string name="app_name">TT2Clicker</string>
     <string name="accessibility_service_description">TODO</string>
     <string name="accessibility_service_name">AutoClickerService</string>
-    <string name="accessibility_service_id">.service.AutoClickerService</string>
 </resources>

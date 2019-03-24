@@ -3,6 +3,7 @@ package com.jekatim.tt2clicker.service;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Path;
 import android.os.Build;
 import android.util.Log;
@@ -10,27 +11,11 @@ import android.view.accessibility.AccessibilityEvent;
 
 import com.jekatim.tt2clicker.MainActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AutoClickerService extends AccessibilityService {
 
     private static String TAG = "AutoClickerService";
 
-    private static AutoClickerService autoClickService;
-    private final List events;
-
-    public AutoClickerService() {
-        this.events = new ArrayList();
-    }
-
-    public static AutoClickerService getAutoClickService() {
-        return autoClickService;
-    }
-
-    public static void setAutoClickService(AutoClickerService service) {
-        autoClickService = service;
-    }
+    public static AutoClickerService instance;
 
     @Override
     public void onInterrupt() {
@@ -44,13 +29,13 @@ public class AutoClickerService extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         Log.d(TAG, "onServiceConnected");
-        AutoClickerService.setAutoClickService(this);
+        AutoClickerService.instance = this;
         this.startActivity((new Intent(this, MainActivity.class)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public final void click(int x, int y) {
         Log.d(TAG, "click " + x + ' ' + y);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);
             GestureDescription.Builder builder = new GestureDescription.Builder();
@@ -62,16 +47,19 @@ public class AutoClickerService extends AccessibilityService {
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(TAG, "AutoClickService onUnbind");
-        AutoClickerService.setAutoClickService(null);
+        AutoClickerService.instance = null;
         return super.onUnbind(intent);
     }
 
     @Override
     public void onDestroy() {
         Log.d(TAG, "AutoClickService onDestroy");
-        AutoClickerService.setAutoClickService(null);
+        AutoClickerService.instance = null;
         super.onDestroy();
     }
 
-
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 }

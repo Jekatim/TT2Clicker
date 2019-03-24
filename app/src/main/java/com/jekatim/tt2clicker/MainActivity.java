@@ -1,21 +1,18 @@
 package com.jekatim.tt2clicker;
 
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.accessibility.AccessibilityManager;
 
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.service.FloatingClickService;
-
-import java.util.List;
+import com.jekatim.tt2clicker.utils.Toasts;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,36 +25,61 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
-        findViewById(R.id.button).setOnClickListener((it -> {
+        findViewById(R.id.startButton).setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !Settings.canDrawOverlays(MainActivity.this)) {
                 MainActivity.this.askPermission();
-                //ToastsKt.shortToast(MainActivity.this, "You need System Alert Window Permission to do this");
+                Toasts.shortToast(MainActivity.this, "You need System Alert Window Permission to do this");
             } else {
                 MainActivity.this.serviceIntent = new Intent(MainActivity.this, FloatingClickService.class);
                 MainActivity.this.startService(MainActivity.this.serviceIntent);
                 MainActivity.this.onBackPressed();
             }
-
-        }));
+        });
     }
 
-    private boolean checkAccess() {
-        String serviceId = this.getString(R.string.accessibility_service_id);
-        AccessibilityManager accessibilityManager = (AccessibilityManager) this.getSystemService(Context.ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
-
-        for (AccessibilityServiceInfo info : list) {
-            if (info.getId().equals(serviceId)) {
-                return true;
-            }
+    // To check if service is enabled
+    private boolean isAccessibilitySettingsOn() {
+        int accessibilityEnabled = 0;
+        final String service = getPackageName() + "/" + AutoClickerService.class.getCanonicalName();
+        try {
+            accessibilityEnabled = Settings.Secure.getInt(
+                    getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+            Log.v(TAG, "accessibilityEnabled = " + accessibilityEnabled);
+        } catch (Settings.SettingNotFoundException e) {
+            Log.e(TAG, "Error finding setting, default accessibility to not found: "
+                    + e.getMessage());
         }
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+
+        if (accessibilityEnabled == 1) {
+            Log.v(TAG, "***ACCESSIBILITY IS ENABLED*** -----------------");
+            String settingValue = Settings.Secure.getString(
+                    getApplicationContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (settingValue != null) {
+                mStringColonSplitter.setString(settingValue);
+                while (mStringColonSplitter.hasNext()) {
+                    String accessibilityService = mStringColonSplitter.next();
+
+                    Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
+                    if (accessibilityService.equalsIgnoreCase(service)) {
+                        Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
+                        return true;
+                    }
+                }
+            }
+        } else {
+            Log.v(TAG, "***ACCESSIBILITY IS DISABLED***");
+        }
+
         return false;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        boolean hasPermission = this.checkAccess();
+        boolean hasPermission = isAccessibilitySettingsOn();
         Log.d(TAG, "has access? " + hasPermission);
         if (!hasPermission) {
             this.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
@@ -82,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             stopService(serviceIntent);
         }
 
-        AutoClickerService service = AutoClickerService.getAutoClickService();
+        AutoClickerService service = AutoClickerService.instance;
         if (service != null) {
             Log.d(TAG, "stop auto click service");
             service.stopSelf();
@@ -90,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 service.disableSelf();
             }
 
-            AutoClickerService.setAutoClickService(null);
+            AutoClickerService.instance = null;
         }
 
         super.onDestroy();
