@@ -18,10 +18,14 @@ import android.view.WindowManager;
 
 import com.jekatim.tt2clicker.R;
 import com.jekatim.tt2clicker.SettingsActivity;
+import com.jekatim.tt2clicker.settings.SettingsModel;
+import com.jekatim.tt2clicker.strategies.CQStrategy;
+import com.jekatim.tt2clicker.strategies.RelicsStrategy;
+import com.jekatim.tt2clicker.strategies.SBStrategy;
+import com.jekatim.tt2clicker.strategies.Strategy;
+import com.jekatim.tt2clicker.utils.ColorChecker;
+import com.jekatim.tt2clicker.utils.Screenshooter;
 import com.jekatim.tt2clicker.utils.Toasts;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static com.jekatim.tt2clicker.SettingsActivity.SETTINGS_KEY;
 
@@ -34,10 +38,10 @@ public class FloatingClickService extends Service {
     private WindowManager.LayoutParams params;
     private int xForRecord;
     private int yForRecord;
-    private final int[] location = new int[2];
-    private Timer timer;
     private boolean isOn;
     private SettingsModel settings;
+    private Strategy strategy;
+    private ColorChecker colorChecker;
 
     @Override
     public void onCreate() {
@@ -46,6 +50,7 @@ public class FloatingClickService extends Service {
         settings = new SettingsModel();
 
         this.view = LayoutInflater.from(this).inflate(R.layout.widget, null);
+        colorChecker = new ColorChecker(new Screenshooter(view), this);
 
         int overlayParam = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -68,52 +73,43 @@ public class FloatingClickService extends Service {
         view.setOnTouchListener(new DragListener(params, () -> manager.updateViewLayout(view, params)));
         view.findViewById(R.id.toggleButton).setOnClickListener(v -> {
             if (isOn) {
-                stopMachine();
+                strategy.stopStrategy();
             } else {
-                launchMachine();
+                startNewStrategy();
             }
         });
         view.findViewById(R.id.settingsButton).setOnClickListener(v -> {
-            stopMachine();
+            strategy.stopStrategy();
             Intent launchSettings = new Intent(this, SettingsActivity.class);
             launchSettings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(launchSettings);
         });
     }
 
-    private void launchMachine() {
-        if (isOn) {
-            Log.d(TAG, "Already launched, skipping");
-        } else {
-            boolean isServiceRunning = isMyServiceRunning(AutoClickerService.class);
-            Log.d(TAG, "AutoClickerService is running? :" + isServiceRunning);
-            if (isServiceRunning) {
-                this.timer = new Timer();
-                timer.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() {
-                        view.getLocationOnScreen(location);
-                        Log.d(TAG, "will click on  x: " + location[0] + view.getRight() + 100 + ", y: " + location[1] + view.getBottom() + 100);
-                        AutoClickerService.instance.click(location[0] + view.getRight() + 100,
-                                location[1] + view.getBottom() + 100);
-                    }
-                }, 100, settings.getCqTapPeriod());
-                Log.d(TAG, "Launched");
-                isOn = true;
-            } else {
-                Log.d(TAG, "Service is stopped, skipping");
+    private void startNewStrategy() {
+        boolean isServiceRunning = isMyServiceRunning(AutoClickerService.class);
+        Log.d(TAG, "AutoClickerService is running? :" + isServiceRunning);
+        if (isServiceRunning) {
+            switch (settings.getStrategy()) {
+                case CQ_MODE:
+                    strategy = new CQStrategy(settings);
+                    strategy.launchStrategy();
+                    break;
+                case SB_MODE:
+                    strategy = new SBStrategy(settings, colorChecker);
+                    strategy.launchStrategy();
+                    break;
+                case RELIC_MODE:
+                    strategy = new RelicsStrategy(settings, colorChecker);
+                    strategy.launchStrategy();
+                    break;
+                default:
+                    Log.d(TAG, "Unknown strategy");
+                    break;
             }
-        }
-    }
-
-    private void stopMachine() {
-        if (isOn) {
-            if (timer != null) {
-                timer.cancel();
-            }
-            isOn = false;
+            isOn = true;
         } else {
-            Log.d(TAG, "Already stopped, skipping");
+            Log.d(TAG, "Service is stopped, skipping");
         }
     }
 
@@ -131,9 +127,6 @@ public class FloatingClickService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "FloatingClickService onDestroy");
-        if (timer != null) {
-            timer.cancel();
-        }
         manager.removeView(view);
     }
 
@@ -158,7 +151,7 @@ public class FloatingClickService extends Service {
     }
 
     public void onSettingsChange(SettingsModel newSettings) {
-        settings.setCQMode(newSettings.isCQMode());
+        settings.setStrategy(newSettings.getStrategy());
         settings.setCqTapPeriod(newSettings.getCqTapPeriod());
     }
 

@@ -5,4 +5,19 @@
     <color name="colorAccent">#D81B60</color>
     <color name="widgetBackground">#3F000000</color>
     <color name="ic_launcher_background">#FFFFFF</color>
+
+    <color name="prestige_button">#f79f08</color>
+
+    <color name="close_panel_button">#453830</color>
+    <color name="slide_panel_up_button">#433930</color>
+
+    <color name="upgrade_hero_button">#ef8114</color>
+    <color name="unlock_skill_button">#f79f08</color>
+    <color name="CO_skill_area">#ffffff</color>
+
+    <color name="no_CQ_available_area">#e26a41</color>
+
+    <color name="go_to_sword_master_tab">#f36a3c</color>
+    <color name="go_to_heroes_tab">#3d94a5</color>
+    <color name="go_to_artifacts_tab">#795ac3</color>
 </resources>

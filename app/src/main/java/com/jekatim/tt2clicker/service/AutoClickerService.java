@@ -44,6 +44,30 @@ public class AutoClickerService extends AccessibilityService {
         }
     }
 
+    public final void scrollDown(int x, int y) {
+        Log.d(TAG, "scrollDown " + x + ' ' + y);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            Path path = new Path();
+            path.moveTo((float) x, (float) y);
+            path.lineTo((float) x, (float) y - 100);
+            GestureDescription.Builder builder = new GestureDescription.Builder();
+            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            this.dispatchGesture(gestureDescription, null, null);
+        }
+    }
+
+    public final void scrollUp(int x, int y) {
+        Log.d(TAG, "scrollUp " + x + ' ' + y);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            Path path = new Path();
+            path.moveTo((float) x, (float) y);
+            path.lineTo((float) x, (float) y + 100);
+            GestureDescription.Builder builder = new GestureDescription.Builder();
+            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            this.dispatchGesture(gestureDescription, null, null);
+        }
+    }
+
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(TAG, "AutoClickService onUnbind");

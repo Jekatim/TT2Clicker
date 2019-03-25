@@ -1,18 +1,18 @@
-package com.jekatim.tt2clicker.service;
+package com.jekatim.tt2clicker.settings;
 
 import java.io.Serializable;
 
 public class SettingsModel implements Serializable {
 
-    private boolean CQMode = false;
-    private int cqTapPeriod = 50;
+    private ClickingStrategy strategy;
+    private int cqTapPeriod = 500;
 
-    public boolean isCQMode() {
-        return CQMode;
+    public ClickingStrategy getStrategy() {
+        return strategy;
     }
 
-    public void setCQMode(boolean CQMode) {
-        this.CQMode = CQMode;
+    public void setStrategy(ClickingStrategy strategy) {
+        this.strategy = strategy;
     }
 
     public int getCqTapPeriod() {
@@ -26,7 +26,7 @@ public class SettingsModel implements Serializable {
     @Override
     public String toString() {
         return "SettingsModel{" +
-                "CQMode=" + CQMode +
+                "strategy=" + strategy +
                 ", cqTapPeriod=" + cqTapPeriod +
                 '}';
     }
