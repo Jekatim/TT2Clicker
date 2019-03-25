@@ -7,6 +7,7 @@
     <color name="ic_launcher_background">#FFFFFF</color>
 
     <color name="prestige_button">#f79f08</color>
+    <color name="prestige_confirm_button">#28A4D0</color>
     <color name="artifact_button">#F7A906</color>
 
     <color name="close_panel_button">#453830</color>

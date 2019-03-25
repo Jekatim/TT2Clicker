@@ -21,6 +21,9 @@ public class ColorChecker {
     public boolean isPresigeButton(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.prestige_button));
     }
+    public boolean isPresigeConfirmButton(int x, int y) {
+        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.prestige_confirm_button));
+    }
 
     public boolean isArtifactButton(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.artifact_button));

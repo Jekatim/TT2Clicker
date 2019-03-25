@@ -29,7 +29,7 @@ public class SBStrategy implements Strategy {
         this.colorChecker = colorChecker;
         this.actions = new ArrayList<>();
 
-        actions.add(new PrestigeAction());
+        actions.add(new PrestigeAction(colorChecker));
     }
 
     @Override
