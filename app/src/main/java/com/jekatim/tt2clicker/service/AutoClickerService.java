@@ -56,6 +56,18 @@ public class AutoClickerService extends AccessibilityService {
         }
     }
 
+    public final void scrollDownOn(int x, int y, int distance) {
+        Log.d(TAG, "scrollDown " + x + ' ' + y);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            Path path = new Path();
+            path.moveTo((float) x, (float) y);
+            path.lineTo((float) x, (float) y - distance);
+            GestureDescription.Builder builder = new GestureDescription.Builder();
+            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            this.dispatchGesture(gestureDescription, null, null);
+        }
+    }
+
     public final void scrollUp(int x, int y) {
         Log.d(TAG, "scrollUp " + x + ' ' + y);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {

@@ -53,6 +53,10 @@ public class ColorChecker {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.no_CQ_available_area));
     }
 
+    public boolean isNoUpgradeAvailable(int x, int y) {
+        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.no_upgrade_available));
+    }
+
     public boolean isGoToSwordMasterTab(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.go_to_sword_master_tab));
     }

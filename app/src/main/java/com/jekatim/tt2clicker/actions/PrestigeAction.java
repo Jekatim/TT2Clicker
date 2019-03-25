@@ -14,7 +14,7 @@ public class PrestigeAction implements Action {
     private final Coordinates tabCoordinates = new Coordinates(30, 1900);
     private final Coordinates prestigeButton = new Coordinates(788, 1790);
     private final Coordinates prestigeConfirmButton = new Coordinates(425, 1480);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
+    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     public PrestigeAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;
