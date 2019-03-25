@@ -15,7 +15,7 @@ import java.util.TimerTask;
 
 public class RelicsStrategy implements Strategy {
 
-    private static String TAG = "CQStrategy";
+    private static String TAG = "RelicsStrategy";
 
     private final SettingsModel settings;
     private final ColorChecker colorChecker;

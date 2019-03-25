@@ -2,7 +2,7 @@ package com.jekatim.tt2clicker.actions;
 
 public class UpgradeHeroesAction implements Action {
 
-    private final int scrollBetweebHeroesGap = 170;
+    private final int scrollBetweenHeroesGap = 170;
 
     @Override
     public void perform() {
@@ -12,8 +12,8 @@ public class UpgradeHeroesAction implements Action {
 
         // cycle
         {
-            // clicking on available hero until color != grey
-            // scroll down on 170 pixels
-        } // repeat ~ 40 times
+            // click on three heroes that are on screen until color != grey
+            // scroll three heroes down
+        } // repeat ~ 13 times
     }
 }

@@ -7,6 +7,7 @@
     <color name="ic_launcher_background">#FFFFFF</color>
 
     <color name="prestige_button">#f79f08</color>
+    <color name="arftifact_button">#F7A906</color>
 
     <color name="close_panel_button">#453830</color>
     <color name="slide_panel_up_button">#433930</color>
@@ -16,6 +17,7 @@
     <color name="CO_skill_area">#ffffff</color>
 
     <color name="no_CQ_available_area">#e26a41</color>
+    <color name="boss_fight_failed_area">#EF6010</color>
 
     <color name="go_to_sword_master_tab">#f36a3c</color>
     <color name="go_to_heroes_tab">#3d94a5</color>
