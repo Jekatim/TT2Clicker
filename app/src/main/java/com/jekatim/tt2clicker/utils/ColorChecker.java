@@ -22,6 +22,10 @@ public class ColorChecker {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.prestige_button));
     }
 
+    public boolean isArtifactButton(int x, int y) {
+        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.artifact_button));
+    }
+
     public boolean isClosePanelButton(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.close_panel_button));
     }

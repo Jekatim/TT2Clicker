@@ -49,7 +49,7 @@ public class AutoClickerService extends AccessibilityService {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);
-            path.lineTo((float) x, (float) y - 100);
+            path.lineTo((float) x, (float) y - 500);
             GestureDescription.Builder builder = new GestureDescription.Builder();
             GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
             this.dispatchGesture(gestureDescription, null, null);
@@ -61,7 +61,7 @@ public class AutoClickerService extends AccessibilityService {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);
-            path.lineTo((float) x, (float) y + 100);
+            path.lineTo((float) x, (float) y + 500);
             GestureDescription.Builder builder = new GestureDescription.Builder();
             GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
             this.dispatchGesture(gestureDescription, null, null);
