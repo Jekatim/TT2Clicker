@@ -11,7 +11,7 @@ public class PickUpEquipmentAction implements Action {
     private static String TAG = "PickUpEquipmentAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates equipmentCoordinates = new Coordinates(720, 1000);
+    private final Coordinates equipmentCoordinates = new Coordinates(800, 990);
 
     public PickUpEquipmentAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;
