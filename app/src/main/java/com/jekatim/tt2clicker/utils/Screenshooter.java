@@ -15,11 +15,10 @@ public class Screenshooter {
     }
 
     public int getPixelColor(int x, int y) {
-        View v1 = view.getRootView();
-        v1.setDrawingCacheEnabled(true);
-        v1.buildDrawingCache(true);
-        Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
-        v1.setDrawingCacheEnabled(false);
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache(true);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
 
         int pixel = bitmap.getPixel(x, y);
 

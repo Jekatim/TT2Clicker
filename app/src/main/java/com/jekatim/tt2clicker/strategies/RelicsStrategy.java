@@ -3,7 +3,9 @@ package com.jekatim.tt2clicker.strategies;
 import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
+import com.jekatim.tt2clicker.actions.FreeClicksAction;
 import com.jekatim.tt2clicker.actions.PrestigeAction;
+import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.utils.ColorChecker;
@@ -29,7 +31,8 @@ public class RelicsStrategy implements Strategy {
         this.colorChecker = colorChecker;
         this.actions = new ArrayList<>();
 
-        actions.add(new PrestigeAction(colorChecker));
+        actions.add(new UpgradeHeroesAction(colorChecker));
+        actions.add(new FreeClicksAction());
     }
 
     @Override
@@ -48,7 +51,7 @@ public class RelicsStrategy implements Strategy {
                 public void run() {
                     control();
                 }
-            }, 1000, 500);
+            }, 1000, 1000);
             Log.d(TAG, "Launched");
             isOn = true;
         }

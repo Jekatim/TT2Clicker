@@ -35,6 +35,7 @@ public class FloatingClickService extends Service {
 
     private WindowManager manager;
     private View view;
+    private View screenshotView;
     private WindowManager.LayoutParams params;
     private int xForRecord;
     private int yForRecord;
@@ -48,9 +49,11 @@ public class FloatingClickService extends Service {
         super.onCreate();
 
         settings = new SettingsModel();
+        strategy = new CQStrategy(settings);
 
-        this.view = LayoutInflater.from(this).inflate(R.layout.widget, null);
-        colorChecker = new ColorChecker(new Screenshooter(view), this);
+        this.view = View.inflate(this, R.layout.widget, null);
+        this.screenshotView = View.inflate(this, R.layout.screenshot_view, null);
+        colorChecker = new ColorChecker(new Screenshooter(screenshotView), this);
 
         int overlayParam = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -63,8 +66,15 @@ public class FloatingClickService extends Service {
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 
+        WindowManager.LayoutParams screenshotParams = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                overlayParam,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT);
         this.manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         manager.addView(view, params);
+        manager.addView(screenshotView, screenshotParams);
 
         MyBroadcastReceiver handler = new MyBroadcastReceiver();
         IntentFilter receiveFilter = new IntentFilter(handler.getClass().getName());
@@ -74,6 +84,7 @@ public class FloatingClickService extends Service {
         view.findViewById(R.id.toggleButton).setOnClickListener(v -> {
             if (isOn) {
                 strategy.stopStrategy();
+                isOn = false;
             } else {
                 startNewStrategy();
             }
@@ -159,7 +170,7 @@ public class FloatingClickService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "MyBroadcastReceiver() {...}.onReceive()");
-            Toasts.longToast(FloatingClickService.this, "Message received");
+            Toasts.longToast(FloatingClickService.this, "Settings received");
             SettingsModel model = (SettingsModel) intent.getExtras().get(SETTINGS_KEY);
             onSettingsChange(model);
         }
