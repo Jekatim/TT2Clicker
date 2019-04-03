@@ -14,6 +14,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ToggleButton;
 
 import com.jekatim.tt2clicker.R;
 import com.jekatim.tt2clicker.SettingsActivity;
@@ -71,7 +72,8 @@ public class FloatingClickService extends Service {
         LocalBroadcastManager.getInstance(this).registerReceiver(handler, receiveFilter);
 
         view.setOnTouchListener(new DragListener(params, () -> manager.updateViewLayout(view, params)));
-        view.findViewById(R.id.toggleButton).setOnClickListener(v -> {
+        ToggleButton toggle = view.findViewById(R.id.toggleButton);
+        toggle.setOnClickListener(v -> {
             if (isOn) {
                 strategy.stopStrategy();
                 isOn = false;

@@ -63,7 +63,7 @@ public class UpgradeHeroesAction implements Action {
             pause();
 
             // cycle through all heroes
-            for (int i = 0; i < 40; i++) {
+            for (int i = 0; i < 10; i++) {
                 // click on upgrade button
                 while (!colorChecker.isNoUpgradeAvailable(upgradeLastButton.x, upgradeLastButton.y)) {
                     Log.d(TAG, "Upgrading hero to max");

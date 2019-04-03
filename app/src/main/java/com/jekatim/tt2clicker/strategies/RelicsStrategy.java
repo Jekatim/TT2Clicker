@@ -32,7 +32,7 @@ public class RelicsStrategy implements Strategy {
         this.actions = new ArrayList<>();
 
         actions.add(new UpgradeHeroesAction(colorChecker));
-        actions.add(new FreeClicksAction());
+        //actions.add(new FreeClicksAction());
     }
 
     @Override

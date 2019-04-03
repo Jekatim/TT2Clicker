@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SettingsModel implements Serializable {
 
-    private ClickingStrategy strategy;
+    private ClickingStrategy strategy = ClickingStrategy.CQ_MODE;
     private int cqTapPeriod = 500;
 
     public ClickingStrategy getStrategy() {

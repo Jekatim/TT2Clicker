@@ -51,7 +51,7 @@ public class AutoClickerService extends AccessibilityService {
             path.moveTo((float) x, (float) y);
             path.lineTo((float) x, (float) y - 500);
             GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
             this.dispatchGesture(gestureDescription, null, null);
         }
     }
@@ -63,7 +63,7 @@ public class AutoClickerService extends AccessibilityService {
             path.moveTo((float) x, (float) y);
             path.lineTo((float) x, (float) y - distance);
             GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
             this.dispatchGesture(gestureDescription, null, null);
         }
     }
@@ -75,7 +75,7 @@ public class AutoClickerService extends AccessibilityService {
             path.moveTo((float) x, (float) y);
             path.lineTo((float) x, (float) y + 500);
             GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
             this.dispatchGesture(gestureDescription, null, null);
         }
     }
