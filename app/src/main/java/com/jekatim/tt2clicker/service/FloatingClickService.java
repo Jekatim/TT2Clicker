@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -35,7 +34,6 @@ public class FloatingClickService extends Service {
 
     private WindowManager manager;
     private View view;
-    private View screenshotView;
     private WindowManager.LayoutParams params;
     private int xForRecord;
     private int yForRecord;
@@ -52,8 +50,7 @@ public class FloatingClickService extends Service {
         strategy = new CQStrategy(settings);
 
         this.view = View.inflate(this, R.layout.widget, null);
-        this.screenshotView = View.inflate(this, R.layout.screenshot_view, null);
-        colorChecker = new ColorChecker(new Screenshooter(screenshotView), this);
+        this.colorChecker = new ColorChecker(new Screenshooter(), this);
 
         int overlayParam = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -66,15 +63,8 @@ public class FloatingClickService extends Service {
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 
-        WindowManager.LayoutParams screenshotParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                overlayParam,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT);
         this.manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         manager.addView(view, params);
-        manager.addView(screenshotView, screenshotParams);
 
         MyBroadcastReceiver handler = new MyBroadcastReceiver();
         IntentFilter receiveFilter = new IntentFilter(handler.getClass().getName());

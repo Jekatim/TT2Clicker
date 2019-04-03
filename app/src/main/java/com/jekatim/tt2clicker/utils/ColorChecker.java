@@ -72,6 +72,10 @@ public class ColorChecker {
     private boolean isColorMatch(int x, int y, int desiredColor) {
         int color = screenshooter.getPixelColor(x, y);
 
+        if (color == -1) {
+            return false;
+        }
+
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
 

@@ -1,29 +1,41 @@
 package com.jekatim.tt2clicker.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Log;
-import android.view.View;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class Screenshooter {
 
     private static String TAG = "Screenshooter";
 
-    private View view;
-
-    public Screenshooter(View view) {
-        this.view = view;
+    public Screenshooter() {
     }
 
     public int getPixelColor(int x, int y) {
-        view.setDrawingCacheEnabled(true);
-        view.buildDrawingCache(true);
-        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
-        view.setDrawingCacheEnabled(false);
+        try {
+            Process sh = Runtime.getRuntime().exec("su", null, null);
+            String path = Environment.getExternalStorageDirectory().getPath() + File.separator + "img.png";
+            OutputStream os = sh.getOutputStream();
+            os.write(("/system/bin/screencap -p " + path).getBytes("ASCII"));
+            os.flush();
+            os.close();
+            sh.waitFor();
 
-        int pixel = bitmap.getPixel(x, y);
+            Bitmap screen = BitmapFactory.decodeFile(path);
 
-        Log.d(TAG, "Pixel Color: + " + Integer.toHexString(pixel) + " at x:" + x + " y:" + y);
+            int pixel = screen.getPixel(x, y);
 
-        return pixel;
+            Log.d(TAG, "Pixel Color: + " + Integer.toHexString(pixel) + " at x:" + x + " y:" + y);
+
+            return pixel;
+        } catch (IOException | InterruptedException e) {
+            Log.e(TAG, "Error in screeshooter", e);
+        }
+        return -1;
     }
 }

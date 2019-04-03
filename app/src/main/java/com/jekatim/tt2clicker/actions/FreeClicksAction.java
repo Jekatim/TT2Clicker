@@ -30,7 +30,7 @@ public class FreeClicksAction implements Action {
                     AutoClickerService.instance.click(clickingX, clickingY);
                 }
             }
-        }, 500, 10);
+        }, 500, 100);
         Log.d(TAG, "Burst launched");
     }
 }
