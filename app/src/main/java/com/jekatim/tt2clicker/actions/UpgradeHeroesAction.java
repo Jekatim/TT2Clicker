@@ -6,6 +6,7 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
 public class UpgradeHeroesAction implements Action {
@@ -49,6 +50,7 @@ public class UpgradeHeroesAction implements Action {
                 // click on upgrade button
                 Log.d(TAG, "Upgrading hero to max");
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
+                pause200();
                 AutoClickerService.instance.scrollDownOn(scrollStartCoordinates.x, scrollStartCoordinates.y, scrollBetweenHeroesGap);
                 pause500();
             }
