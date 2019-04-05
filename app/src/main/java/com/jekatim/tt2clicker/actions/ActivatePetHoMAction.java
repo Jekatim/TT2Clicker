@@ -6,23 +6,29 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
-public class ActivatePetHoMAction implements Action {
+public class ActivatePetHoMAction extends ActionWithPeriod {
 
     private static String TAG = "ActivatePetHoMAction";
 
     private final Coordinates petArea = new Coordinates(640, 900);
-    private long lastActivatedTime;
-    private final int skillDuration = 10; //sec
+
+    public ActivatePetHoMAction() {
+        super(10); //sec
+    }
 
     @Override
     public void perform() {
-        if (System.currentTimeMillis() - lastActivatedTime < skillDuration * 1000) {
-            Log.d(TAG, "Time is not come yet, skipping");
+        if (!checkTimePeriodValid()) {
             return;
         }
 
         Log.d(TAG, "Activating PHoM");
         AutoClickerService.instance.click(petArea.x, petArea.y);
         lastActivatedTime = System.currentTimeMillis();
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 }

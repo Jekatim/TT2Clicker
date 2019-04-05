@@ -9,7 +9,7 @@ import com.jekatim.tt2clicker.utils.ColorChecker;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
-public class UpgradeHeroesAction implements Action {
+public class UpgradeHeroesAction extends ActionWithPeriod {
 
     private static String TAG = "UpgradeHeroesAction";
 
@@ -21,17 +21,14 @@ public class UpgradeHeroesAction implements Action {
     private final Coordinates upgradeFirstButton = new Coordinates(900, 1760);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
-    private long lastActivatedTime;
-    private long period = 30; //sec
-
     public UpgradeHeroesAction(ColorChecker colorChecker) {
+        super(30); //sec
         this.colorChecker = colorChecker;
     }
 
     @Override
     public void perform() {
-        if (System.currentTimeMillis() - lastActivatedTime < period * 1000) {
-            Log.d(TAG, "Time is not come yet, skipping");
+        if (!checkTimePeriodValid()) {
             return;
         }
         // close tab if needed
@@ -75,5 +72,10 @@ public class UpgradeHeroesAction implements Action {
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
             pause500();
         }
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 }

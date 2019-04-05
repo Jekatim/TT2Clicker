@@ -7,27 +7,24 @@ import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
-public class CheckIfPushWithWCNeededAction implements Action {
+public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
 
     private static String TAG = "CheckIfPushWithWCNeededAction";
     private static int launchesCounter = 0;
 
     private final Coordinates fightBossCoordinates = new Coordinates(970, 80);
-    private long lastActivatedTime;
-    private final int period = 90; //sec
-
     private final ColorChecker colorChecker;
     private final Strategy strategy;
 
     public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy) {
+        super(90); //sec
         this.colorChecker = colorChecker;
         this.strategy = strategy;
     }
 
     @Override
     public void perform() {
-        if (System.currentTimeMillis() - lastActivatedTime < period * 1000) {
-            Log.d(TAG, "Time is not come yet, skipping");
+        if (!checkTimePeriodValid()) {
             return;
         }
         // check if the button with boss appears
@@ -45,5 +42,10 @@ public class CheckIfPushWithWCNeededAction implements Action {
             Log.d(TAG, "No boss button available, skipping");
         }
         lastActivatedTime = System.currentTimeMillis();
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 }
