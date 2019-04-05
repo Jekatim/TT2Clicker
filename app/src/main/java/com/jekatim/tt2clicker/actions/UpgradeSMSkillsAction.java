@@ -6,6 +6,8 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
+
 public class UpgradeSMSkillsAction implements Action {
 
     private static String TAG = "UpgradeSMSkillsAction";
@@ -34,79 +36,62 @@ public class UpgradeSMSkillsAction implements Action {
         if (colorChecker.isGoToSwordMasterTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause();
+            pause200();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            pause200();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            pause200();
 
             // slide panel up
-            if (colorChecker.isSlidePanelUpButton(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y)) {
-                Log.d(TAG, "sliding panel up");
-                AutoClickerService.instance.click(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y);
+            Log.d(TAG, "sliding panel up");
+            AutoClickerService.instance.click(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y);
 
-                // upgrade all skills to 1
-                if (colorChecker.isUnlockSkillButton(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y)) {
-                    Log.d(TAG, "Upgrading hs to 1");
-                    AutoClickerService.instance.click(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed hs upgrade button");
-                }
-                if (colorChecker.isUnlockSkillButton(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y)) {
-                    Log.d(TAG, "Upgrading ds to 1");
-                    AutoClickerService.instance.click(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed ds upgrade button");
-                }
-                if (colorChecker.isUnlockSkillButton(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y)) {
-                    Log.d(TAG, "Upgrading HoM to max");
-                    AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
-                    pause();
-                    AutoClickerService.instance.click(670, upgradeHoMSkillCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed HoM upgrade button");
-                }
-                if (colorChecker.isUnlockSkillButton(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y)) {
-                    Log.d(TAG, "Upgrading fs to 1");
-                    AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed fs upgrade button");
-                }
-                if (colorChecker.isUnlockSkillButton(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y)) {
-                    Log.d(TAG, "Upgrading wc to max");
-                    AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-                    pause();
-                    AutoClickerService.instance.click(670, upgradeWCSkillCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed wc upgrade button");
-                }
-                if (colorChecker.isUnlockSkillButton(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y)) {
-                    Log.d(TAG, "Upgrading sc to 1");
-                    AutoClickerService.instance.click(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed sc upgrade button");
-                }
-
-                // slide panel down
-                if (colorChecker.isSlidePanelUpButton(slideDownPanelCoordinates.x, slideDownPanelCoordinates.y)) {
-                    Log.d(TAG, "sliding panel down");
-                    AutoClickerService.instance.click(slideDownPanelCoordinates.x, slideDownPanelCoordinates.y);
-                } else {
-                    Log.d(TAG, "Missed panel down button");
-                }
+            // upgrade all skills to 1
+            if (colorChecker.isUnlockSkillButton(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading hs to 1");
+                AutoClickerService.instance.click(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y);
             } else {
-                Log.d(TAG, "Missed panel up button");
+                Log.d(TAG, "Missed hs upgrade button");
             }
+            if (colorChecker.isUnlockSkillButton(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading ds to 1");
+                AutoClickerService.instance.click(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y);
+            } else {
+                Log.d(TAG, "Missed ds upgrade button");
+            }
+            if (colorChecker.isUnlockSkillButton(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading HoM to max");
+                AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
+                pause200();
+                AutoClickerService.instance.click(670, upgradeHoMSkillCoordinates.y);
+            } else {
+                Log.d(TAG, "Missed HoM upgrade button");
+            }
+            if (colorChecker.isUnlockSkillButton(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading fs to 1");
+                AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
+            } else {
+                Log.d(TAG, "Missed fs upgrade button");
+            }
+            if (colorChecker.isUnlockSkillButton(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading wc to max");
+                AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
+                pause200();
+                AutoClickerService.instance.click(670, upgradeWCSkillCoordinates.y);
+            } else {
+                Log.d(TAG, "Missed wc upgrade button");
+            }
+            if (colorChecker.isUnlockSkillButton(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading sc to 1");
+                AutoClickerService.instance.click(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y);
+            } else {
+                Log.d(TAG, "Missed sc upgrade button");
+            }
+
+            Log.d(TAG, "sliding panel down");
+            AutoClickerService.instance.click(slideDownPanelCoordinates.x, slideDownPanelCoordinates.y);
         } else {
             Log.d(TAG, "Missed SM tab");
-        }
-    }
-
-    private static void pause() {
-        try {
-            Thread.sleep((long) 200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }

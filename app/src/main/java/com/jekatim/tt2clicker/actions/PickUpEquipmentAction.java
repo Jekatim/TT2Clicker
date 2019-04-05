@@ -6,6 +6,9 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause100;
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause2000;
+
 public class PickUpEquipmentAction implements Action {
 
     private static String TAG = "PickUpEquipmentAction";
@@ -24,27 +27,19 @@ public class PickUpEquipmentAction implements Action {
         // click several time on equipment area
         Log.d(TAG, "Clicking on equipment");
         AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause(100);
+        pause100();
         AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause(100);
+        pause100();
         AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause(100);
+        pause100();
         // wait until splash for 2 sec
-        pause(2000);
+        pause2000();
         // click several time to close popup
         AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause(100);
+        pause100();
         AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause(100);
+        pause100();
         AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause(100);
-    }
-
-    private void pause(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause100();
     }
 }

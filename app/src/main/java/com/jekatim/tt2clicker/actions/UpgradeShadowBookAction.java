@@ -6,6 +6,8 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
+
 public class UpgradeShadowBookAction implements Action {
 
     private static String TAG = "UpgradeShadowBookAction";
@@ -27,50 +29,25 @@ public class UpgradeShadowBookAction implements Action {
         if (colorChecker.isGoToArtifactsTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to artifacts tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause();
+            pause200();
 
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            scrollUp();
 
             // click on upgrade button
             if (colorChecker.isArtifactButton(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y)) {
                 Log.d(TAG, "Upgrading BoS to max");
                 AutoClickerService.instance.click(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y);
-                pause();
+                pause200();
                 AutoClickerService.instance.click(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y);
-                pause();
+                pause200();
                 AutoClickerService.instance.click(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y);
-                pause();
+                pause200();
                 AutoClickerService.instance.click(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y);
-                pause();
+                pause200();
                 AutoClickerService.instance.click(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y);
-                pause();
+                pause200();
                 AutoClickerService.instance.click(bookOfShadowsCoordinates.x, bookOfShadowsCoordinates.y);
-                pause();
+                pause200();
             } else {
                 Log.d(TAG, "Missed upgrade button");
             }
@@ -79,11 +56,32 @@ public class UpgradeShadowBookAction implements Action {
         }
     }
 
-    private static void pause() {
-        try {
-            Thread.sleep((long) 200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void scrollUp() {
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
+        AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+        pause200();
     }
 }

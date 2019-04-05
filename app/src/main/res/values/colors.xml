@@ -13,7 +13,9 @@
     <color name="close_panel_button">#453830</color>
     <color name="slide_panel_up_button">#433930</color>
 
-    <color name="upgrade_hero_button">#ef8114</color>
+    <color name="upgrade_hero_button">#a22804</color>
+    <color name="upgrade_hero_button2">#963b02</color>
+
     <color name="unlock_skill_button">#f79f08</color>
     <color name="CO_skill_area">#ffffff</color>
 

@@ -6,16 +6,18 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+
 public class UpgradeHeroesAction implements Action {
 
     private static String TAG = "UpgradeHeroesAction";
 
-    private final int scrollBetweenHeroesGap = 170;
+    private final int scrollBetweenHeroesGap = 275;//170;
 
     private final ColorChecker colorChecker;
     private final Coordinates tabCoordinates = new Coordinates(200, 1900);
-    private final Coordinates upgradeLastButton = new Coordinates(765, 1535);
-    private final Coordinates upgradeFirstButton = new Coordinates(765, 1790);
+    private final Coordinates upgradeLastButton = new Coordinates(1030, 1470);
+    private final Coordinates upgradeFirstButton = new Coordinates(1030, 1720);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     private long lastActivatedTime;
@@ -38,68 +40,25 @@ public class UpgradeHeroesAction implements Action {
         if (colorChecker.isGoToHeroesTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to heroes tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause();
+            pause500();
 
-            //scroll up
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            scrollUp();
 
             // cycle through all heroes
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 37; i++) {
                 // click on upgrade button
-                while (!colorChecker.isNoUpgradeAvailable(upgradeLastButton.x, upgradeLastButton.y)) {
-                    Log.d(TAG, "Upgrading hero to max");
-                    AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
-                }
+                Log.d(TAG, "Upgrading hero to max");
+                AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
                 AutoClickerService.instance.scrollDownOn(scrollStartCoordinates.x, scrollStartCoordinates.y, scrollBetweenHeroesGap);
-                pause();
+                pause500();
             }
 
             // click on upgrade button
-            while (!colorChecker.isNoUpgradeAvailable(upgradeFirstButton.x, upgradeFirstButton.y)) {
-                Log.d(TAG, "Upgrading hero to max");
-                AutoClickerService.instance.click(upgradeFirstButton.x, upgradeFirstButton.y);
-            }
+            Log.d(TAG, "Upgrading hero to max");
+            AutoClickerService.instance.click(upgradeFirstButton.x, upgradeFirstButton.y);
+            pause500();
 
-            //scroll down
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            scrollUp();
 
             lastActivatedTime = System.currentTimeMillis();
         } else {
@@ -107,11 +66,11 @@ public class UpgradeHeroesAction implements Action {
         }
     }
 
-    private static void pause() {
-        try {
-            Thread.sleep((long) 200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private void scrollUp() {
+        //scroll up
+        for (int i = 0; i < 10; i++) {
+            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            pause500();
         }
     }
 }

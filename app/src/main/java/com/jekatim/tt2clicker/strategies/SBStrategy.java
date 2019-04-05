@@ -3,6 +3,7 @@ package com.jekatim.tt2clicker.strategies;
 import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
+import com.jekatim.tt2clicker.actions.FreeClicksAction;
 import com.jekatim.tt2clicker.actions.PrestigeAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.settings.SettingsModel;
@@ -29,7 +30,7 @@ public class SBStrategy implements Strategy {
         this.colorChecker = colorChecker;
         this.actions = new ArrayList<>();
 
-        actions.add(new PrestigeAction(colorChecker));
+        actions.add(new FreeClicksAction());
     }
 
     @Override
@@ -72,5 +73,15 @@ public class SBStrategy implements Strategy {
         } else {
             Log.d(TAG, "Already stopped, skipping");
         }
+    }
+
+    @Override
+    public void addOneTimeAction(Action action) {
+
+    }
+
+    @Override
+    public void addAfterPrestigeActions() {
+
     }
 }

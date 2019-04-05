@@ -12,7 +12,7 @@ public class ActivateCOAction implements Action {
 
     private final Coordinates COArea = new Coordinates(415, 980);
     private long lastActivatedTime;
-    private final int skillDuration = 35; //sec
+    private final int skillDuration = 15; //sec
 
     private final ColorChecker colorChecker;
 

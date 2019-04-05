@@ -1,5 +1,6 @@
 package com.jekatim.tt2clicker.strategies;
 
+import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 
 public interface Strategy {
@@ -9,4 +10,8 @@ public interface Strategy {
     void launchStrategy();
 
     void stopStrategy();
+
+    void addOneTimeAction(Action action);
+
+    void addAfterPrestigeActions();
 }

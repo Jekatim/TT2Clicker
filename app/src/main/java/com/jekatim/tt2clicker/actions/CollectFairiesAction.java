@@ -5,6 +5,8 @@ import android.util.Log;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause50;
+
 public class CollectFairiesAction implements Action {
 
     private static String TAG = "CollectFairiesAction";
@@ -26,58 +28,50 @@ public class CollectFairiesAction implements Action {
         Log.d(TAG, "Tapping on fairies");
 
         AutoClickerService.instance.click(240, 450);
-        pause();
+        pause50();
         AutoClickerService.instance.click(320, 455);
-        pause();
+        pause50();
         AutoClickerService.instance.click(400, 460);
-        pause();
+        pause50();
         AutoClickerService.instance.click(480, 465);
-        pause();
+        pause50();
         AutoClickerService.instance.click(560, 470);
-        pause();
+        pause50();
         AutoClickerService.instance.click(640, 475);
-        pause();
+        pause50();
         AutoClickerService.instance.click(720, 480);
-        pause();
+        pause50();
         AutoClickerService.instance.click(800, 485);
-        pause();
+        pause50();
         AutoClickerService.instance.click(880, 490);
-        pause();
+        pause50();
         AutoClickerService.instance.click(960, 495);
-        pause();
+        pause50();
         AutoClickerService.instance.click(1040, 500);
-        pause();
+        pause50();
 
 
         AutoClickerService.instance.click(1040, 500);
-        pause();
+        pause50();
         AutoClickerService.instance.click(960, 495);
-        pause();
+        pause50();
         AutoClickerService.instance.click(880, 490);
-        pause();
+        pause50();
         AutoClickerService.instance.click(800, 485);
-        pause();
+        pause50();
         AutoClickerService.instance.click(720, 480);
-        pause();
+        pause50();
         AutoClickerService.instance.click(640, 475);
-        pause();
+        pause50();
         AutoClickerService.instance.click(560, 470);
-        pause();
+        pause50();
         AutoClickerService.instance.click(480, 465);
-        pause();
+        pause50();
         AutoClickerService.instance.click(400, 460);
-        pause();
+        pause50();
         AutoClickerService.instance.click(320, 455);
-        pause();
+        pause50();
         AutoClickerService.instance.click(240, 450);
-        pause();
-    }
-
-    private void pause() {
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause50();
     }
 }

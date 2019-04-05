@@ -2,6 +2,7 @@ package com.jekatim.tt2clicker.strategies;
 
 import android.util.Log;
 
+import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.settings.SettingsModel;
@@ -65,5 +66,15 @@ public class CQStrategy implements Strategy {
         } else {
             Log.d(TAG, "Already stopped, skipping");
         }
+    }
+
+    @Override
+    public void addOneTimeAction(Action action) {
+        // NO_OP
+    }
+
+    @Override
+    public void addAfterPrestigeActions() {
+        // NO_OP
     }
 }

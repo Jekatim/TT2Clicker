@@ -12,9 +12,9 @@ public class FreeClicksAction implements Action {
     private static String TAG = "FreeClicksAction";
 
     private final int clickingX = 500;
-    private final int clickingY = 500;
+    private final int clickingY = 700;
     private long launchedTime;
-    private final int burstDuration = 5; //sec
+    private final int burstDuration = 10; //sec
 
     @Override
     public void perform() {
@@ -30,7 +30,7 @@ public class FreeClicksAction implements Action {
                     AutoClickerService.instance.click(clickingX, clickingY);
                 }
             }
-        }, 500, 100);
+        }, 500, 50);
         Log.d(TAG, "Burst launched");
     }
 }

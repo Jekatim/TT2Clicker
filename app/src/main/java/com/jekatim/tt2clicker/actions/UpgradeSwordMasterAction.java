@@ -6,6 +6,8 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
+
 public class UpgradeSwordMasterAction implements Action {
 
     private static String TAG = "UpgradeSwordMasterAction";
@@ -27,33 +29,24 @@ public class UpgradeSwordMasterAction implements Action {
         if (colorChecker.isGoToSwordMasterTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause();
+            pause200();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            pause200();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            pause200();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            pause200();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause();
+            pause200();
 
             // click on upgrade button
-            if (colorChecker.isUnlockSkillButton(upgradeSMButtonCoordinates.x, upgradeSMButtonCoordinates.y)) {
-                Log.d(TAG, "Upgrading sm to max");
-                AutoClickerService.instance.click(upgradeSMButtonCoordinates.x, upgradeSMButtonCoordinates.y);
-            } else {
-                Log.d(TAG, "Missed upgrade button");
-            }
+            Log.d(TAG, "Upgrading sm to max");
+            AutoClickerService.instance.click(upgradeSMButtonCoordinates.x, upgradeSMButtonCoordinates.y);
+            pause200();
         } else {
             Log.d(TAG, "Missed SM tab");
         }
     }
 
-    private static void pause() {
-        try {
-            Thread.sleep((long) 200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

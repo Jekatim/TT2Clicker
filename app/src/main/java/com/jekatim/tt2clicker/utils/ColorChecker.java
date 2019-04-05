@@ -11,7 +11,7 @@ public class ColorChecker {
 
     private final Screenshooter screenshooter;
     private final Context context;
-    private final int hueDelta = 30;
+    private final int hueDelta = 10;
 
     public ColorChecker(Screenshooter screenshooter, Context context) {
         this.screenshooter = screenshooter;
@@ -38,7 +38,8 @@ public class ColorChecker {
     }
 
     public boolean isUpgradeHeroButton(int x, int y) {
-        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.upgrade_hero_button));
+        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.upgrade_hero_button))
+                || isColorMatch(x, y, ContextCompat.getColor(context, R.color.upgrade_hero_button2));
     }
 
     public boolean isUnlockSkillButton(int x, int y) {
@@ -51,6 +52,10 @@ public class ColorChecker {
 
     public boolean isNoCQAvailableArea(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.no_CQ_available_area));
+    }
+
+    public boolean isBossFailedArea(int x, int y) {
+        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.boss_fight_failed_area));
     }
 
     public boolean isNoUpgradeAvailable(int x, int y) {
