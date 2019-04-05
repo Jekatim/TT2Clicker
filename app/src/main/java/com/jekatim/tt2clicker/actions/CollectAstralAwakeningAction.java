@@ -27,7 +27,6 @@ public class CollectAstralAwakeningAction implements Action {
         //click on left heroes column
         Log.d(TAG, "Tapping on astral awakening");
 
-
         for (int i = 0; i < 3; i++) {
             tapOnLeftSide();
             tapOnRightSide();

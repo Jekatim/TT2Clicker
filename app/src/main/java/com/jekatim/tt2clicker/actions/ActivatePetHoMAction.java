@@ -10,14 +10,9 @@ public class ActivatePetHoMAction implements Action {
 
     private static String TAG = "ActivatePetHoMAction";
 
-    private final ColorChecker colorChecker;
     private final Coordinates petArea = new Coordinates(640, 900);
     private long lastActivatedTime;
     private final int skillDuration = 10; //sec
-
-    public ActivatePetHoMAction(ColorChecker colorChecker) {
-        this.colorChecker = colorChecker;
-    }
 
     @Override
     public void perform() {
@@ -25,7 +20,6 @@ public class ActivatePetHoMAction implements Action {
             Log.d(TAG, "Time is not come yet, skipping");
             return;
         }
-        CommonSteps.closePanel(colorChecker);
 
         Log.d(TAG, "Activating PHoM");
         AutoClickerService.instance.click(petArea.x, petArea.y);

@@ -52,8 +52,8 @@ public class RelicsStrategy implements Strategy {
         cycledActions.add(new UpgradeHeroesAction(colorChecker));
         cycledActions.add(new UpgradeSwordMasterAction(colorChecker));
         cycledActions.add(new UpgradeSMNeededSkillsAction(colorChecker));
-        cycledActions.add(new ActivateCOAction(colorChecker));
-        cycledActions.add(new ActivatePetHoMAction(colorChecker));
+        cycledActions.add(new ActivateCOAction());
+        cycledActions.add(new ActivatePetHoMAction());
         cycledActions.add(new ActivateSCSkillAction(colorChecker));
         cycledActions.add(new CollectAstralAwakeningAction(colorChecker));
         cycledActions.add(new CollectFairiesAction(colorChecker));

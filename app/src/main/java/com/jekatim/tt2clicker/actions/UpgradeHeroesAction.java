@@ -17,8 +17,8 @@ public class UpgradeHeroesAction implements Action {
 
     private final ColorChecker colorChecker;
     private final Coordinates tabCoordinates = new Coordinates(200, 1900);
-    private final Coordinates upgradeLastButton = new Coordinates(1030, 1470);
-    private final Coordinates upgradeFirstButton = new Coordinates(1030, 1720);
+    private final Coordinates upgradeLastButton = new Coordinates(900, 1500);
+    private final Coordinates upgradeFirstButton = new Coordinates(900, 1760);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     private long lastActivatedTime;

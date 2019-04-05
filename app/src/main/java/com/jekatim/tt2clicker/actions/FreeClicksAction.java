@@ -14,7 +14,7 @@ public class FreeClicksAction implements Action {
     private final int clickingX = 500;
     private final int clickingY = 700;
     private long launchedTime;
-    private final int burstDuration = 10; //sec
+    private final int burstDuration = 5; //sec
 
     @Override
     public void perform() {

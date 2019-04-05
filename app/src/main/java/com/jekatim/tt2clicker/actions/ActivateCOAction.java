@@ -12,13 +12,7 @@ public class ActivateCOAction implements Action {
 
     private final Coordinates COArea = new Coordinates(415, 980);
     private long lastActivatedTime;
-    private final int skillDuration = 15; //sec
-
-    private final ColorChecker colorChecker;
-
-    public ActivateCOAction(ColorChecker colorChecker) {
-        this.colorChecker = colorChecker;
-    }
+    private final int skillDuration = 10; //sec
 
     @Override
     public void perform() {
@@ -27,12 +21,8 @@ public class ActivateCOAction implements Action {
             return;
         }
         // click on co area
-        if (colorChecker.isCOSkillArea(COArea.x, COArea.y)) {
-            Log.d(TAG, "Activating CO");
-            AutoClickerService.instance.click(COArea.x, COArea.y);
-            lastActivatedTime = System.currentTimeMillis();
-        } else {
-            Log.d(TAG, "No CO available, skipping");
-        }
+        Log.d(TAG, "Activating CO");
+        AutoClickerService.instance.click(COArea.x, COArea.y);
+        lastActivatedTime = System.currentTimeMillis();
     }
 }
