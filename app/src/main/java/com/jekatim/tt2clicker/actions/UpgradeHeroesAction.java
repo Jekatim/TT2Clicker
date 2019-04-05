@@ -44,6 +44,7 @@ public class UpgradeHeroesAction implements Action {
             pause500();
 
             scrollUp();
+            pause500();
 
             // cycle through all heroes
             for (int i = 0; i < 37; i++) {
