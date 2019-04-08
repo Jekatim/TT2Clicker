@@ -69,4 +69,12 @@ public class CommonSteps {
             e.printStackTrace();
         }
     }
+
+    public static void pauseOn(int msec) {
+        try {
+            Thread.sleep(msec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.jekatim.tt2clicker.service.AutoClickerService;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+import static com.jekatim.tt2clicker.actions.CommonSteps.pauseOn;
 
 public class FreeClicksAction implements Action {
 
@@ -13,24 +13,18 @@ public class FreeClicksAction implements Action {
 
     private final int clickingX = 500;
     private final int clickingY = 700;
-    private long launchedTime;
     private final int burstDuration = 5; //sec
+    private final int burstPeriod = 50; //msec
 
     @Override
     public void perform() {
-        Timer timer = new Timer();
-        launchedTime = System.currentTimeMillis();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (System.currentTimeMillis() - launchedTime > burstDuration * 1000){
-                    timer.cancel();
-                } else {
-                    Log.d(TAG, "will click on  x: " + clickingX + ", y: " + clickingY);
-                    AutoClickerService.instance.click(clickingX, clickingY);
-                }
-            }
-        }, 500, 50);
-        Log.d(TAG, "Burst launched");
+        Log.d(TAG, "Free clicks fire");
+        int numberOfTaps = (1000 / burstPeriod) * burstDuration;
+
+        pause500();
+        for (int i = 0; i < numberOfTaps; i++) {
+            AutoClickerService.instance.click(clickingX, clickingY);
+            pauseOn(burstPeriod);
+        }
     }
 }

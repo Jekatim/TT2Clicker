@@ -5,6 +5,7 @@ import android.util.Log;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause50;
 
 public class CollectAstralAwakeningAction implements Action {
@@ -29,7 +30,9 @@ public class CollectAstralAwakeningAction implements Action {
 
         for (int i = 0; i < 3; i++) {
             tapOnLeftSide();
+            pause200();
             tapOnRightSide();
+            pause200();
         }
     }
 

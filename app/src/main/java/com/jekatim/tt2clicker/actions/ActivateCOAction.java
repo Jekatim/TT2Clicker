@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
-import com.jekatim.tt2clicker.utils.ColorChecker;
 
 public class ActivateCOAction extends ActionWithPeriod {
 

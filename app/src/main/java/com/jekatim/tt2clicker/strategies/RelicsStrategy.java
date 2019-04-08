@@ -10,6 +10,7 @@ import com.jekatim.tt2clicker.actions.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.CollectAstralAwakeningAction;
 import com.jekatim.tt2clicker.actions.CollectFairiesAction;
 import com.jekatim.tt2clicker.actions.FreeClicksAction;
+import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.actions.UpgradeSMNeededSkillsAction;
 import com.jekatim.tt2clicker.actions.UpgradeSMSkillsAction;
@@ -57,6 +58,7 @@ public class RelicsStrategy implements Strategy {
         cycledActions.add(new ActivateSCSkillAction(colorChecker));
         cycledActions.add(new CollectAstralAwakeningAction(colorChecker));
         cycledActions.add(new CollectFairiesAction(colorChecker));
+        cycledActions.add(new PickUpEquipmentAction(colorChecker));
         cycledActions.add(new FreeClicksAction());
         cycledActions.add(new CheckIfPushWithWCNeededAction(colorChecker, this));
     }

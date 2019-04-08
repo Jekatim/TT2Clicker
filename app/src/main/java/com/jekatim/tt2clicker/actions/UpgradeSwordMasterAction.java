@@ -8,7 +8,7 @@ import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 
-public class UpgradeSwordMasterAction implements Action {
+public class UpgradeSwordMasterAction extends ActionWithPeriod {
 
     private static String TAG = "UpgradeSwordMasterAction";
 
@@ -18,11 +18,15 @@ public class UpgradeSwordMasterAction implements Action {
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSwordMasterAction(ColorChecker colorChecker) {
+        super(30);
         this.colorChecker = colorChecker;
     }
 
     @Override
     public void perform() {
+        if (!checkTimePeriodValid()) {
+            return;
+        }
         // close tab if needed
         CommonSteps.closePanel(colorChecker);
         // go to sword master tab
@@ -49,4 +53,8 @@ public class UpgradeSwordMasterAction implements Action {
     }
 
 
+    @Override
+    protected String getTag() {
+        return TAG;
+    }
 }

@@ -9,7 +9,7 @@ import com.jekatim.tt2clicker.utils.ColorChecker;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause100;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause2000;
 
-public class PickUpEquipmentAction implements Action {
+public class PickUpEquipmentAction extends ActionWithPeriod {
 
     private static String TAG = "PickUpEquipmentAction";
 
@@ -17,6 +17,7 @@ public class PickUpEquipmentAction implements Action {
     private final Coordinates equipmentCoordinates = new Coordinates(800, 990);
 
     public PickUpEquipmentAction(ColorChecker colorChecker) {
+        super(60);
         this.colorChecker = colorChecker;
     }
 
@@ -26,20 +27,21 @@ public class PickUpEquipmentAction implements Action {
         CommonSteps.closePanel(colorChecker);
         // click several time on equipment area
         Log.d(TAG, "Clicking on equipment");
-        AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause100();
-        AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause100();
-        AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause100();
+        for (int i = 0; i < 5; i++) {
+            AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
+            pause100();
+        }
         // wait until splash for 2 sec
         pause2000();
         // click several time to close popup
-        AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause100();
-        AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause100();
-        AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
-        pause100();
+        for (int i = 0; i < 5; i++) {
+            AutoClickerService.instance.click(equipmentCoordinates.x, equipmentCoordinates.y);
+            pause100();
+        }
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 }

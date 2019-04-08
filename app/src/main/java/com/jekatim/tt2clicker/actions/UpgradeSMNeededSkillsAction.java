@@ -8,7 +8,7 @@ import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 
-public class UpgradeSMNeededSkillsAction implements Action {
+public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
 
     private static String TAG = "UpgradeSMNeededSkillsAction";
 
@@ -21,11 +21,16 @@ public class UpgradeSMNeededSkillsAction implements Action {
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMNeededSkillsAction(ColorChecker colorChecker) {
+        super(30);
         this.colorChecker = colorChecker;
     }
 
     @Override
     public void perform() {
+        if (!checkTimePeriodValid()) {
+            return;
+        }
+
         // close tab if needed
         CommonSteps.closePanel(colorChecker);
         // go to sword master tab
@@ -63,5 +68,10 @@ public class UpgradeSMNeededSkillsAction implements Action {
         } else {
             Log.d(TAG, "Missed SM tab");
         }
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 }
