@@ -5,6 +5,8 @@ import android.util.Log;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+
 public class ActivatePetHoMAction extends ActionWithPeriod {
 
     private static String TAG = "ActivatePetHoMAction";
@@ -23,6 +25,7 @@ public class ActivatePetHoMAction extends ActionWithPeriod {
 
         Log.d(TAG, "Activating PHoM");
         AutoClickerService.instance.click(petArea.x, petArea.y);
+        pause500();
         lastActivatedTime = System.currentTimeMillis();
     }
 

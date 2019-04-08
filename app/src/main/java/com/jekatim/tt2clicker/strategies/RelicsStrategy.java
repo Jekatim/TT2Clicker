@@ -46,7 +46,7 @@ public class RelicsStrategy implements Strategy {
 
         /*********************************************************/
 
-        //addAfterPrestigeActions();
+//        addAfterPrestigeActions();
 
         /*********************************************************/
 

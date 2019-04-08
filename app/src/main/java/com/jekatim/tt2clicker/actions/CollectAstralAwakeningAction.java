@@ -15,7 +15,7 @@ public class CollectAstralAwakeningAction implements Action {
     private final ColorChecker colorChecker;
 
     // x = 40 -> 250 ; 875 -> 1045
-    // y = 420 -> 980 ; 240 -> 990
+    // y = 470 -> 980 ; 240 -> 990
 
     public CollectAstralAwakeningAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;
@@ -37,11 +37,11 @@ public class CollectAstralAwakeningAction implements Action {
     }
 
     private void tapOnLeftSide() {
-        int staticY = 500;
+        int staticY = 470;
         for (int i = 0; i < 10; i++) {
-            AutoClickerService.instance.click(875, staticY + (i * 48));
+            AutoClickerService.instance.click(40, staticY + (i * 48));
             pause50();
-            AutoClickerService.instance.click(1045, staticY + (i * 48));
+            AutoClickerService.instance.click(250, staticY + (i * 48));
             pause50();
         }
     }
@@ -49,9 +49,9 @@ public class CollectAstralAwakeningAction implements Action {
     private void tapOnRightSide() {
         int staticY = 240;
         for (int i = 0; i < 15; i++) {
-            AutoClickerService.instance.click(40, staticY + (i * 50));
+            AutoClickerService.instance.click(875, staticY + (i * 50));
             pause50();
-            AutoClickerService.instance.click(250, staticY + (i * 50));
+            AutoClickerService.instance.click(1045, staticY + (i * 50));
             pause50();
         }
     }

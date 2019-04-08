@@ -48,50 +48,24 @@ public class UpgradeSMSkillsAction implements Action {
             pause200();
 
             // upgrade all skills to 1
-            if (colorChecker.isUnlockSkillButton(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading hs to 1");
-                AutoClickerService.instance.click(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y);
-                pause200();
-            } else {
-                Log.d(TAG, "Missed hs upgrade button");
-            }
-            if (colorChecker.isUnlockSkillButton(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading ds to 1");
-                AutoClickerService.instance.click(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y);
-                pause200();
-            } else {
-                Log.d(TAG, "Missed ds upgrade button");
-            }
-            if (colorChecker.isUnlockSkillButton(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading HoM to max");
-                AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
-                pause200();
-//                AutoClickerService.instance.click(670, upgradeHoMSkillCoordinates.y);
-            } else {
-                Log.d(TAG, "Missed HoM upgrade button");
-            }
-            if (colorChecker.isUnlockSkillButton(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading fs to 1");
-                AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
-                pause200();
-            } else {
-                Log.d(TAG, "Missed fs upgrade button");
-            }
-            if (colorChecker.isUnlockSkillButton(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading wc to max");
-                AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-                pause200();
-//                AutoClickerService.instance.click(670, upgradeWCSkillCoordinates.y);
-            } else {
-                Log.d(TAG, "Missed wc upgrade button");
-            }
-            if (colorChecker.isUnlockSkillButton(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading sc to 1");
-                AutoClickerService.instance.click(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y);
-                pause200();
-            } else {
-                Log.d(TAG, "Missed sc upgrade button");
-            }
+            Log.d(TAG, "Upgrading hs to 1");
+            AutoClickerService.instance.click(upgradeHSSkillCoordinates.x, upgradeHSSkillCoordinates.y);
+            pause200();
+            Log.d(TAG, "Upgrading ds to 1");
+            AutoClickerService.instance.click(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y);
+            pause200();
+            Log.d(TAG, "Upgrading HoM to max");
+            AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
+            pause200();
+            Log.d(TAG, "Upgrading fs to 1");
+            AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
+            pause200();
+            Log.d(TAG, "Upgrading wc to max");
+            AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
+            pause200();
+            Log.d(TAG, "Upgrading sc to 1");
+            AutoClickerService.instance.click(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y);
+            pause200();
 
             Log.d(TAG, "sliding panel down");
             AutoClickerService.instance.click(slideDownPanelCoordinates.x, slideDownPanelCoordinates.y);

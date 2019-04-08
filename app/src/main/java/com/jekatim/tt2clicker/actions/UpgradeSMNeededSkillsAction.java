@@ -15,9 +15,9 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private final Coordinates tabCoordinates = new Coordinates(30, 1900);
     private final Coordinates slideUpPanelCoordinates = new Coordinates(865, 1066);
-    private final Coordinates slideDownPanelCoordinates = new Coordinates(865, 30);
-    private final Coordinates upgradeHoMSkillCoordinates = new Coordinates(765, 900);
-    private final Coordinates upgradeWCSkillCoordinates = new Coordinates(765, 1245);
+    private final Coordinates slideDownPanelCoordinates = new Coordinates(860, 25);
+    private final Coordinates upgradeHoMSkillCoordinates = new Coordinates(900, 900);
+    private final Coordinates upgradeWCSkillCoordinates = new Coordinates(900, 1245);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMNeededSkillsAction(ColorChecker colorChecker) {
@@ -47,24 +47,20 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
             //if (colorChecker.isSlidePanelUpButton(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y)) {
             Log.d(TAG, "sliding panel up");
             AutoClickerService.instance.click(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y);
+            pause200();
 
             // upgrade needed skills to max
-            if (colorChecker.isUnlockSkillButton(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading HoM to max");
-                AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
-            } else {
-                Log.d(TAG, "Missed HoM upgrade button");
-            }
-            if (colorChecker.isUnlockSkillButton(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y)) {
-                Log.d(TAG, "Upgrading wc to max");
-                AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-            } else {
-                Log.d(TAG, "Missed wc upgrade button");
-            }
+            Log.d(TAG, "Upgrading HoM to max");
+            AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
+            pause200();
+            Log.d(TAG, "Upgrading wc to max");
+            AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
+            pause200();
 
             // slide panel down
             Log.d(TAG, "sliding panel down");
             AutoClickerService.instance.click(slideDownPanelCoordinates.x, slideDownPanelCoordinates.y);
+            pause200();
         } else {
             Log.d(TAG, "Missed SM tab");
         }

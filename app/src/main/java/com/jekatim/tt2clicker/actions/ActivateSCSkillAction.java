@@ -6,6 +6,8 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+
 public class ActivateSCSkillAction extends ActionWithPeriod {
 
     private static String TAG = "ActivateSCSkillAction";
@@ -28,6 +30,7 @@ public class ActivateSCSkillAction extends ActionWithPeriod {
         // click on sc button
         Log.d(TAG, "Activating  skill");
         AutoClickerService.instance.click(scCoordinates.x, scCoordinates.y);
+        pause500();
         lastActivatedTime = System.currentTimeMillis();
     }
 
