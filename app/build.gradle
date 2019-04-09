@@ -12,8 +12,15 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            shrinkResources true
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
         }
     }
     buildToolsVersion '28.0.3'
