@@ -23,6 +23,8 @@
     <color name="boss_fight_failed_area">#EF6010</color>
     <color name="no_upgrade_available">#999999</color>
 
+    <color name="active_skill_button">#3ea4c6</color>
+
     <color name="go_to_sword_master_tab">#f36a3c</color>
     <color name="go_to_heroes_tab">#3d94a5</color>
     <color name="go_to_artifacts_tab">#795ac3</color>

@@ -17,8 +17,8 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
     private final Coordinates tabCoordinates = new Coordinates(30, 1900);
     private final Coordinates slideUpPanelCoordinates = new Coordinates(865, 1066);
     private final Coordinates slideDownPanelCoordinates = new Coordinates(860, 25);
-    private final Coordinates upgradeHoMSkillCoordinates = new Coordinates(900, 900);
-    private final Coordinates upgradeWCSkillCoordinates = new Coordinates(900, 1245);
+    private final Coordinates upgradeHoMSkillCoordinates = new Coordinates(1030, 900);
+    private final Coordinates upgradeWCSkillCoordinates = new Coordinates(1030, 1245);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMNeededSkillsAction(ColorChecker colorChecker) {
@@ -48,12 +48,16 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
             pause500();
 
             // upgrade needed skills to max
-            Log.d(TAG, "Upgrading HoM to max");
-            AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
-            pause200();
-            Log.d(TAG, "Upgrading wc to max");
-            AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-            pause200();
+            if (!colorChecker.isActiveSkillButton(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading HoM to max");
+                AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
+                pause200();
+            }
+            if (!colorChecker.isActiveSkillButton(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y)) {
+                Log.d(TAG, "Upgrading wc to max");
+                AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
+                pause200();
+            }
 
             // slide panel down
             Log.d(TAG, "sliding panel down");
