@@ -44,7 +44,7 @@ public class UpgradeSMSkillsAction implements Action {
             // slide panel up
             Log.d(TAG, "sliding panel up");
             AutoClickerService.instance.click(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y);
-            pause200();
+            pause500();
 
             // upgrade all skills to 1
             Log.d(TAG, "Upgrading hs to 1");
@@ -62,10 +62,11 @@ public class UpgradeSMSkillsAction implements Action {
             AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
             pause200();
             Log.d(TAG, "Upgrading wc to max");
-            for (int i = 0; i < 15; i++) {
-                AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-                pause200();
-            }
+            // for now we will try to go with one level wc till the wall
+            //for (int i = 0; i < 15; i++) {
+            AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
+            pause200();
+            //}
             Log.d(TAG, "Upgrading sc to 1");
             AutoClickerService.instance.click(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y);
             pause200();

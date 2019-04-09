@@ -12,11 +12,11 @@ import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
 
     private static String TAG = "CheckIfPushWithWCNeededAction";
-    private static int launchesCounter = 0;
 
     private final Coordinates fightBossCoordinates = new Coordinates(970, 80);
     private final ColorChecker colorChecker;
     private final Strategy strategy;
+    private int launchesCounter = 0;
 
     public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy) {
         super(90); //sec
@@ -38,7 +38,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
                 launchesCounter = 0;
             } else {
                 strategy.addOneTimeAction(new ActivateWCSkillAction(colorChecker));
-                Log.d(TAG, "Activating boss fight");
+                Log.d(TAG, "Activating boss fight, current count: " + launchesCounter);
                 AutoClickerService.instance.click(fightBossCoordinates.x, fightBossCoordinates.y);
                 pause500();
                 launchesCounter++;
