@@ -65,7 +65,8 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             }
 
             // click on upgrade button
-            Log.d(TAG, "Upgrading hero to max");
+            pause500();
+            Log.d(TAG, "Upgrading first hero to max");
             AutoClickerService.instance.click(upgradeFirstButton.x, upgradeFirstButton.y);
             pause500();
 
