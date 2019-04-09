@@ -8,7 +8,7 @@ import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
-import static com.jekatim.tt2clicker.actions.CommonSteps.pause2000;
+import static com.jekatim.tt2clicker.actions.CommonSteps.pauseOn;
 
 public class PrestigeAction implements Action {
 
@@ -53,12 +53,13 @@ public class PrestigeAction implements Action {
             if (colorChecker.isPresigeButton(prestigeButton.x, prestigeButton.y)) {
                 Log.d(TAG, "clicking on prestige button");
                 AutoClickerService.instance.click(prestigeButton.x, prestigeButton.y);
+                pause200();
 
                 // click on confirm
                 if (colorChecker.isPresigeConfirmButton(prestigeConfirmButton.x, prestigeConfirmButton.y)) {
                     Log.d(TAG, "Confirming prestige");
                     AutoClickerService.instance.click(prestigeConfirmButton.x, prestigeConfirmButton.y);
-                    pause2000();
+                    pauseOn(5000);
                     strategy.addAfterPrestigeActions();
                 } else {
                     Log.d(TAG, "Missed confirm prestige button");

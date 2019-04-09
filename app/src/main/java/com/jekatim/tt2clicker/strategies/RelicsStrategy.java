@@ -3,6 +3,7 @@ package com.jekatim.tt2clicker.strategies;
 import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
+import com.jekatim.tt2clicker.actions.ActivateFSSkillAction;
 import com.jekatim.tt2clicker.actions.ActivateSCSkillAction;
 import com.jekatim.tt2clicker.actions.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
@@ -50,7 +51,6 @@ public class RelicsStrategy implements Strategy {
     public void addAfterPrestigeActions() {
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
-        oneTimeActions.add(new UpgradeHeroesAction(colorChecker));
 
         slowCycledAction.clear();
         fastCycledActions.clear();
@@ -59,7 +59,7 @@ public class RelicsStrategy implements Strategy {
     }
 
     private void fillCycledAction() {
-        slowCycledAction.add(new UpgradeHeroesAction(colorChecker));
+        slowCycledAction.add(new UpgradeHeroesAction(colorChecker, settings.getHeroesScrollStartIndex()));
         slowCycledAction.add(new UpgradeSwordMasterAction(colorChecker));
         slowCycledAction.add(new UpgradeSMNeededSkillsAction(colorChecker));
         slowCycledAction.add(new PickUpEquipmentAction(colorChecker));
@@ -70,6 +70,7 @@ public class RelicsStrategy implements Strategy {
 
         fastCycledActions.add(new CollectAllClicksAction());
         fastCycledActions.add(new ActivateSCSkillAction(colorChecker));
+        fastCycledActions.add(new ActivateFSSkillAction(colorChecker));
     }
 
     @Override

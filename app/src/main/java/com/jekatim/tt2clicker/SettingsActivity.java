@@ -32,6 +32,10 @@ public class SettingsActivity extends AppCompatActivity {
         int tapPeriod = Integer.parseInt(num.getText().toString());
         settings.setCqTapPeriod(tapPeriod);
 
+        EditText ind = findViewById(R.id.heroesScrollStartIndex);
+        int startIndex = Integer.parseInt(ind.getText().toString());
+        settings.setHeroesScrollStartIndex(startIndex);
+
         ClickingStrategy strategy = resolveClickingStrategy();
         settings.setStrategy(strategy);
 

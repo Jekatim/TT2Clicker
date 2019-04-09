@@ -26,11 +26,12 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
     private final List<Integer> scrollNumbers = Arrays.asList(37, 30, 25, 20, 15, 12, 10, 9, 8, 6, 5);
     private final int cyclesCounter = 10;
-    private int currentCycle = 0;
+    private int currentCycle;
 
-    public UpgradeHeroesAction(ColorChecker colorChecker) {
+    public UpgradeHeroesAction(ColorChecker colorChecker, int startScrollIndex) {
         super(60); //sec
         this.colorChecker = colorChecker;
+        this.currentCycle = startScrollIndex;
     }
 
     @Override

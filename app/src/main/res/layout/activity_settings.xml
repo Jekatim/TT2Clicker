@@ -15,10 +15,25 @@
         android:ems="10"
         android:hint=" Clan quest tap period"
         android:inputType="number"
-        android:text="500"
+        android:text="50"
         app:layout_constraintBottom_toBottomOf="@+id/strategySwitch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/heroesScrollStartIndex"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="180dp"
+        android:ems="10"
+        android:hint=" Clan quest tap period"
+        android:inputType="number"
+        android:text="5"
+        app:layout_constraintBottom_toBottomOf="@+id/strategySwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/applySettingsButton"
