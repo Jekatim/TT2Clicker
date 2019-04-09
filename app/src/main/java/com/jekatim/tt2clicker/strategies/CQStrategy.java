@@ -17,7 +17,7 @@ public class CQStrategy implements Strategy {
     private Timer timer;
     private boolean isOn;
     private final int clickingX = 500;
-    private final int clickingY = 500;
+    private final int clickingY = 700;
     private final int duration = 35; //sec
 
     private final SettingsModel settings;
@@ -46,7 +46,6 @@ public class CQStrategy implements Strategy {
                     if (System.currentTimeMillis() - launchedTime > duration * 1000){
                         stopStrategy();
                     } else {
-                        Log.d(TAG, "will click on  x: " + clickingX + ", y: " + clickingY);
                         AutoClickerService.instance.click(clickingX, clickingY);
                     }
                 }

@@ -29,13 +29,13 @@ public class RelicsStrategy implements Strategy {
     private static String TAG = "RelicsStrategy";
 
     private final SettingsModel settings;
-    private final ColorChecker colorChecker;
+    protected final ColorChecker colorChecker;
 
     private Timer timer;
     private boolean isOn = false;
     private final List<Action> slowCycledAction;
     private final List<Action> fastCycledActions;
-    private final Queue<Action> oneTimeActions;
+    protected final Queue<Action> oneTimeActions;
 
     public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker) {
         this.settings = settings;
@@ -89,7 +89,7 @@ public class RelicsStrategy implements Strategy {
                 public void run() {
                     control();
                 }
-            }, 1000, 1000);
+            }, 100, 100);
             Log.d(TAG, "Launched");
             isOn = true;
         }
