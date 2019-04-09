@@ -21,7 +21,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private final Coordinates tabCoordinates = new Coordinates(200, 1900);
     private final Coordinates upgradeLastButton = new Coordinates(900, 1500);
-    private final Coordinates upgradeFirstButton = new Coordinates(900, 1760);
+    private final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     private final List<Integer> scrollNumbers = Arrays.asList(45, 40, 30, 20, 15, 12, 10, 9, 8, 6, 5);

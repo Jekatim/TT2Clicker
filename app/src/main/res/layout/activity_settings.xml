@@ -27,13 +27,25 @@
         android:layout_marginTop="184dp"
         android:layout_marginEnd="180dp"
         android:ems="10"
-        android:hint=" Clan quest tap period"
+        android:hint="From which index start scrolling"
         android:inputType="number"
         android:text="5"
         app:layout_constraintBottom_toBottomOf="@+id/strategySwitch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.111" />
+
+    <EditText
+        android:id="@+id/autoPrestigeAfter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="How much wait minutes until prestige"
+        android:inputType="number"
+        android:text="45"
+        app:layout_constraintEnd_toEndOf="@+id/heroesScrollStartIndex"
+        app:layout_constraintStart_toStartOf="@+id/heroesScrollStartIndex"
+        app:layout_constraintTop_toBottomOf="@+id/heroesScrollStartIndex" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/applySettingsButton"
@@ -82,16 +94,5 @@
             android:text="RelicModeOn" />
 
     </RadioGroup>
-
-    <EditText
-        android:id="@+id/autoPrestigeAfter"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:text="45"
-        app:layout_constraintEnd_toEndOf="@+id/heroesScrollStartIndex"
-        app:layout_constraintStart_toStartOf="@+id/heroesScrollStartIndex"
-        app:layout_constraintTop_toBottomOf="@+id/heroesScrollStartIndex" />
 
 </android.support.constraint.ConstraintLayout>
