@@ -11,12 +11,11 @@ public class DragListener implements View.OnTouchListener {
     private float initialTouchX;
     private float initialTouchY;
     private final WindowManager.LayoutParams params;
-    private final Runnable onDrag;
+    private final WindowManager manager;
 
-    DragListener(WindowManager.LayoutParams params, Runnable onDrag) {
-        super();
+    DragListener(WindowManager.LayoutParams params, WindowManager manager) {
         this.params = params;
-        this.onDrag = onDrag;
+        this.manager = manager;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class DragListener implements View.OnTouchListener {
             case MotionEvent.ACTION_MOVE:
                 params.x = initialX + (int) (event.getRawX() - initialTouchX);
                 params.y = initialY + (int) (event.getRawY() - initialTouchY);
-                onDrag.run();
+                manager.updateViewLayout(view, params);
                 return true;
             default:
                 return false;

@@ -71,7 +71,7 @@ public class FloatingClickService extends Service {
         IntentFilter receiveFilter = new IntentFilter(handler.getClass().getName());
         LocalBroadcastManager.getInstance(this).registerReceiver(handler, receiveFilter);
 
-        view.setOnTouchListener(new DragListener(params, () -> manager.updateViewLayout(view, params)));
+        view.setOnTouchListener(new DragListener(params, manager));
         ToggleButton toggle = view.findViewById(R.id.toggleButton);
         toggle.setOnClickListener(v -> {
             if (isOn) {
