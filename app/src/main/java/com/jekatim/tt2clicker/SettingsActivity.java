@@ -36,6 +36,10 @@ public class SettingsActivity extends AppCompatActivity {
         int startIndex = Integer.parseInt(ind.getText().toString());
         settings.setHeroesScrollStartIndex(startIndex);
 
+        EditText autoPrestige = findViewById(R.id.autoPrestigeAfter);
+        int prestigePeriod = Integer.parseInt(autoPrestige.getText().toString());
+        settings.setAutoPrestigeAfter(prestigePeriod);
+
         ClickingStrategy strategy = resolveClickingStrategy();
         settings.setStrategy(strategy);
 

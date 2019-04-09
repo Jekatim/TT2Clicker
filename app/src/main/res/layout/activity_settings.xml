@@ -83,4 +83,15 @@
 
     </RadioGroup>
 
+    <EditText
+        android:id="@+id/autoPrestigeAfter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:text="45"
+        app:layout_constraintEnd_toEndOf="@+id/heroesScrollStartIndex"
+        app:layout_constraintStart_toStartOf="@+id/heroesScrollStartIndex"
+        app:layout_constraintTop_toBottomOf="@+id/heroesScrollStartIndex" />
+
 </android.support.constraint.ConstraintLayout>

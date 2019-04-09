@@ -157,6 +157,7 @@ public class FloatingClickService extends Service {
         settings.setStrategy(newSettings.getStrategy());
         settings.setCqTapPeriod(newSettings.getCqTapPeriod());
         settings.setHeroesScrollStartIndex(newSettings.getHeroesScrollStartIndex());
+        settings.setAutoPrestigeAfter(newSettings.getAutoPrestigeAfter());
     }
 
     public class MyBroadcastReceiver extends BroadcastReceiver {

@@ -19,13 +19,14 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private int launchesCounter = 0;
 
     private final long startTime;
-    private final long prestigeAfter = 30 * 60 * 1000; // 30min
+    private final long prestigeAfter;
 
-    public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy) {
-        super(90); //sec
+    public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy, int autoPrestigeAfter) {
+        super(10); //sec
         this.colorChecker = colorChecker;
         this.strategy = strategy;
         this.startTime = System.currentTimeMillis();
+        this.prestigeAfter = autoPrestigeAfter == 0 ? Long.MAX_VALUE : autoPrestigeAfter * 60 * 1000;
     }
 
     @Override
@@ -43,6 +44,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
                 launchesCounter = 0;
             } else {
                 strategy.addOneTimeAction(new ActivateWCSkillAction(colorChecker));
+//                strategy.addOneTimeAction(new ActivateHandOfMidasSkillAction(colorChecker));
                 Log.d(TAG, "Activating boss fight, current count: " + launchesCounter);
                 AutoClickerService.instance.click(fightBossCoordinates.x, fightBossCoordinates.y);
                 pause500();

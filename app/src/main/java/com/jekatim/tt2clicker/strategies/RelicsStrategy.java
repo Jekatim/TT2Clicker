@@ -67,8 +67,8 @@ public class RelicsStrategy implements Strategy {
         slowCycledAction.add(new UpgradeSwordMasterAction(colorChecker));
         slowCycledAction.add(new UpgradeSMNeededSkillsAction(colorChecker));
         slowCycledAction.add(new PickUpEquipmentAction(colorChecker));
-        slowCycledAction.add(new FreeClicksAction());
-        slowCycledAction.add(new CheckIfPushWithWCNeededAction(colorChecker, this));
+//        slowCycledAction.add(new FreeClicksAction());
+        slowCycledAction.add(new CheckIfPushWithWCNeededAction(colorChecker, this, settings.getAutoPrestigeAfter()));
 
         /*********************************************************/
 
