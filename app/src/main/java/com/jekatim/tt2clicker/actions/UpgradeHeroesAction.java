@@ -24,7 +24,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private final Coordinates upgradeFirstButton = new Coordinates(900, 1760);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
-    private final List<Integer> scrollNumbers = Arrays.asList(37, 30, 25, 20, 15, 12, 10, 9, 8, 6, 5);
+    private final List<Integer> scrollNumbers = Arrays.asList(45, 40, 30, 20, 15, 12, 10, 9, 8, 6, 5);
     private final int cyclesCounter = 10;
     private int currentCycle;
 
