@@ -28,11 +28,7 @@ public class Screenshooter {
 
             Bitmap screen = BitmapFactory.decodeFile(path);
 
-            int pixel = screen.getPixel(x, y);
-
-            Log.d(TAG, "Pixel Color: + " + Integer.toHexString(pixel) + " at x:" + x + " y:" + y);
-
-            return pixel;
+            return screen.getPixel(x, y);
         } catch (IOException | InterruptedException e) {
             Log.e(TAG, "Error in screeshooter", e);
         }

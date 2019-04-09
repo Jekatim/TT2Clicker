@@ -34,7 +34,6 @@ public class AutoClickerService extends AccessibilityService {
     }
 
     public final void click(int x, int y) {
-        Log.d(TAG, "click " + x + ' ' + y);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);
@@ -45,7 +44,6 @@ public class AutoClickerService extends AccessibilityService {
     }
 
     public final void scrollDown(int x, int y) {
-        Log.d(TAG, "scrollDown " + x + ' ' + y);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);
@@ -57,7 +55,6 @@ public class AutoClickerService extends AccessibilityService {
     }
 
     public final void scrollDownOn(int x, int y, int distance) {
-        Log.d(TAG, "scrollDown " + x + ' ' + y);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);
@@ -69,7 +66,6 @@ public class AutoClickerService extends AccessibilityService {
     }
 
     public final void scrollUp(int x, int y) {
-        Log.d(TAG, "scrollUp " + x + ' ' + y);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             Path path = new Path();
             path.moveTo((float) x, (float) y);

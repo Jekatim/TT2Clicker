@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.jekatim.tt2clicker.service.AutoClickerService;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pauseOn;
 
@@ -26,5 +27,6 @@ public class FreeClicksAction implements Action {
             AutoClickerService.instance.click(clickingX, clickingY);
             pauseOn(burstPeriod);
         }
+        pause200();
     }
 }

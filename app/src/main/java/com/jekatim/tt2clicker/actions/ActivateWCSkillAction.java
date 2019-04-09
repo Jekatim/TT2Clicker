@@ -6,6 +6,8 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+
 public class ActivateWCSkillAction extends ActionWithPeriod {
 
     private static String TAG = "ActivateWCSkillAction";
@@ -28,6 +30,7 @@ public class ActivateWCSkillAction extends ActionWithPeriod {
         // click on wc button
         Log.d(TAG, "Activating War cry skill");
         AutoClickerService.instance.click(wcCoordinates.x, wcCoordinates.y);
+        pause500();
         lastActivatedTime = System.currentTimeMillis();
     }
 

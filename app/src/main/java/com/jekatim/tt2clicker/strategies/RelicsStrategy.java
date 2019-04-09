@@ -3,12 +3,9 @@ package com.jekatim.tt2clicker.strategies;
 import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
-import com.jekatim.tt2clicker.actions.ActivateCOAction;
-import com.jekatim.tt2clicker.actions.ActivatePetHoMAction;
 import com.jekatim.tt2clicker.actions.ActivateSCSkillAction;
 import com.jekatim.tt2clicker.actions.CheckIfPushWithWCNeededAction;
-import com.jekatim.tt2clicker.actions.CollectAstralAwakeningAction;
-import com.jekatim.tt2clicker.actions.CollectFairiesAction;
+import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
 import com.jekatim.tt2clicker.actions.FreeClicksAction;
 import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
@@ -71,11 +68,8 @@ public class RelicsStrategy implements Strategy {
 
         /*********************************************************/
 
-        fastCycledActions.add(new ActivateCOAction());
-        fastCycledActions.add(new ActivatePetHoMAction());
+        fastCycledActions.add(new CollectAllClicksAction());
         fastCycledActions.add(new ActivateSCSkillAction(colorChecker));
-        fastCycledActions.add(new CollectAstralAwakeningAction(colorChecker));
-        fastCycledActions.add(new CollectFairiesAction(colorChecker));
     }
 
     @Override
