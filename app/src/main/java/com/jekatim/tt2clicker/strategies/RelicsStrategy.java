@@ -74,8 +74,8 @@ public class RelicsStrategy implements Strategy {
 
         fastCycledActions.add(new CollectAllClicksAction());
         fastCycledActions.add(new ActivateSCSkillAction(colorChecker));
-        fastCycledActions.add(new ActivateFSSkillAction(colorChecker));
-        fastCycledActions.add(new ActivateWCSkillAction(colorChecker));
+//        fastCycledActions.add(new ActivateFSSkillAction(colorChecker));
+//        fastCycledActions.add(new ActivateWCSkillAction(colorChecker));
     }
 
     @Override

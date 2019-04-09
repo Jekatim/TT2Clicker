@@ -18,10 +18,14 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private final Strategy strategy;
     private int launchesCounter = 0;
 
+    private final long startTime;
+    private final long prestigeAfter = 30 * 60 * 1000; // 30min
+
     public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy) {
         super(90); //sec
         this.colorChecker = colorChecker;
         this.strategy = strategy;
+        this.startTime = System.currentTimeMillis();
     }
 
     @Override
@@ -33,7 +37,8 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
         CommonSteps.closePanel(colorChecker);
         // check if the button with boss appears
         if (colorChecker.isBossFailedArea(fightBossCoordinates.x, fightBossCoordinates.y)) {
-            if (launchesCounter > 5) {
+            if (launchesCounter > 5
+                    || (System.currentTimeMillis() - startTime > prestigeAfter)) {
                 strategy.addOneTimeAction(new PrestigeAction(colorChecker, strategy));
                 launchesCounter = 0;
             } else {
