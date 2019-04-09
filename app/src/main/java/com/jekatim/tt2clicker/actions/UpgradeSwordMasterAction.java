@@ -18,7 +18,7 @@ public class UpgradeSwordMasterAction extends ActionWithPeriod {
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSwordMasterAction(ColorChecker colorChecker) {
-        super(30);
+        super(60);
         this.colorChecker = colorChecker;
     }
 

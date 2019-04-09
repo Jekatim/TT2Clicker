@@ -6,6 +6,9 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
@@ -13,7 +16,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
     private static String TAG = "UpgradeHeroesAction";
 
-    private final int scrollBetweenHeroesGap = 275;//170;
+    private final int scrollBetweenHeroesGap = 280;//170;
 
     private final ColorChecker colorChecker;
     private final Coordinates tabCoordinates = new Coordinates(200, 1900);
@@ -21,8 +24,12 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private final Coordinates upgradeFirstButton = new Coordinates(900, 1760);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
+    private final List<Integer> scrollNumbers = Arrays.asList(37, 30, 25, 20, 15, 12, 10, 9, 8, 6, 5);
+    private final int cyclesCounter = 10;
+    private int currentCycle = 0;
+
     public UpgradeHeroesAction(ColorChecker colorChecker) {
-        super(30); //sec
+        super(60); //sec
         this.colorChecker = colorChecker;
     }
 
@@ -43,8 +50,11 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             scrollUp();
             pause500();
 
+            if (currentCycle < cyclesCounter) {
+                currentCycle++;
+            }
             // cycle through all heroes
-            for (int i = 0; i < 37; i++) {
+            for (int i = 0; i < scrollNumbers.get(currentCycle); i++) {
                 // click on upgrade button
                 Log.d(TAG, "Upgrading hero to max");
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);

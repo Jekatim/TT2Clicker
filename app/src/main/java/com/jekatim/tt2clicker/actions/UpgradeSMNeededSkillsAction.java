@@ -7,6 +7,7 @@ import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
 public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
 
@@ -21,7 +22,7 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMNeededSkillsAction(ColorChecker colorChecker) {
-        super(30);
+        super(60);
         this.colorChecker = colorChecker;
     }
 
@@ -44,10 +45,9 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
             pause200();
 
             // slide panel up
-            //if (colorChecker.isSlidePanelUpButton(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y)) {
             Log.d(TAG, "sliding panel up");
             AutoClickerService.instance.click(slideUpPanelCoordinates.x, slideUpPanelCoordinates.y);
-            pause200();
+            pause500();
 
             // upgrade needed skills to max
             Log.d(TAG, "Upgrading HoM to max");
@@ -60,7 +60,7 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
             // slide panel down
             Log.d(TAG, "sliding panel down");
             AutoClickerService.instance.click(slideDownPanelCoordinates.x, slideDownPanelCoordinates.y);
-            pause200();
+            pause500();
         } else {
             Log.d(TAG, "Missed SM tab");
         }

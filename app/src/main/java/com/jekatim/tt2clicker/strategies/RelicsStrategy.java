@@ -35,32 +35,18 @@ public class RelicsStrategy implements Strategy {
 
     private Timer timer;
     private boolean isOn = false;
-    private final List<Action> cycledActions;
+    private final List<Action> slowCycledAction;
+    private final List<Action> fastCycledActions;
     private final Queue<Action> oneTimeActions;
 
     public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker) {
         this.settings = settings;
         this.colorChecker = colorChecker;
-        this.cycledActions = new ArrayList<>();
+        this.slowCycledAction = new ArrayList<>();
+        this.fastCycledActions = new ArrayList<>();
         this.oneTimeActions = new LinkedBlockingQueue<>();
 
-        /*********************************************************/
-
-//        addAfterPrestigeActions();
-
-        /*********************************************************/
-
-        cycledActions.add(new UpgradeHeroesAction(colorChecker));
-        cycledActions.add(new UpgradeSwordMasterAction(colorChecker));
-        cycledActions.add(new UpgradeSMNeededSkillsAction(colorChecker));
-        cycledActions.add(new ActivateCOAction());
-        cycledActions.add(new ActivatePetHoMAction());
-        cycledActions.add(new ActivateSCSkillAction(colorChecker));
-        cycledActions.add(new CollectAstralAwakeningAction(colorChecker));
-        cycledActions.add(new CollectFairiesAction(colorChecker));
-        cycledActions.add(new PickUpEquipmentAction(colorChecker));
-        cycledActions.add(new FreeClicksAction());
-        cycledActions.add(new CheckIfPushWithWCNeededAction(colorChecker, this));
+        fillCycledAction();
     }
 
     @Override
@@ -68,6 +54,28 @@ public class RelicsStrategy implements Strategy {
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
         oneTimeActions.add(new UpgradeHeroesAction(colorChecker));
+
+        slowCycledAction.clear();
+        fastCycledActions.clear();
+
+        fillCycledAction();
+    }
+
+    private void fillCycledAction() {
+        slowCycledAction.add(new UpgradeHeroesAction(colorChecker));
+        slowCycledAction.add(new UpgradeSwordMasterAction(colorChecker));
+        slowCycledAction.add(new UpgradeSMNeededSkillsAction(colorChecker));
+        slowCycledAction.add(new PickUpEquipmentAction(colorChecker));
+        slowCycledAction.add(new FreeClicksAction());
+        slowCycledAction.add(new CheckIfPushWithWCNeededAction(colorChecker, this));
+
+        /*********************************************************/
+
+        fastCycledActions.add(new ActivateCOAction());
+        fastCycledActions.add(new ActivatePetHoMAction());
+        fastCycledActions.add(new ActivateSCSkillAction(colorChecker));
+        fastCycledActions.add(new CollectAstralAwakeningAction(colorChecker));
+        fastCycledActions.add(new CollectFairiesAction(colorChecker));
     }
 
     @Override
@@ -97,8 +105,12 @@ public class RelicsStrategy implements Strategy {
             Action action = oneTimeActions.poll();
             action.perform();
         }
-        for (Action action : cycledActions) {
-            action.perform();
+        for (Action slowAction : slowCycledAction) {
+            for (Action fastAction : fastCycledActions) {
+                // make sure that all fast clicks executed on between all other long-running actions
+                fastAction.perform();
+            }
+            slowAction.perform();
         }
     }
 

@@ -7,6 +7,8 @@ import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+
 public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
 
     private static String TAG = "CheckIfPushWithWCNeededAction";
@@ -27,6 +29,8 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
         if (!checkTimePeriodValid()) {
             return;
         }
+        // close tab if needed
+        CommonSteps.closePanel(colorChecker);
         // check if the button with boss appears
         if (colorChecker.isBossFailedArea(fightBossCoordinates.x, fightBossCoordinates.y)) {
             if (launchesCounter > 5) {
@@ -36,6 +40,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
                 strategy.addOneTimeAction(new ActivateWCSkillAction(colorChecker));
                 Log.d(TAG, "Activating boss fight");
                 AutoClickerService.instance.click(fightBossCoordinates.x, fightBossCoordinates.y);
+                pause500();
                 launchesCounter++;
             }
         } else {
