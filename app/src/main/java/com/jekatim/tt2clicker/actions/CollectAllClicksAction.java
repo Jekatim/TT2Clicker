@@ -16,6 +16,12 @@ public class CollectAllClicksAction implements Action {
     private final Coordinates COArea = new Coordinates(430, 970);
     private final Coordinates petArea = new Coordinates(640, 900);
 
+    // x = 40 -> 250 ; 875 -> 1045
+    // y = 470 -> 980 ; 240 -> 990
+    private int leftStaticY = 470;
+    private int rightStaticY = 240;
+    private int clicksNumber = 5;
+
     @Override
     public void perform() {
 
@@ -37,21 +43,21 @@ public class CollectAllClicksAction implements Action {
     }
 
     private void tapOnLeftSide() {
-        int staticY = 470;
-        for (int i = 0; i < 10; i++) {
-            AutoClickerService.instance.click(40, staticY + (i * 48));
+        int shift = (980 - leftStaticY) / clicksNumber;
+        for (int i = 0; i < clicksNumber; i++) {
+            AutoClickerService.instance.click(40, leftStaticY + (i * shift));
             pause50();
-            AutoClickerService.instance.click(250, staticY + (i * 48));
+            AutoClickerService.instance.click(250, leftStaticY + (i * shift));
             pause50();
         }
     }
 
     private void tapOnRightSide() {
-        int staticY = 240;
-        for (int i = 0; i < 15; i++) {
-            AutoClickerService.instance.click(875, staticY + (i * 50));
+        int shift = (990 - rightStaticY) / clicksNumber;
+        for (int i = 0; i < clicksNumber; i++) {
+            AutoClickerService.instance.click(875, rightStaticY + (i * shift));
             pause50();
-            AutoClickerService.instance.click(1045, staticY + (i * 50));
+            AutoClickerService.instance.click(1045, rightStaticY + (i * shift));
             pause50();
         }
     }
