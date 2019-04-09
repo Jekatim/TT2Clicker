@@ -5,6 +5,7 @@ import android.util.Log;
 import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.ActivateFSSkillAction;
 import com.jekatim.tt2clicker.actions.ActivateSCSkillAction;
+import com.jekatim.tt2clicker.actions.ActivateWCSkillAction;
 import com.jekatim.tt2clicker.actions.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
 import com.jekatim.tt2clicker.actions.FreeClicksAction;
@@ -73,6 +74,7 @@ public class RelicsStrategy implements Strategy {
         fastCycledActions.add(new CollectAllClicksAction());
         fastCycledActions.add(new ActivateSCSkillAction(colorChecker));
         fastCycledActions.add(new ActivateFSSkillAction(colorChecker));
+        fastCycledActions.add(new ActivateWCSkillAction(colorChecker));
     }
 
     @Override

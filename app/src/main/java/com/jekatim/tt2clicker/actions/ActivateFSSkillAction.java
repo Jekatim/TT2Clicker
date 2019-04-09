@@ -28,7 +28,7 @@ public class ActivateFSSkillAction extends ActionWithPeriod {
         // close tab if needed
         CommonSteps.closePanel(colorChecker);
         // click on sc button
-        Log.d(TAG, "Activating  skill");
+        Log.d(TAG, "Activating fire sword skill");
         AutoClickerService.instance.click(fsCoordinates.x, fsCoordinates.y);
         pause500();
         lastActivatedTime = System.currentTimeMillis();

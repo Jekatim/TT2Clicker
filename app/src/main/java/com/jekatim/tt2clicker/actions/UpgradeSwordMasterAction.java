@@ -36,7 +36,7 @@ public class UpgradeSwordMasterAction extends ActionWithPeriod {
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
             pause500();
 
-            scrollUp();
+            //scrollUp();
 
             // click on upgrade button
             Log.d(TAG, "Upgrading sm to max");

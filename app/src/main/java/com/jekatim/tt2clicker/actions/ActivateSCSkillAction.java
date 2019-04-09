@@ -28,7 +28,7 @@ public class ActivateSCSkillAction extends ActionWithPeriod {
         // close tab if needed
         CommonSteps.closePanel(colorChecker);
         // click on sc button
-        Log.d(TAG, "Activating  skill");
+        Log.d(TAG, "Activating shadow clone skill");
         AutoClickerService.instance.click(scCoordinates.x, scCoordinates.y);
         pause500();
         lastActivatedTime = System.currentTimeMillis();
