@@ -7,6 +7,7 @@ import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
 public class UpgradeSMSkillsAction implements Action {
 
@@ -36,11 +37,9 @@ public class UpgradeSMSkillsAction implements Action {
         if (colorChecker.isGoToSwordMasterTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause200();
+            pause500();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause200();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause200();
+            pause500();
 
             // slide panel up
             Log.d(TAG, "sliding panel up");

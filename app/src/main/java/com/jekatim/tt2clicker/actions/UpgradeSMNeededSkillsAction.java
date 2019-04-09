@@ -38,11 +38,9 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
         if (colorChecker.isGoToSwordMasterTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause200();
+            pause500();
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause200();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
-            pause200();
+            pause500();
 
             // slide panel up
             Log.d(TAG, "sliding panel up");

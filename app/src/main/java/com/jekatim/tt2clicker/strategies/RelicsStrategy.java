@@ -9,6 +9,7 @@ import com.jekatim.tt2clicker.actions.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
 import com.jekatim.tt2clicker.actions.FreeClicksAction;
 import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
+import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.actions.UpgradeSMNeededSkillsAction;
 import com.jekatim.tt2clicker.actions.UpgradeSMSkillsAction;
@@ -49,6 +50,7 @@ public class RelicsStrategy implements Strategy {
 
     @Override
     public void addAfterPrestigeActions() {
+        oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
 
