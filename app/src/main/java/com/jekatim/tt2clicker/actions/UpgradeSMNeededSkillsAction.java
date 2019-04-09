@@ -51,10 +51,9 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
             Log.d(TAG, "Upgrading HoM to max");
             AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
             pause200();
-            // for now we will try to go with one level wc till the wall
-            /*Log.d(TAG, "Upgrading wc to max");
+            Log.d(TAG, "Upgrading wc to max");
             AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-            pause200();*/
+            pause200();
 
             // slide panel down
             Log.d(TAG, "sliding panel down");

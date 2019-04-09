@@ -62,11 +62,10 @@ public class UpgradeSMSkillsAction implements Action {
             AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
             pause200();
             Log.d(TAG, "Upgrading wc to max");
-            // for now we will try to go with one level wc till the wall
-            //for (int i = 0; i < 15; i++) {
-            AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
-            pause200();
-            //}
+            for (int i = 0; i < 15; i++) {
+                AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
+                pause200();
+            }
             Log.d(TAG, "Upgrading sc to 1");
             AutoClickerService.instance.click(upgradeSCSkillCoordinates.x, upgradeSCSkillCoordinates.y);
             pause200();
