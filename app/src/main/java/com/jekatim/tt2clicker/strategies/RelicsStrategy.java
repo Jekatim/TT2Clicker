@@ -46,6 +46,7 @@ public class RelicsStrategy implements Strategy {
         this.fastCycledActions = new ArrayList<>();
         this.oneTimeActions = new LinkedBlockingQueue<>();
 
+        slowCycledAction.add(new UpgradeHeroesAction(colorChecker, settings.getHeroesScrollStartIndex()));
         fillCycledAction();
     }
 
@@ -58,11 +59,11 @@ public class RelicsStrategy implements Strategy {
         slowCycledAction.clear();
         fastCycledActions.clear();
 
+        slowCycledAction.add(new UpgradeHeroesAction(colorChecker, 0));
         fillCycledAction();
     }
 
     private void fillCycledAction() {
-        slowCycledAction.add(new UpgradeHeroesAction(colorChecker, settings.getHeroesScrollStartIndex()));
         slowCycledAction.add(new UpgradeSwordMasterAction(colorChecker));
         slowCycledAction.add(new UpgradeSMNeededSkillsAction(colorChecker));
         slowCycledAction.add(new PickUpEquipmentAction(colorChecker));
