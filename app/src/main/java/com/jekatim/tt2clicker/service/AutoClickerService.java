@@ -9,6 +9,10 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.jekatim.tt2clicker.MainActivity;
+import com.jekatim.tt2clicker.settings.Coordinates;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AutoClickerService extends AccessibilityService {
 
@@ -21,6 +25,8 @@ public class AutoClickerService extends AccessibilityService {
     private GestureDescription scrollUpGestureDescription;
     private GestureDescription scrollDownGestureDescription;
     private GestureDescription scrollHeroesDownGestureDescription;
+    private Coordinates clickCoordinates = new Coordinates(0, 0);
+    private Map<Coordinates, GestureDescription> clickGesturesMap = new HashMap<>();
 
     @Override
     public void onInterrupt() {
@@ -40,10 +46,18 @@ public class AutoClickerService extends AccessibilityService {
     }
 
     public final void click(int x, int y) {
-        path.reset();
-        path.moveTo((float) x, (float) y);
-        GestureDescription.Builder builder = new GestureDescription.Builder();
-        GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+        clickCoordinates.reset(x, y);
+        GestureDescription gestureDescription;
+        if (!clickGesturesMap.containsKey(clickCoordinates)) {
+            path.reset();
+            path.moveTo((float) x, (float) y);
+            GestureDescription.Builder builder = new GestureDescription.Builder();
+            gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            clickGesturesMap.put(clickCoordinates, gestureDescription);
+        } else {
+            gestureDescription = clickGesturesMap.get(clickCoordinates);
+        }
+
         this.dispatchGesture(gestureDescription, null, null);
     }
 
