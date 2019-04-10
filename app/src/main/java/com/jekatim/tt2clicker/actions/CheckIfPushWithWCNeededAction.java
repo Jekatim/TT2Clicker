@@ -17,13 +17,13 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private final Strategy strategy;
     private int launchesCounter = 0;
-    private final int pushesLimit = 3;
+    private final int pushesLimit = 4;
 
     private final long startTime;
     private final long prestigeAfter;
 
     public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy, int autoPrestigeAfter) {
-        super(10); //sec
+        super(65); //sec
         this.colorChecker = colorChecker;
         this.strategy = strategy;
         this.startTime = System.currentTimeMillis();
@@ -45,12 +45,11 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
             AutoClickerService.instance.click(fightBossCoordinates.x, fightBossCoordinates.y);
             pause500();
         } else {
-            Log.d(TAG, "No boss button available, skipping");
-        }
-
-        if (System.currentTimeMillis() - startTime > prestigeAfter) {
-            addPush();
-            Log.d(TAG, "Added push after time, current count: " + launchesCounter);
+            Log.d(TAG, "No boss button available");
+            if (System.currentTimeMillis() - startTime > prestigeAfter) {
+                addPush();
+                Log.d(TAG, "Added push after time, current count: " + launchesCounter);
+            }
         }
 
         if (launchesCounter >= pushesLimit) {
