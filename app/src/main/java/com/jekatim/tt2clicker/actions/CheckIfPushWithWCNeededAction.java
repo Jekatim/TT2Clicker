@@ -17,6 +17,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private final Strategy strategy;
     private int launchesCounter = 0;
+    private final int pushesLimit = 3;
 
     private final long startTime;
     private final long prestigeAfter;
@@ -36,28 +37,38 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
         }
         // close tab if needed
         CommonSteps.closePanel(colorChecker);
+
         // check if the button with boss appears
         if (colorChecker.isBossFailedArea(fightBossCoordinates.x, fightBossCoordinates.y)) {
-            if (launchesCounter > 5
-                    || (System.currentTimeMillis() - startTime > prestigeAfter)) {
-                strategy.addOneTimeAction(new PrestigeAction(colorChecker, strategy));
-                launchesCounter = 0;
-            } else {
-                strategy.addOneTimeAction(new ActivateWCSkillAction(colorChecker));
-//                strategy.addOneTimeAction(new ActivateHandOfMidasSkillAction(colorChecker));
-                Log.d(TAG, "Activating boss fight, current count: " + launchesCounter);
-                AutoClickerService.instance.click(fightBossCoordinates.x, fightBossCoordinates.y);
-                pause500();
-                launchesCounter++;
-            }
+            addPush();
+            Log.d(TAG, "Activating boss fight, current count: " + launchesCounter);
+            AutoClickerService.instance.click(fightBossCoordinates.x, fightBossCoordinates.y);
+            pause500();
         } else {
             Log.d(TAG, "No boss button available, skipping");
         }
+
+        if (System.currentTimeMillis() - startTime > prestigeAfter) {
+            addPush();
+            Log.d(TAG, "Added push after time, current count: " + launchesCounter);
+        }
+
+        if (launchesCounter >= pushesLimit) {
+            strategy.addOneTimeAction(new PrestigeAction(colorChecker, strategy));
+            Log.d(TAG, "Activating prestige");
+        }
+
         lastActivatedTime = System.currentTimeMillis();
     }
 
     @Override
     protected String getTag() {
         return TAG;
+    }
+
+    private void addPush() {
+        strategy.addOneTimeAction(new ActivateWCSkillAction(colorChecker));
+        strategy.addOneTimeAction(new ActivateHandOfMidasSkillAction(colorChecker));
+        launchesCounter++;
     }
 }
