@@ -52,7 +52,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
             }
         }
 
-        if (launchesCounter >= pushesLimit) {
+        if (launchesCounter > pushesLimit) {
             strategy.addOneTimeAction(new PrestigeAction(colorChecker, strategy));
             Log.d(TAG, "Activating prestige");
         }

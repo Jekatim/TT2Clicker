@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword 'drapten'
-            storeFile file('/media/etimofeev/Data/dev/Android/Projects/TT2Clicker/filestore.jks')
+            storeFile file('../filestore.jks')
             storePassword 'P@ssw0rd!'
         }
     }
