@@ -22,7 +22,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        readSettings();
+        // FIXME
+        //readSettings();
 
         findViewById(R.id.applySettingsButton).setOnClickListener(v -> applySettings());
     }
