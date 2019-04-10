@@ -13,8 +13,8 @@ public class CollectAllClicksAction implements Action {
 
     private static String TAG = "CollectAllClicksAction";
 
-    private final Coordinates COArea = new Coordinates(430, 970);
-    private final Coordinates petArea = new Coordinates(640, 900);
+    private static final Coordinates COArea = new Coordinates(430, 970);
+    private static final Coordinates petArea = new Coordinates(640, 900);
 
     // x = 40 -> 250 ; 875 -> 1045
     // y = 470 -> 980 ; 240 -> 990

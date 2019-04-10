@@ -63,15 +63,12 @@ public class RelicsStrategy implements Strategy {
         slowCycledAction.add(new UpgradeSwordMasterAction(colorChecker));
         slowCycledAction.add(new UpgradeSMNeededSkillsAction(colorChecker));
         slowCycledAction.add(new PickUpEquipmentAction(colorChecker));
-//        slowCycledAction.add(new FreeClicksAction());
         slowCycledAction.add(new CheckIfPushWithWCNeededAction(colorChecker, this, settings.getAutoPrestigeAfter()));
 
         /*********************************************************/
 
         fastCycledActions.add(new CollectAllClicksAction());
         fastCycledActions.add(new ActivateSCSkillAction(colorChecker));
-//        fastCycledActions.add(new ActivateFSSkillAction(colorChecker));
-//        fastCycledActions.add(new ActivateWCSkillAction(colorChecker));
     }
 
     @Override
@@ -90,7 +87,7 @@ public class RelicsStrategy implements Strategy {
                 public void run() {
                     control();
                 }
-            }, 100, 100);
+            }, 100, 1000);
             Log.d(TAG, "Launched");
             isOn = true;
         }

@@ -13,7 +13,7 @@ public class ActivateFSSkillAction extends ActionWithPeriod {
     private static String TAG = "ActivateFSSkillAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates fsCoordinates = new Coordinates(620, 1722);
+    private static final Coordinates fsCoordinates = new Coordinates(620, 1722);
 
     public ActivateFSSkillAction(ColorChecker colorChecker) {
         super(125); //sec

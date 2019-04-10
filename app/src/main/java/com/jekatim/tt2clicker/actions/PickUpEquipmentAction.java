@@ -14,7 +14,7 @@ public class PickUpEquipmentAction extends ActionWithPeriod {
     private static String TAG = "PickUpEquipmentAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates equipmentCoordinates = new Coordinates(800, 990);
+    private static final Coordinates equipmentCoordinates = new Coordinates(800, 990);
 
     public PickUpEquipmentAction(ColorChecker colorChecker) {
         super(60);

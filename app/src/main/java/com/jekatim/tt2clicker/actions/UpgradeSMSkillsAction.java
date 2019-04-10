@@ -14,16 +14,16 @@ public class UpgradeSMSkillsAction implements Action {
     private static String TAG = "UpgradeSMSkillsAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates tabCoordinates = new Coordinates(30, 1900);
-    private final Coordinates slideUpPanelCoordinates = new Coordinates(865, 1066);
-    private final Coordinates slideDownPanelCoordinates = new Coordinates(865, 30);
-    private final Coordinates upgradeHSSkillCoordinates = new Coordinates(765, 570);
-    private final Coordinates upgradeDSSkillCoordinates = new Coordinates(765, 730);
-    private final Coordinates upgradeHoMSkillCoordinates = new Coordinates(765, 900);
-    private final Coordinates upgradeFSSkillCoordinates = new Coordinates(765, 1075);
-    private final Coordinates upgradeWCSkillCoordinates = new Coordinates(765, 1245);
-    private final Coordinates upgradeSCSkillCoordinates = new Coordinates(765, 1410);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
+    private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
+    private static final Coordinates slideUpPanelCoordinates = new Coordinates(865, 1066);
+    private static final Coordinates slideDownPanelCoordinates = new Coordinates(865, 30);
+    private static final Coordinates upgradeHSSkillCoordinates = new Coordinates(765, 570);
+    private static final Coordinates upgradeDSSkillCoordinates = new Coordinates(765, 730);
+    private static final Coordinates upgradeHoMSkillCoordinates = new Coordinates(765, 900);
+    private static final Coordinates upgradeFSSkillCoordinates = new Coordinates(765, 1075);
+    private static final Coordinates upgradeWCSkillCoordinates = new Coordinates(765, 1245);
+    private static final Coordinates upgradeSCSkillCoordinates = new Coordinates(765, 1410);
+    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMSkillsAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;

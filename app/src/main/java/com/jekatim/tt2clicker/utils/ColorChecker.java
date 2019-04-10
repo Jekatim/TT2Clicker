@@ -37,29 +37,8 @@ public class ColorChecker {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.slide_panel_up_button));
     }
 
-    public boolean isUpgradeHeroButton(int x, int y) {
-        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.upgrade_hero_button))
-                || isColorMatch(x, y, ContextCompat.getColor(context, R.color.upgrade_hero_button2));
-    }
-
-    public boolean isUnlockSkillButton(int x, int y) {
-        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.unlock_skill_button));
-    }
-
-    public boolean isCOSkillArea(int x, int y) {
-        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.CO_skill_area));
-    }
-
-    public boolean isNoCQAvailableArea(int x, int y) {
-        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.no_CQ_available_area));
-    }
-
     public boolean isBossFailedArea(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.boss_fight_failed_area));
-    }
-
-    public boolean isNoUpgradeAvailable(int x, int y) {
-        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.no_upgrade_available));
     }
 
     public boolean isActiveSkillButton(int x, int y) {

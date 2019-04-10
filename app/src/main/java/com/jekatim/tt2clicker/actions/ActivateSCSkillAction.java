@@ -13,7 +13,7 @@ public class ActivateSCSkillAction extends ActionWithPeriod {
     private static String TAG = "ActivateSCSkillAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates scCoordinates = new Coordinates(1000, 1722);
+    private static final Coordinates scCoordinates = new Coordinates(1000, 1722);
 
     public ActivateSCSkillAction(ColorChecker colorChecker) {
         super(125); //sec

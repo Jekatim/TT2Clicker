@@ -13,7 +13,7 @@ public class ActivateWCSkillAction extends ActionWithPeriod {
     private static String TAG = "ActivateWCSkillAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates wcCoordinates = new Coordinates(810, 1722);
+    private static final Coordinates wcCoordinates = new Coordinates(810, 1722);
 
     public ActivateWCSkillAction(ColorChecker colorChecker) {
         super(65); //sec

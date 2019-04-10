@@ -13,7 +13,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
 
     private static String TAG = "CheckIfPushWithWCNeededAction";
 
-    private final Coordinates fightBossCoordinates = new Coordinates(970, 80);
+    private static final Coordinates fightBossCoordinates = new Coordinates(970, 80);
     private final ColorChecker colorChecker;
     private final Strategy strategy;
     private int launchesCounter = 0;

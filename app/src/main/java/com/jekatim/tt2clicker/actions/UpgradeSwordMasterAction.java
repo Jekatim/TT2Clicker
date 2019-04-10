@@ -14,9 +14,9 @@ public class UpgradeSwordMasterAction extends ActionWithPeriod {
     private static String TAG = "UpgradeSwordMasterAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates tabCoordinates = new Coordinates(30, 1900);
-    private final Coordinates upgradeSMButtonCoordinates = new Coordinates(765, 1365);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
+    private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
+    private static final Coordinates upgradeSMButtonCoordinates = new Coordinates(765, 1365);
+    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSwordMasterAction(ColorChecker colorChecker) {
         super(60);

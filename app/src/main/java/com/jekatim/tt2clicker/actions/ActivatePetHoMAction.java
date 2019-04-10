@@ -11,7 +11,7 @@ public class ActivatePetHoMAction implements Action {
 
     private static String TAG = "ActivatePetHoMAction";
 
-    private final Coordinates petArea = new Coordinates(640, 900);
+    private static final Coordinates petArea = new Coordinates(640, 900);
 
     @Override
     public void perform() {

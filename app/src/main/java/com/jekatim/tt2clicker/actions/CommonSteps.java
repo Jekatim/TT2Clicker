@@ -10,8 +10,8 @@ public class CommonSteps {
 
     private static String TAG = "CommonSteps";
 
-    private static Coordinates slidePanelDown = new Coordinates(860, 30);
-    private static Coordinates closePanelCoordinates = new Coordinates(1010, 1070);
+    private static final Coordinates slidePanelDown = new Coordinates(860, 30);
+    private static final Coordinates closePanelCoordinates = new Coordinates(1010, 1070);
 
     public static void closePanel(ColorChecker colorChecker) {
         // click on cross to close panel

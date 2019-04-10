@@ -16,10 +16,10 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private final int scrollBetweenHeroesGap = 275;//170;
 
     private final ColorChecker colorChecker;
-    private final Coordinates tabCoordinates = new Coordinates(200, 1900);
-    private final Coordinates upgradeLastButton = new Coordinates(900, 1500);
-    private final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
+    private static final Coordinates tabCoordinates = new Coordinates(200, 1900);
+    private static final Coordinates upgradeLastButton = new Coordinates(900, 1500);
+    private static final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
+    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     private final int wholeScroll = 45;
     private final int shortScroll = 6;

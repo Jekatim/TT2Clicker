@@ -18,11 +18,11 @@ public class PrestigeAction implements Action {
     private final ColorChecker colorChecker;
     private final Strategy strategy;
 
-    private final Coordinates tabCoordinates = new Coordinates(30, 1900);
-    private final Coordinates prestigeButton = new Coordinates(788, 1790);
-    private final Coordinates prestigeConfirmButton = new Coordinates(425, 1480);
-    private final Coordinates prestigeConfirmButton2 = new Coordinates(620, 1280);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
+    private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
+    private static final Coordinates prestigeButton = new Coordinates(788, 1790);
+    private static final Coordinates prestigeConfirmButton = new Coordinates(425, 1480);
+    private static final Coordinates prestigeConfirmButton2 = new Coordinates(620, 1280);
+    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     public PrestigeAction(ColorChecker colorChecker, Strategy strategy) {
         this.colorChecker = colorChecker;

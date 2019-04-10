@@ -14,8 +14,8 @@ public class ScrollUpAfterPrestigeAction implements Action {
 
     private final ColorChecker colorChecker;
 
-    private final Coordinates tabCoordinates = new Coordinates(30, 1900);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
+    private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
+    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public ScrollUpAfterPrestigeAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;

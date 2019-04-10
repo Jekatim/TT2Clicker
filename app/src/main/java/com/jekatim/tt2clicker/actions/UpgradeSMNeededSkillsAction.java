@@ -14,12 +14,12 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
     private static String TAG = "UpgradeSMNeededSkillsAction";
 
     private final ColorChecker colorChecker;
-    private final Coordinates tabCoordinates = new Coordinates(30, 1900);
-    private final Coordinates slideUpPanelCoordinates = new Coordinates(865, 1066);
-    private final Coordinates slideDownPanelCoordinates = new Coordinates(860, 25);
-    private final Coordinates upgradeHoMSkillCoordinates = new Coordinates(1030, 900);
-    private final Coordinates upgradeWCSkillCoordinates = new Coordinates(1030, 1245);
-    private final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
+    private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
+    private static final Coordinates slideUpPanelCoordinates = new Coordinates(865, 1066);
+    private static final Coordinates slideDownPanelCoordinates = new Coordinates(860, 25);
+    private static final Coordinates upgradeHoMSkillCoordinates = new Coordinates(1030, 900);
+    private static final Coordinates upgradeWCSkillCoordinates = new Coordinates(1030, 1245);
+    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMNeededSkillsAction(ColorChecker colorChecker) {
         super(60);

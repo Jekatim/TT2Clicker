@@ -11,7 +11,7 @@ public class ActivateCOAction implements Action {
 
     private static String TAG = "ActivateCOAction";
 
-    private final Coordinates COArea = new Coordinates(430, 970);
+    private static final Coordinates COArea = new Coordinates(430, 970);
 
     @Override
     public void perform() {
