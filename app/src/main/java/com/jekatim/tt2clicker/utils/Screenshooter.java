@@ -28,7 +28,7 @@ public class Screenshooter {
 
             Bitmap screen = BitmapFactory.decodeFile(path);
 
-            return screen.getPixel(x, y);
+            return screen != null ? screen.getPixel(x, y) : -1;
         } catch (IOException | InterruptedException e) {
             Log.e(TAG, "Error in screeshooter", e);
         }

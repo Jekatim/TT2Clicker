@@ -65,7 +65,7 @@
         android:ems="10"
         android:hint="How much wait minutes until prestige"
         android:inputType="number"
-        android:text="45"
+        android:text="30"
         app:layout_constraintStart_toStartOf="@+id/strategySwitch"
         app:layout_constraintTop_toBottomOf="@+id/cqTapPeriod" />
 
