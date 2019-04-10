@@ -85,6 +85,7 @@ public class FloatingClickService extends Service {
             strategy.stopStrategy();
             Intent launchSettings = new Intent(this, SettingsActivity.class);
             launchSettings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            launchSettings.putExtra(SETTINGS_KEY, settings);
             startActivity(launchSettings);
         });
     }

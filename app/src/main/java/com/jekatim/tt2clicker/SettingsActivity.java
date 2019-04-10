@@ -22,7 +22,23 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        readSettings();
+
         findViewById(R.id.applySettingsButton).setOnClickListener(v -> applySettings());
+    }
+
+    private void readSettings() {
+        SettingsModel model = (SettingsModel) getIntent().getExtras().get(SETTINGS_KEY);
+
+        EditText num = findViewById(R.id.cqTapPeriod);
+        num.setText(model.getCqTapPeriod());
+
+        EditText autoPrestige = findViewById(R.id.autoPrestigeAfter);
+        autoPrestige.setText(model.getAutoPrestigeAfter());
+
+        int id = resolveCheckedStrategy(model.getStrategy());
+        RadioGroup group = findViewById(R.id.strategySwitch);
+        group.check(id);
     }
 
     private void applySettings() {
@@ -65,6 +81,19 @@ public class SettingsActivity extends AppCompatActivity {
                 return ClickingStrategy.RELIC_MODE;
             default:
                 return ClickingStrategy.CQ_MODE;
+        }
+    }
+
+    private int resolveCheckedStrategy(ClickingStrategy strategy) {
+        switch (strategy) {
+            case CQ_MODE:
+                return R.id.cqModeSwitch;
+            case SB_MODE:
+                return R.id.sbModeSwitch;
+            case RELIC_MODE:
+                return R.id.relicModeOn;
+            default:
+                return R.id.cqModeSwitch;
         }
     }
 }
