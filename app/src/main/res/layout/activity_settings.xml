@@ -6,64 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <EditText
-        android:id="@+id/cqTapPeriod"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="180dp"
-        android:ems="10"
-        android:hint=" Clan quest tap period"
-        android:inputType="number"
-        android:text="50"
-        app:layout_constraintBottom_toBottomOf="@+id/strategySwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/heroesScrollStartIndex"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="180dp"
-        android:ems="10"
-        android:hint="From which index start scrolling"
-        android:inputType="number"
-        android:text="5"
-        app:layout_constraintBottom_toBottomOf="@+id/strategySwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
-
-    <EditText
-        android:id="@+id/autoPrestigeAfter"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="How much wait minutes until prestige"
-        android:inputType="number"
-        android:text="45"
-        app:layout_constraintEnd_toEndOf="@+id/heroesScrollStartIndex"
-        app:layout_constraintStart_toStartOf="@+id/heroesScrollStartIndex"
-        app:layout_constraintTop_toBottomOf="@+id/heroesScrollStartIndex" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/applySettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="17dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save" />
-
     <RadioGroup
         android:id="@+id/strategySwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:checkedButton="@+id/cqModeSwitch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -94,5 +42,42 @@
             android:text="RelicModeOn" />
 
     </RadioGroup>
+
+    <EditText
+        android:id="@+id/cqTapPeriod"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint=" Clan quest tap period"
+        android:inputType="number"
+        android:text="50"
+        app:layout_constraintStart_toStartOf="@+id/strategySwitch"
+        app:layout_constraintTop_toBottomOf="@+id/strategySwitch" />
+
+    <EditText
+        android:id="@+id/autoPrestigeAfter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="How much wait minutes until prestige"
+        android:inputType="number"
+        android:text="45"
+        app:layout_constraintStart_toStartOf="@+id/strategySwitch"
+        app:layout_constraintTop_toBottomOf="@+id/cqTapPeriod" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/applySettingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="17dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
 </android.support.constraint.ConstraintLayout>

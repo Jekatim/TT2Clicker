@@ -10,19 +10,19 @@ public class CommonSteps {
 
     private static String TAG = "CommonSteps";
 
+    private static Coordinates slidePanelDown = new Coordinates(860, 30);
     private static Coordinates closePanelCoordinates = new Coordinates(1010, 1070);
-    private static Coordinates closePanelUpCoordinates = new Coordinates(1010, 1070);
 
     public static void closePanel(ColorChecker colorChecker) {
         // click on cross to close panel
-        if (colorChecker.isClosePanelButton(closePanelCoordinates.x, closePanelCoordinates.y)) {
-            Log.d(TAG, "Closing panel");
-            AutoClickerService.instance.click(closePanelCoordinates.x, closePanelCoordinates.y);
+        if (colorChecker.isSlidePanelUpButton(slidePanelDown.x, slidePanelDown.y)) {
+            Log.d(TAG, "Sliding panel");
+            AutoClickerService.instance.click(slidePanelDown.x, slidePanelDown.y);
             pause500();
         } else {
-            if (colorChecker.isClosePanelButton(closePanelUpCoordinates.x, closePanelUpCoordinates.y)) {
+            if (colorChecker.isClosePanelButton(closePanelCoordinates.x, closePanelCoordinates.y)) {
                 Log.d(TAG, "Closing panel");
-                AutoClickerService.instance.click(closePanelUpCoordinates.x, closePanelUpCoordinates.y);
+                AutoClickerService.instance.click(closePanelCoordinates.x, closePanelCoordinates.y);
                 pause500();
             } else {
                 Log.d(TAG, "No panel is open, skipping");

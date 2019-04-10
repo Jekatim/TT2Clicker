@@ -6,7 +6,6 @@ public class SettingsModel implements Serializable {
 
     private ClickingStrategy strategy = ClickingStrategy.CQ_MODE;
     private int cqTapPeriod = 50;
-    private int heroesScrollStartIndex = 5;
     private int autoPrestigeAfter = 45;
 
     public ClickingStrategy getStrategy() {
@@ -25,14 +24,6 @@ public class SettingsModel implements Serializable {
         this.cqTapPeriod = cqTapPeriod;
     }
 
-    public int getHeroesScrollStartIndex() {
-        return heroesScrollStartIndex;
-    }
-
-    public void setHeroesScrollStartIndex(int heroesScrollStartIndex) {
-        this.heroesScrollStartIndex = heroesScrollStartIndex;
-    }
-
     public int getAutoPrestigeAfter() {
         return autoPrestigeAfter;
     }
@@ -46,7 +37,6 @@ public class SettingsModel implements Serializable {
         return "SettingsModel{" +
                 "strategy=" + strategy +
                 ", cqTapPeriod=" + cqTapPeriod +
-                ", heroesScrollStartIndex=" + heroesScrollStartIndex +
                 ", autoPrestigeAfter=" + autoPrestigeAfter +
                 '}';
     }

@@ -6,9 +6,6 @@ import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
@@ -24,14 +21,13 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
     private final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
-    private final List<Integer> scrollNumbers = Arrays.asList(45, 40, 20, 15, 10, 9, 8, 7, 6, 5);
-    private final int cyclesCounter = 8;
-    private int currentCycle;
+    private final int wholeScroll = 45;
+    private final int shortScroll = 6;
+    private boolean isWholeScroll = true;
 
-    public UpgradeHeroesAction(ColorChecker colorChecker, int startScrollIndex) {
+    public UpgradeHeroesAction(ColorChecker colorChecker) {
         super(60); //sec
         this.colorChecker = colorChecker;
-        this.currentCycle = startScrollIndex;
     }
 
     @Override
@@ -51,11 +47,8 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             scrollUp();
             pause500();
 
-            if (currentCycle < cyclesCounter) {
-                currentCycle++;
-            }
             // cycle through all heroes
-            for (int i = 0; i < scrollNumbers.get(currentCycle); i++) {
+            for (int i = 0; i < (isWholeScroll ? wholeScroll : shortScroll); i++) {
                 // click on upgrade button
                 Log.d(TAG, "Upgrading hero to max");
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
@@ -72,6 +65,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
             scrollUp();
 
+            isWholeScroll = !isWholeScroll;
             lastActivatedTime = System.currentTimeMillis();
         } else {
             Log.d(TAG, "Missed heroes tab");
