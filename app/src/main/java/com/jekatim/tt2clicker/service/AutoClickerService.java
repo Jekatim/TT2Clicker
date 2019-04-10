@@ -5,7 +5,6 @@ import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Path;
-import android.os.Build;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
@@ -16,6 +15,12 @@ public class AutoClickerService extends AccessibilityService {
     private static String TAG = "AutoClickerService";
 
     public static AutoClickerService instance;
+
+    private static final Path path = new Path();
+
+    private GestureDescription scrollUpGestureDescription;
+    private GestureDescription scrollDownGestureDescription;
+    private GestureDescription scrollHeroesDownGestureDescription;
 
     @Override
     public void onInterrupt() {
@@ -30,50 +35,51 @@ public class AutoClickerService extends AccessibilityService {
         super.onServiceConnected();
         Log.d(TAG, "onServiceConnected");
         AutoClickerService.instance = this;
+        initGestures();
         this.startActivity((new Intent(this, MainActivity.class)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public final void click(int x, int y) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
-            Path path = new Path();
-            path.moveTo((float) x, (float) y);
-            GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
-            this.dispatchGesture(gestureDescription, null, null);
-        }
+        path.reset();
+        path.moveTo((float) x, (float) y);
+        GestureDescription.Builder builder = new GestureDescription.Builder();
+        GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+        this.dispatchGesture(gestureDescription, null, null);
     }
 
-    public final void scrollDown(int x, int y) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
-            Path path = new Path();
-            path.moveTo((float) x, (float) y);
-            path.lineTo((float) x, (float) y - 500);
-            GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
-            this.dispatchGesture(gestureDescription, null, null);
-        }
+    public final void scrollDown() {
+        this.dispatchGesture(scrollDownGestureDescription, null, null);
     }
 
-    public final void scrollDownOn(int x, int y, int distance) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
-            Path path = new Path();
-            path.moveTo((float) x, (float) y);
-            path.lineTo((float) x, (float) y - distance);
-            GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
-            this.dispatchGesture(gestureDescription, null, null);
-        }
+    public final void scrollHeroesDown() {
+        this.dispatchGesture(scrollHeroesDownGestureDescription, null, null);
     }
 
-    public final void scrollUp(int x, int y) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
-            Path path = new Path();
-            path.moveTo((float) x, (float) y);
-            path.lineTo((float) x, (float) y + 500);
-            GestureDescription.Builder builder = new GestureDescription.Builder();
-            GestureDescription gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
-            this.dispatchGesture(gestureDescription, null, null);
-        }
+    public final void scrollUp() {
+        this.dispatchGesture(scrollUpGestureDescription, null, null);
+    }
+
+    private void initGestures() {
+        //scrollUp
+        Path path = new Path();
+        path.moveTo(500, 1300);
+        path.lineTo(500, 1800);
+        GestureDescription.Builder builder = new GestureDescription.Builder();
+        scrollUpGestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
+
+        //scrollDown
+        path.reset();
+        path.moveTo(500, 1800);
+        path.lineTo(500, 1300);
+        builder = new GestureDescription.Builder();
+        scrollDownGestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
+
+        //scrollHeroesDown
+        path.reset();
+        path.moveTo(500, 1800);
+        path.lineTo(500, 1525);
+        builder = new GestureDescription.Builder();
+        scrollHeroesDownGestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 500L)).build();
     }
 
     @Override

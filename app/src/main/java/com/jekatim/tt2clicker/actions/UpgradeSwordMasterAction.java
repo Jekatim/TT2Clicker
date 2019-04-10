@@ -16,7 +16,6 @@ public class UpgradeSwordMasterAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
     private static final Coordinates upgradeSMButtonCoordinates = new Coordinates(765, 1365);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSwordMasterAction(ColorChecker colorChecker) {
         super(60);
@@ -49,7 +48,7 @@ public class UpgradeSwordMasterAction extends ActionWithPeriod {
 
     private void scrollUp() {
         for (int i = 0; i < 5; i++) {
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            AutoClickerService.instance.scrollUp();
             pause500();
         }
     }

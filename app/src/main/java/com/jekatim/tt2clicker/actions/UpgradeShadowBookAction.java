@@ -16,7 +16,6 @@ public class UpgradeShadowBookAction implements Action {
     private final ColorChecker colorChecker;
     private static final Coordinates tabCoordinates = new Coordinates(740, 1900);
     private static final Coordinates bookOfShadowsCoordinates = new Coordinates(800, 1536);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeShadowBookAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;
@@ -59,7 +58,7 @@ public class UpgradeShadowBookAction implements Action {
 
     private void scrollUp() {
         for (int i = 0; i < 12; i++) {
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            AutoClickerService.instance.scrollUp();
             pause500();
         }
     }

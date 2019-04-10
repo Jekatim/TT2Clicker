@@ -22,7 +22,6 @@ public class PrestigeAction implements Action {
     private static final Coordinates prestigeButton = new Coordinates(788, 1790);
     private static final Coordinates prestigeConfirmButton = new Coordinates(425, 1480);
     private static final Coordinates prestigeConfirmButton2 = new Coordinates(620, 1280);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     public PrestigeAction(ColorChecker colorChecker, Strategy strategy) {
         this.colorChecker = colorChecker;
@@ -74,7 +73,7 @@ public class PrestigeAction implements Action {
 
     private void scrollDown() {
         for (int i = 0; i < 10; i++) {
-            AutoClickerService.instance.scrollDown(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            AutoClickerService.instance.scrollDown();
             pause500();
         }
     }

@@ -15,7 +15,6 @@ public class ScrollUpAfterPrestigeAction implements Action {
     private final ColorChecker colorChecker;
 
     private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public ScrollUpAfterPrestigeAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;
@@ -39,7 +38,7 @@ public class ScrollUpAfterPrestigeAction implements Action {
 
     private void scrollUp() {
         for (int i = 0; i < 12; i++) {
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            AutoClickerService.instance.scrollUp();
             pause500();
         }
     }

@@ -19,7 +19,6 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
     private static final Coordinates slideDownPanelCoordinates = new Coordinates(860, 25);
     private static final Coordinates upgradeHoMSkillCoordinates = new Coordinates(1030, 900);
     private static final Coordinates upgradeWCSkillCoordinates = new Coordinates(1030, 1245);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMNeededSkillsAction(ColorChecker colorChecker) {
         super(60);
@@ -39,7 +38,7 @@ public class UpgradeSMNeededSkillsAction extends ActionWithPeriod {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
             pause500();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            AutoClickerService.instance.scrollUp();
             pause500();
 
             // slide panel up

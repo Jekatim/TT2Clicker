@@ -13,13 +13,10 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
     private static String TAG = "UpgradeHeroesAction";
 
-    private final int scrollBetweenHeroesGap = 275;//170;
-
     private final ColorChecker colorChecker;
     private static final Coordinates tabCoordinates = new Coordinates(200, 1900);
     private static final Coordinates upgradeLastButton = new Coordinates(900, 1500);
     private static final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1800);
 
     private final int wholeScroll = 45;
     private final int shortScroll = 6;
@@ -50,7 +47,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             for (int i = 0; i < (isWholeScroll ? wholeScroll : shortScroll); i++) {
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
                 pause200();
-                AutoClickerService.instance.scrollDownOn(scrollStartCoordinates.x, scrollStartCoordinates.y, scrollBetweenHeroesGap);
+                AutoClickerService.instance.scrollHeroesDown();
                 pause500();
             }
 
@@ -70,7 +67,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
     private void scrollUp() {
         for (int i = 0; i < 10; i++) {
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, 1300);
+            AutoClickerService.instance.scrollUp();
             pause500();
         }
     }

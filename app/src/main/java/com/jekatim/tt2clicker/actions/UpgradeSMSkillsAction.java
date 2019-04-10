@@ -23,7 +23,6 @@ public class UpgradeSMSkillsAction implements Action {
     private static final Coordinates upgradeFSSkillCoordinates = new Coordinates(765, 1075);
     private static final Coordinates upgradeWCSkillCoordinates = new Coordinates(765, 1245);
     private static final Coordinates upgradeSCSkillCoordinates = new Coordinates(765, 1410);
-    private static final Coordinates scrollStartCoordinates = new Coordinates(500, 1300);
 
     public UpgradeSMSkillsAction(ColorChecker colorChecker) {
         this.colorChecker = colorChecker;
@@ -38,7 +37,7 @@ public class UpgradeSMSkillsAction implements Action {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
             pause500();
-            AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, scrollStartCoordinates.y);
+            AutoClickerService.instance.scrollUp();
             pause500();
 
             // slide panel up
