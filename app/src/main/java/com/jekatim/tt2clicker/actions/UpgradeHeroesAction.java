@@ -36,7 +36,6 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             return;
         }
         // close tab if needed
-        Log.d(TAG, "closing panel");
         CommonSteps.closePanel(colorChecker);
         // go to heroes tab
         if (colorChecker.isGoToHeroesTab(tabCoordinates.x, tabCoordinates.y)) {
@@ -47,17 +46,14 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             scrollUp();
             pause500();
 
-            // cycle through all heroes
+            Log.d(TAG, "Upgrading heroes to max, making " + (isWholeScroll ? "whole scroll" : "short scroll"));
             for (int i = 0; i < (isWholeScroll ? wholeScroll : shortScroll); i++) {
-                // click on upgrade button
-                Log.d(TAG, "Upgrading hero to max");
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
                 pause200();
                 AutoClickerService.instance.scrollDownOn(scrollStartCoordinates.x, scrollStartCoordinates.y, scrollBetweenHeroesGap);
                 pause500();
             }
 
-            // click on upgrade button
             pause500();
             Log.d(TAG, "Upgrading first hero to max");
             AutoClickerService.instance.click(upgradeFirstButton.x, upgradeFirstButton.y);
@@ -73,7 +69,6 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     }
 
     private void scrollUp() {
-        //scroll up
         for (int i = 0; i < 10; i++) {
             AutoClickerService.instance.scrollUp(scrollStartCoordinates.x, 1300);
             pause500();
