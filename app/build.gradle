@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'drapten'
+            storeFile file('/media/etimofeev/Data/dev/Android/Projects/TT2Clicker/filestore.jks')
+            storePassword 'P@ssw0rd!'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.jekatim.tt2clicker"
@@ -14,13 +22,13 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
             shrinkResources true
             pseudoLocalesEnabled false
             zipAlignEnabled true
+            signingConfig signingConfigs.config
         }
     }
     buildToolsVersion '28.0.3'
