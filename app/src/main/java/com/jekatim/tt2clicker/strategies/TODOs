@@ -3,3 +3,5 @@
 3. rework stop strategy to cancel it immidiately
 4. making whole scroll not every second time ? (every third)
 5. increase number of pushes ?
+6. remove configuration for cq taps per sec, it is always 50msec
+7. do i need sb mode at all? it will reach max in one night
