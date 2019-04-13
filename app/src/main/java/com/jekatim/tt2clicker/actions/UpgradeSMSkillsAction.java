@@ -53,7 +53,7 @@ public class UpgradeSMSkillsAction implements Action {
             AutoClickerService.instance.click(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y);
             pause200();
             Log.d(TAG, "Upgrading HoM to max");
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < 17; i++) {
                 AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
                 pause200();
             }
@@ -61,7 +61,7 @@ public class UpgradeSMSkillsAction implements Action {
             AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);
             pause200();
             Log.d(TAG, "Upgrading wc to max");
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < 17; i++) {
                 AutoClickerService.instance.click(upgradeWCSkillCoordinates.x, upgradeWCSkillCoordinates.y);
                 pause200();
             }
