@@ -19,6 +19,7 @@ public class CQStrategy implements Strategy {
     private final int clickingX = 500;
     private final int clickingY = 700;
     private final int duration = 35; //sec
+    private final int tapPeriod = 50; //msec
 
     private final SettingsModel settings;
 
@@ -49,7 +50,7 @@ public class CQStrategy implements Strategy {
                         AutoClickerService.instance.click(clickingX, clickingY);
                     }
                 }
-            }, 1000, settings.getCqTapPeriod());
+            }, 1000, tapPeriod);
             Log.d(TAG, "Launched");
             isOn = true;
         }

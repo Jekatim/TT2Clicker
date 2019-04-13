@@ -156,7 +156,6 @@ public class FloatingClickService extends Service {
 
     public void onSettingsChange(SettingsModel newSettings) {
         settings.setStrategy(newSettings.getStrategy());
-        settings.setCqTapPeriod(newSettings.getCqTapPeriod());
         settings.setAutoPrestigeAfter(newSettings.getAutoPrestigeAfter());
     }
 

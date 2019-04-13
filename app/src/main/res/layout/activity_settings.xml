@@ -44,30 +44,16 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/cqTapPeriod"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint=" Clan quest tap period"
-        android:inputType="number"
-        android:text="50"
-        app:layout_constraintStart_toStartOf="@+id/strategySwitch"
-        app:layout_constraintTop_toBottomOf="@+id/strategySwitch" />
-
-    <EditText
         android:id="@+id/autoPrestigeAfter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="How much wait minutes until prestige"
         android:inputType="number"
         android:text="30"
         app:layout_constraintStart_toStartOf="@+id/strategySwitch"
-        app:layout_constraintTop_toBottomOf="@+id/cqTapPeriod" />
+        app:layout_constraintTop_toBottomOf="@+id/strategySwitch" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/applySettingsButton"

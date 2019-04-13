@@ -31,9 +31,6 @@ public class SettingsActivity extends AppCompatActivity {
     private void readSettings() {
         SettingsModel model = (SettingsModel) getIntent().getExtras().get(SETTINGS_KEY);
 
-        EditText num = findViewById(R.id.cqTapPeriod);
-        num.setText(model.getCqTapPeriod());
-
         EditText autoPrestige = findViewById(R.id.autoPrestigeAfter);
         autoPrestige.setText(model.getAutoPrestigeAfter());
 
@@ -44,10 +41,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void applySettings() {
         SettingsModel settings = new SettingsModel();
-
-        EditText num = findViewById(R.id.cqTapPeriod);
-        int tapPeriod = Integer.parseInt(num.getText().toString());
-        settings.setCqTapPeriod(tapPeriod);
 
         EditText autoPrestige = findViewById(R.id.autoPrestigeAfter);
         int prestigePeriod = Integer.parseInt(autoPrestige.getText().toString());
