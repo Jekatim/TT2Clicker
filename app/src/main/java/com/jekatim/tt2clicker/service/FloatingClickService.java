@@ -21,7 +21,6 @@ import com.jekatim.tt2clicker.SettingsActivity;
 import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.strategies.CQStrategy;
 import com.jekatim.tt2clicker.strategies.RelicsStrategy;
-import com.jekatim.tt2clicker.strategies.SBStrategy;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 import com.jekatim.tt2clicker.utils.Screenshooter;
@@ -97,10 +96,6 @@ public class FloatingClickService extends Service {
             switch (settings.getStrategy()) {
                 case CQ_MODE:
                     strategy = new CQStrategy(settings);
-                    strategy.launchStrategy();
-                    break;
-                case SB_MODE:
-                    strategy = new SBStrategy(settings, colorChecker);
                     strategy.launchStrategy();
                     break;
                 case RELIC_MODE:
