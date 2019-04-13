@@ -6,7 +6,7 @@ public class SettingsModel implements Serializable {
 
     private ClickingStrategy strategy = ClickingStrategy.CQ_MODE;
     private int cqTapPeriod = 50;
-    private int autoPrestigeAfter = 45;
+    private int autoPrestigeAfter = 30;
 
     public ClickingStrategy getStrategy() {
         return strategy;

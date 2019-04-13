@@ -17,7 +17,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private final Strategy strategy;
     private int launchesCounter = 0;
-    private final int pushesLimit = 4;
+    private final int pushesLimit = 5;
 
     private final long startTime;
     private final long prestigeAfter;
