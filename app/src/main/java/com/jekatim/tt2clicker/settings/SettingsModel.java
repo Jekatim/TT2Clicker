@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SettingsModel implements Serializable {
 
-    private ClickingStrategy strategy = ClickingStrategy.CQ_MODE;
+    private ClickingStrategy strategy = ClickingStrategy.RELIC_MODE;
     private int autoPrestigeAfter = 30;
 
     public ClickingStrategy getStrategy() {

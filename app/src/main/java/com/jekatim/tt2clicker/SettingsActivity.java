@@ -22,8 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // FIXME
-        //readSettings();
+        readSettings();
 
         findViewById(R.id.applySettingsButton).setOnClickListener(v -> applySettings());
     }
@@ -32,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         SettingsModel model = (SettingsModel) getIntent().getExtras().get(SETTINGS_KEY);
 
         EditText autoPrestige = findViewById(R.id.autoPrestigeAfter);
-        autoPrestige.setText(model.getAutoPrestigeAfter());
+        autoPrestige.setText(Integer.toString(model.getAutoPrestigeAfter()));
 
         int id = resolveCheckedStrategy(model.getStrategy());
         RadioGroup group = findViewById(R.id.strategySwitch);
