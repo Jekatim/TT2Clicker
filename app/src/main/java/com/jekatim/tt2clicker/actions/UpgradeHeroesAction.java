@@ -18,7 +18,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private static final Coordinates upgradeLastButton = new Coordinates(900, 1500);
     private static final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
 
-    private final int wholeScroll = 45;
+    private final int wholeScroll = 40;
     private final int shortScroll = 6;
     private boolean isWholeScroll = true;
 
