@@ -20,7 +20,8 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
     private final int wholeScroll = 40;
     private final int shortScroll = 6;
-    private boolean isWholeScroll = true;
+    private int launchesCounter = 0;
+    private int wholeScrollAfter = 3;
 
     public UpgradeHeroesAction(ColorChecker colorChecker) {
         super(60); //sec
@@ -43,6 +44,12 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             scrollUp();
             pause500();
 
+            boolean isWholeScroll = false;
+            if (launchesCounter % wholeScrollAfter == 0) {
+                isWholeScroll = true;
+                launchesCounter = 0;
+            }
+
             Log.d(TAG, "Upgrading heroes to max, making " + (isWholeScroll ? "whole scroll" : "short scroll"));
             for (int i = 0; i < (isWholeScroll ? wholeScroll : shortScroll); i++) {
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
@@ -58,7 +65,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
 
             scrollUp();
 
-            isWholeScroll = !isWholeScroll;
+            launchesCounter++;
             lastActivatedTime = System.currentTimeMillis();
         } else {
             Log.d(TAG, "Missed heroes tab");
