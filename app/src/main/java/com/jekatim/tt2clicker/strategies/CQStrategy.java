@@ -15,7 +15,7 @@ public class CQStrategy implements Strategy {
     private static String TAG = "CQStrategy";
 
     private Timer timer;
-    private boolean isOn;
+    private boolean isLaunched;
     private final int clickingX = 500;
     private final int clickingY = 700;
     private final int duration = 35; //sec
@@ -36,7 +36,7 @@ public class CQStrategy implements Strategy {
 
     @Override
     public void launchStrategy() {
-        if (isOn) {
+        if (isLaunched) {
             Log.d(TAG, "Already launched, skipping");
         } else {
             this.timer = new Timer();
@@ -52,17 +52,17 @@ public class CQStrategy implements Strategy {
                 }
             }, 1000, tapPeriod);
             Log.d(TAG, "Launched");
-            isOn = true;
+            isLaunched = true;
         }
     }
 
     @Override
     public void stopStrategy() {
-        if (isOn) {
+        if (isLaunched) {
             if (timer != null) {
                 timer.cancel();
             }
-            isOn = false;
+            isLaunched = false;
         } else {
             Log.d(TAG, "Already stopped, skipping");
         }
@@ -76,5 +76,10 @@ public class CQStrategy implements Strategy {
     @Override
     public void addAfterPrestigeActions() {
         // NO_OP
+    }
+
+    @Override
+    public boolean isLaunched() {
+        return isLaunched;
     }
 }

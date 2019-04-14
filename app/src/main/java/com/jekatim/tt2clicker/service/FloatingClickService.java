@@ -37,7 +37,6 @@ public class FloatingClickService extends Service {
     private WindowManager.LayoutParams params;
     private int xForRecord;
     private int yForRecord;
-    private boolean isOn;
     private SettingsModel settings;
     private Strategy strategy;
     private ColorChecker colorChecker;
@@ -73,9 +72,8 @@ public class FloatingClickService extends Service {
         view.setOnTouchListener(new DragListener(params, manager));
         ToggleButton toggle = view.findViewById(R.id.toggleButton);
         toggle.setOnClickListener(v -> {
-            if (isOn) {
+            if (strategy.isLaunched()) {
                 strategy.stopStrategy();
-                isOn = false;
             } else {
                 startNewStrategy();
             }
@@ -106,7 +104,6 @@ public class FloatingClickService extends Service {
                     Log.d(TAG, "Unknown strategy");
                     break;
             }
-            isOn = true;
         } else {
             Log.d(TAG, "Service is stopped, skipping");
         }

@@ -6,6 +6,7 @@ import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.ActivateSCSkillAction;
 import com.jekatim.tt2clicker.actions.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
+import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
 import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
@@ -31,7 +32,7 @@ public class RelicsStrategy implements Strategy {
     protected final ColorChecker colorChecker;
 
     private Timer timer;
-    private boolean isOn = false;
+    private boolean isLaunched = false;
     private final List<Action> slowCycledAction;
     private final List<Action> fastCycledActions;
     protected final Queue<Action> oneTimeActions;
@@ -51,6 +52,7 @@ public class RelicsStrategy implements Strategy {
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
+        //oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
 
         slowCycledAction.clear();
         fastCycledActions.clear();
@@ -78,7 +80,7 @@ public class RelicsStrategy implements Strategy {
 
     @Override
     public void launchStrategy() {
-        if (isOn) {
+        if (isLaunched) {
             Log.d(TAG, "Already launched, skipping");
         } else {
             this.timer = new Timer();
@@ -89,7 +91,7 @@ public class RelicsStrategy implements Strategy {
                 }
             }, 100, 1000);
             Log.d(TAG, "Launched");
-            isOn = true;
+            isLaunched = true;
         }
     }
 
@@ -109,12 +111,12 @@ public class RelicsStrategy implements Strategy {
 
     @Override
     public void stopStrategy() {
-        if (isOn) {
+        if (isLaunched) {
             if (timer != null) {
                 timer.cancel();
                 timer.purge();
             }
-            isOn = false;
+            isLaunched = false;
             Log.d(TAG, "Stopping");
         } else {
             Log.d(TAG, "Already stopped, skipping");
@@ -124,5 +126,10 @@ public class RelicsStrategy implements Strategy {
     @Override
     public void addOneTimeAction(Action action) {
         oneTimeActions.add(action);
+    }
+
+    @Override
+    public boolean isLaunched() {
+        return isLaunched;
     }
 }

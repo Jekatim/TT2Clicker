@@ -9,6 +9,8 @@ public interface Strategy {
 
     void launchStrategy();
 
+    boolean isLaunched();
+
     void stopStrategy();
 
     void addOneTimeAction(Action action);
