@@ -1,6 +1,7 @@
 package com.jekatim.tt2clicker.strategies;
 
 import android.util.Log;
+import android.widget.ToggleButton;
 
 import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.ActivateSCSkillAction;
@@ -24,20 +25,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class RelicsStrategy implements Strategy {
+public class RelicsStrategy extends AbstractStrategy {
 
     private static String TAG = "RelicsStrategy";
 
     private final SettingsModel settings;
-    protected final ColorChecker colorChecker;
-
-    private Timer timer;
-    private boolean isLaunched = false;
+    private final ColorChecker colorChecker;
     private final List<Action> slowCycledAction;
     private final List<Action> fastCycledActions;
-    protected final Queue<Action> oneTimeActions;
+    private final Queue<Action> oneTimeActions;
 
-    public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker) {
+    public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker, ToggleButton toggle) {
+        super(toggle);
         this.settings = settings;
         this.colorChecker = colorChecker;
         this.slowCycledAction = new ArrayList<>();
@@ -97,11 +96,17 @@ public class RelicsStrategy implements Strategy {
 
     private void control() {
         while (oneTimeActions.peek() != null) {
+            if (!isLaunched) {
+                return;
+            }
             Action action = oneTimeActions.poll();
             action.perform();
         }
         for (Action slowAction : slowCycledAction) {
             for (Action fastAction : fastCycledActions) {
+                if (!isLaunched) {
+                    return;
+                }
                 // make sure that all fast clicks executed on between all other long-running actions
                 fastAction.perform();
             }
@@ -110,26 +115,7 @@ public class RelicsStrategy implements Strategy {
     }
 
     @Override
-    public void stopStrategy() {
-        if (isLaunched) {
-            if (timer != null) {
-                timer.cancel();
-                timer.purge();
-            }
-            isLaunched = false;
-            Log.d(TAG, "Stopping");
-        } else {
-            Log.d(TAG, "Already stopped, skipping");
-        }
-    }
-
-    @Override
     public void addOneTimeAction(Action action) {
         oneTimeActions.add(action);
-    }
-
-    @Override
-    public boolean isLaunched() {
-        return isLaunched;
     }
 }

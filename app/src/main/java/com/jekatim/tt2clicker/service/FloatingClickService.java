@@ -40,13 +40,11 @@ public class FloatingClickService extends Service {
     private SettingsModel settings;
     private Strategy strategy;
     private ColorChecker colorChecker;
+    private ToggleButton toggle;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        settings = new SettingsModel();
-        strategy = new CQStrategy(settings);
 
         this.view = View.inflate(this, R.layout.widget, null);
         this.colorChecker = new ColorChecker(new Screenshooter(), this);
@@ -70,7 +68,11 @@ public class FloatingClickService extends Service {
         LocalBroadcastManager.getInstance(this).registerReceiver(handler, receiveFilter);
 
         view.setOnTouchListener(new DragListener(params, manager));
-        ToggleButton toggle = view.findViewById(R.id.toggleButton);
+        toggle = view.findViewById(R.id.toggleButton);
+
+        settings = new SettingsModel();
+        strategy = new RelicsStrategy(settings, colorChecker, toggle);
+
         toggle.setOnClickListener(v -> {
             if (strategy.isLaunched()) {
                 strategy.stopStrategy();
@@ -93,11 +95,11 @@ public class FloatingClickService extends Service {
         if (isServiceRunning) {
             switch (settings.getStrategy()) {
                 case CQ_MODE:
-                    strategy = new CQStrategy(settings);
+                    strategy = new CQStrategy(toggle);
                     strategy.launchStrategy();
                     break;
                 case RELIC_MODE:
-                    strategy = new RelicsStrategy(settings, colorChecker);
+                    strategy = new RelicsStrategy(settings, colorChecker, toggle);
                     strategy.launchStrategy();
                     break;
                 default:

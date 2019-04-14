@@ -1,32 +1,27 @@
 package com.jekatim.tt2clicker.strategies;
 
 import android.util.Log;
+import android.widget.ToggleButton;
 
-import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
-import com.jekatim.tt2clicker.settings.SettingsModel;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CQStrategy implements Strategy {
+public class CQStrategy extends AbstractStrategy {
 
     private static String TAG = "CQStrategy";
 
-    private Timer timer;
-    private boolean isLaunched;
     private final int clickingX = 500;
     private final int clickingY = 700;
     private final int duration = 35; //sec
     private final int tapPeriod = 50; //msec
 
-    private final SettingsModel settings;
-
     private long launchedTime;
 
-    public CQStrategy(SettingsModel settings) {
-        this.settings = settings;
+    public CQStrategy(ToggleButton toggle) {
+        super(toggle);
     }
 
     @Override
@@ -54,32 +49,5 @@ public class CQStrategy implements Strategy {
             Log.d(TAG, "Launched");
             isLaunched = true;
         }
-    }
-
-    @Override
-    public void stopStrategy() {
-        if (isLaunched) {
-            if (timer != null) {
-                timer.cancel();
-            }
-            isLaunched = false;
-        } else {
-            Log.d(TAG, "Already stopped, skipping");
-        }
-    }
-
-    @Override
-    public void addOneTimeAction(Action action) {
-        // NO_OP
-    }
-
-    @Override
-    public void addAfterPrestigeActions() {
-        // NO_OP
-    }
-
-    @Override
-    public boolean isLaunched() {
-        return isLaunched;
     }
 }
