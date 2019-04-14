@@ -1,7 +1,9 @@
-package com.jekatim.tt2clicker.actions;
+package com.jekatim.tt2clicker.actions.unused;
 
 import android.util.Log;
 
+import com.jekatim.tt2clicker.actions.ActionWithPeriod;
+import com.jekatim.tt2clicker.actions.CommonSteps;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;

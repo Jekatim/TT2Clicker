@@ -1,21 +1,21 @@
-package com.jekatim.tt2clicker.actions;
+package com.jekatim.tt2clicker.actions.csbuild;
 
 import android.util.Log;
 
+import com.jekatim.tt2clicker.actions.ActionWithPeriod;
+import com.jekatim.tt2clicker.actions.CommonSteps;
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
-import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
+public class ActivateHandOfMidasSkillAction extends ActionWithPeriod {
 
-public class ActivateWCSkillAction extends ActionWithPeriod {
-
-    private static String TAG = "ActivateWCSkillAction";
+    private static String TAG = "ActivateHandOfMidasSkillAction";
 
     private final ColorChecker colorChecker;
-    private static final Coordinates wcCoordinates = new Coordinates(810, 1722);
+    private static final Coordinates handOfMidasCoordinates = new Coordinates(450, 1722);
 
-    public ActivateWCSkillAction(ColorChecker colorChecker) {
+    public ActivateHandOfMidasSkillAction(ColorChecker colorChecker) {
         super(65); //sec
         this.colorChecker = colorChecker;
     }
@@ -27,10 +27,9 @@ public class ActivateWCSkillAction extends ActionWithPeriod {
         }
         // close tab if needed
         CommonSteps.closePanel(colorChecker);
-        // click on wc button
-        Log.d(TAG, "Activating War cry skill");
-        AutoClickerService.instance.click(wcCoordinates.x, wcCoordinates.y);
-        pause500();
+        // click on HoM button
+        Log.d(TAG, "Activating Hand of Midas skill");
+        AutoClickerService.instance.click(handOfMidasCoordinates.x, handOfMidasCoordinates.y);
         lastActivatedTime = System.currentTimeMillis();
     }
 

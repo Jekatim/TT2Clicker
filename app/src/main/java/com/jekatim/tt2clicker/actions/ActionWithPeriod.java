@@ -6,13 +6,13 @@ public abstract class ActionWithPeriod implements Action {
 
     private final int period;
 
-    long lastActivatedTime;
+    protected long lastActivatedTime;
 
-    ActionWithPeriod(int period) {
+    protected ActionWithPeriod(int period) {
         this.period = period;
     }
 
-    boolean checkTimePeriodValid() {
+    public boolean checkTimePeriodValid() {
         if (System.currentTimeMillis() - lastActivatedTime < period * 1000) {
             Log.d(getTag(), "Time is not come yet, skipping");
             return false;
