@@ -1,22 +1,27 @@
 package com.jekatim.tt2clicker.strategies;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.ToggleButton;
 
 import com.jekatim.tt2clicker.actions.Action;
+import com.jekatim.tt2clicker.service.FloatingClickService;
 
 import java.util.Timer;
 
 public abstract class AbstractStrategy implements Strategy {
 
     private static String TAG = "AbstractStrategy";
+    private static String TOGGLE_STATE_KEY = "toggleStateKey";
+
+    private final Context context;
 
     protected Timer timer;
     protected boolean isLaunched;
-    protected ToggleButton toggle;
 
-    public AbstractStrategy(ToggleButton toggle) {
-        this.toggle = toggle;
+    protected AbstractStrategy(Context context) {
+        this.context = context;
     }
 
     @Override
@@ -27,7 +32,7 @@ public abstract class AbstractStrategy implements Strategy {
                 timer.purge();
             }
             isLaunched = false;
-            toggle.setChecked(false);
+            untoggleButton();
         } else {
             Log.d(TAG, "Already stopped, skipping");
         }
@@ -46,5 +51,12 @@ public abstract class AbstractStrategy implements Strategy {
     @Override
     public boolean isLaunched() {
         return isLaunched;
+    }
+
+    private void untoggleButton() {
+        Log.d(TAG, "AbstractStrategy.sendUntoggle()");
+        Intent sendableIntent = new Intent(FloatingClickService.MyBroadcastReceiver.class.getName());
+        sendableIntent.putExtra(TOGGLE_STATE_KEY, false);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(sendableIntent);
     }
 }

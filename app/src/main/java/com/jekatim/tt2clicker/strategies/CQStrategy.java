@@ -1,7 +1,7 @@
 package com.jekatim.tt2clicker.strategies;
 
+import android.content.Context;
 import android.util.Log;
-import android.widget.ToggleButton;
 
 import com.jekatim.tt2clicker.service.AutoClickerService;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
@@ -20,8 +20,8 @@ public class CQStrategy extends AbstractStrategy {
 
     private long launchedTime;
 
-    public CQStrategy(ToggleButton toggle) {
-        super(toggle);
+    public CQStrategy(Context context) {
+        super(context);
     }
 
     @Override

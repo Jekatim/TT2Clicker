@@ -1,5 +1,6 @@
 package com.jekatim.tt2clicker.strategies;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.ToggleButton;
 
@@ -34,8 +35,8 @@ public class RelicsStrategy extends AbstractStrategy {
     private final List<Action> fastCycledActions;
     private final Queue<Action> oneTimeActions;
 
-    public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker, ToggleButton toggle) {
-        super(toggle);
+    public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker, Context context) {
+        super(context);
         this.settings = settings;
         this.colorChecker = colorChecker;
         this.slowCycledAction = new ArrayList<>();

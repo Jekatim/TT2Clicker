@@ -69,9 +69,11 @@ public class FloatingClickService extends Service {
 
         view.setOnTouchListener(new DragListener(params, manager));
         toggle = view.findViewById(R.id.toggleButton);
+        toggle.setTextOn("On");
+        toggle.setTextOff("Off");
 
         settings = new SettingsModel();
-        strategy = new RelicsStrategy(settings, colorChecker, toggle);
+        strategy = new RelicsStrategy(settings, colorChecker, this);
 
         toggle.setOnClickListener(v -> {
             if (strategy.isLaunched()) {
@@ -95,11 +97,11 @@ public class FloatingClickService extends Service {
         if (isServiceRunning) {
             switch (settings.getStrategy()) {
                 case CQ_MODE:
-                    strategy = new CQStrategy(toggle);
+                    strategy = new CQStrategy(this);
                     strategy.launchStrategy();
                     break;
                 case RELIC_MODE:
-                    strategy = new RelicsStrategy(settings, colorChecker, toggle);
+                    strategy = new RelicsStrategy(settings, colorChecker, this);
                     strategy.launchStrategy();
                     break;
                 default:
@@ -148,18 +150,28 @@ public class FloatingClickService extends Service {
         return null;
     }
 
-    public void onSettingsChange(SettingsModel newSettings) {
+    private void onSettingsChanged(SettingsModel newSettings) {
         settings.setStrategy(newSettings.getStrategy());
         settings.setAutoPrestigeAfter(newSettings.getAutoPrestigeAfter());
+    }
+
+    private void onButtonUntoggle() {
+        if (toggle != null) {
+            toggle.setChecked(false);
+        }
     }
 
     public class MyBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "MyBroadcastReceiver() {...}.onReceive()");
-            Toasts.longToast(FloatingClickService.this, "Settings received");
+            Toasts.longToast(FloatingClickService.this, "Broadcast received");
             SettingsModel model = (SettingsModel) intent.getExtras().get(SETTINGS_KEY);
-            onSettingsChange(model);
+            if (model != null) {
+                onSettingsChanged(model);
+            } else {
+                onButtonUntoggle();
+            }
         }
     }
 }
