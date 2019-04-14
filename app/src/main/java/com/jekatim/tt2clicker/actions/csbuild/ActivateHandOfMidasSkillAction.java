@@ -16,7 +16,7 @@ public class ActivateHandOfMidasSkillAction extends ActionWithPeriod {
     private static final Coordinates handOfMidasCoordinates = new Coordinates(450, 1722);
 
     public ActivateHandOfMidasSkillAction(ColorChecker colorChecker) {
-        super(65); //sec
+        super(125); //sec
         this.colorChecker = colorChecker;
     }
 

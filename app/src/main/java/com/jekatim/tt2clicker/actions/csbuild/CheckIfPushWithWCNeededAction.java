@@ -26,7 +26,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private final long prestigeAfter;
 
     public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy, int autoPrestigeAfter) {
-        super(65); //sec
+        super(125); //sec
         this.colorChecker = colorChecker;
         this.strategy = strategy;
         this.startTime = System.currentTimeMillis();
