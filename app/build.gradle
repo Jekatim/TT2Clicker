@@ -20,14 +20,14 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            debuggable false
-            jniDebuggable false
-            renderscriptDebuggable false
-            shrinkResources true
-            pseudoLocalesEnabled false
-            zipAlignEnabled true
+//            debuggable false
+//            jniDebuggable false
+//            renderscriptDebuggable false
+//            shrinkResources true
+//            pseudoLocalesEnabled false
+//            zipAlignEnabled true
             signingConfig signingConfigs.config
         }
     }
