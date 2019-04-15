@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="How much wait minutes until prestige"
+        android:hint="How much minutes wait until prestige"
         android:inputType="number"
         android:text="30"
         app:layout_constraintStart_toStartOf="@+id/strategySwitch"
