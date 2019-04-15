@@ -4,7 +4,8 @@
     android:id="@+id/floatingView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/widget_background">
+    android:background="@drawable/widget_background"
+    android:paddingRight="16dp">
 
     <ToggleButton
         android:id="@+id/toggleButton"
