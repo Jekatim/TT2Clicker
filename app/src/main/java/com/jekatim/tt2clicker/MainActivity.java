@@ -1,11 +1,9 @@
 package com.jekatim.tt2clicker;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchService() {
         findViewById(R.id.startButton).setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !Settings.canDrawOverlays(MainActivity.this)) {
+            if (!Settings.canDrawOverlays(MainActivity.this)) {
                 MainActivity.this.askPermission();
                 Toasts.shortToast(MainActivity.this, "You need System Alert Window Permission to do this");
             } else {
@@ -115,12 +113,11 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+        if (!Settings.canDrawOverlays(this)) {
             this.askPermission();
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void askPermission() {
         Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + this.getPackageName()));
         this.startActivityForResult(intent, PERMISSION_CODE_OVERLAY);
@@ -138,9 +135,7 @@ public class MainActivity extends AppCompatActivity {
         if (service != null) {
             Log.d(TAG, "stop auto click service");
             service.stopSelf();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                service.disableSelf();
-            }
+            service.disableSelf();
 
             AutoClickerService.instance = null;
         }
@@ -152,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         this.moveTaskToBack(true);
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void checkPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
