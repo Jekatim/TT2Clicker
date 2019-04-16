@@ -2,18 +2,18 @@ package com.jekatim.tt2clicker.strategies;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ToggleButton;
 
 import com.jekatim.tt2clicker.actions.Action;
-import com.jekatim.tt2clicker.actions.csbuild.ActivateSCSkillAction;
-import com.jekatim.tt2clicker.actions.csbuild.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
+import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
 import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
+import com.jekatim.tt2clicker.actions.UpgradeSwordMasterAction;
+import com.jekatim.tt2clicker.actions.csbuild.ActivateSCSkillAction;
+import com.jekatim.tt2clicker.actions.csbuild.CheckIfPushWithWCNeededAction;
 import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMNeededSkillsAction;
 import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMSkillsAction;
-import com.jekatim.tt2clicker.actions.UpgradeSwordMasterAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.utils.ColorChecker;
@@ -51,7 +51,7 @@ public class RelicsStrategy extends AbstractStrategy {
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
-        //oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
+        oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
 
         slowCycledAction.clear();
         fastCycledActions.clear();

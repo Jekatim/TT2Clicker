@@ -45,6 +45,10 @@ public class ColorChecker {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.active_skill_button));
     }
 
+    public boolean isDailyRewardConfirmButton(int x, int y) {
+        return isColorMatch(x, y, ContextCompat.getColor(context, R.color.daily_reward_confirm_button));
+    }
+
     public boolean isGoToSwordMasterTab(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.go_to_sword_master_tab));
     }
