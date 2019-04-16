@@ -17,7 +17,7 @@ public class PickUpEquipmentAction extends ActionWithPeriod {
     private static final Coordinates equipmentCoordinates = new Coordinates(800, 990);
 
     public PickUpEquipmentAction(ColorChecker colorChecker) {
-        super(60);
+        super(120);
         this.colorChecker = colorChecker;
     }
 
