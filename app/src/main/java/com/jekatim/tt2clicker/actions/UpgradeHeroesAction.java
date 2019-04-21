@@ -16,12 +16,8 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private static final Coordinates tabCoordinates = new Coordinates(200, 1900);
     private static final Coordinates upgradeLastButton = new Coordinates(900, 1500);
-    private static final Coordinates upgradeFirstButton = new Coordinates(900, 1790);
 
-    private final int wholeScroll = 40;
     private final int shortScroll = 6;
-    private int launchesCounter = 0;
-    private int wholeScrollAfter = 3;
 
     public UpgradeHeroesAction(ColorChecker colorChecker) {
         super(60); //sec
@@ -44,28 +40,16 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             scrollUp();
             pause500();
 
-            boolean isWholeScroll = false;
-            if (launchesCounter % wholeScrollAfter == 0) {
-                isWholeScroll = true;
-                launchesCounter = 0;
-            }
-
-            Log.d(TAG, "Upgrading heroes to max, making " + (isWholeScroll ? "whole scroll" : "short scroll"));
-            for (int i = 0; i < (isWholeScroll ? wholeScroll : shortScroll); i++) {
+            Log.d(TAG, "Upgrading heroes to max");
+            for (int i = 0; i < shortScroll; i++) {
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
                 pause200();
                 AutoClickerService.instance.scrollHeroesDown();
                 pause500();
             }
 
-            pause500();
-            Log.d(TAG, "Upgrading first hero to max");
-            AutoClickerService.instance.click(upgradeFirstButton.x, upgradeFirstButton.y);
-            pause500();
-
             scrollUp();
 
-            launchesCounter++;
             lastActivatedTime = System.currentTimeMillis();
         } else {
             Log.d(TAG, "Missed heroes tab");
@@ -73,7 +57,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     }
 
     private void scrollUp() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             AutoClickerService.instance.scrollUp();
             pause500();
         }
