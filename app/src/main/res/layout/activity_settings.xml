@@ -12,17 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:checkedButton="@+id/cqModeSwitch"
+        android:checkedButton="@+id/pushModeSwitch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/cqModeSwitch"
+            android:id="@+id/pushModeSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:text="CQModeOn" />
+            android:text="Push mode" />
 
         <RadioButton
             android:id="@+id/relicModeOn"
@@ -31,7 +31,7 @@
             android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:checked="true"
-            android:text="RelicModeOn" />
+            android:text="Relic mode" />
 
     </RadioGroup>
 
@@ -46,6 +46,15 @@
         android:text="30"
         app:layout_constraintStart_toStartOf="@+id/strategySwitch"
         app:layout_constraintTop_toBottomOf="@+id/strategySwitch" />
+
+    <CheckBox
+        android:id="@+id/makePrestigeFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Make prestige"
+        app:layout_constraintStart_toStartOf="@+id/autoPrestigeAfter"
+        app:layout_constraintTop_toBottomOf="@+id/autoPrestigeAfter" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/applySettingsButton"

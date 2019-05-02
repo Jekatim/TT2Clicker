@@ -18,7 +18,7 @@ import android.widget.ToggleButton;
 import com.jekatim.tt2clicker.R;
 import com.jekatim.tt2clicker.SettingsActivity;
 import com.jekatim.tt2clicker.settings.SettingsModel;
-import com.jekatim.tt2clicker.strategies.CQStrategy;
+import com.jekatim.tt2clicker.strategies.PushStrategy;
 import com.jekatim.tt2clicker.strategies.RelicsStrategy;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
@@ -91,8 +91,8 @@ public class FloatingClickService extends Service {
         Log.d(TAG, "AutoClickerService is running? :" + isServiceRunning);
         if (isServiceRunning) {
             switch (settings.getStrategy()) {
-                case CQ_MODE:
-                    strategy = new CQStrategy(this);
+                case PUSH_MODE:
+                    strategy = new PushStrategy(settings, colorChecker, this);
                     strategy.launchStrategy();
                     break;
                 case RELIC_MODE:
@@ -148,6 +148,7 @@ public class FloatingClickService extends Service {
     private void onSettingsChanged(SettingsModel newSettings) {
         settings.setStrategy(newSettings.getStrategy());
         settings.setAutoPrestigeAfter(newSettings.getAutoPrestigeAfter());
+        settings.setMakePrestige(newSettings.isMakePrestige());
     }
 
     private void onButtonUntoggle() {

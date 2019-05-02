@@ -17,7 +17,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private static final Coordinates tabCoordinates = new Coordinates(200, 1900);
     private static final Coordinates upgradeLastButton = new Coordinates(900, 1500);
 
-    private final int shortScroll = 6;
+    private final int scroll = 6;
 
     public UpgradeHeroesAction(ColorChecker colorChecker) {
         super(60); //sec
@@ -41,7 +41,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
             pause500();
 
             Log.d(TAG, "Upgrading heroes to max");
-            for (int i = 0; i < shortScroll; i++) {
+            for (int i = 0; i < scroll; i++) {
                 AutoClickerService.instance.click(upgradeLastButton.x, upgradeLastButton.y);
                 pause200();
                 AutoClickerService.instance.scrollHeroesDown();

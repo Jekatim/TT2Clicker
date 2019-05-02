@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 public enum ClickingStrategy implements Serializable {
 
-    CQ_MODE,
+    PUSH_MODE,
     RELIC_MODE
 }

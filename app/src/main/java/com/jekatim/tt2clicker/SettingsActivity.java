@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -48,6 +49,10 @@ public class SettingsActivity extends AppCompatActivity {
         ClickingStrategy strategy = resolveClickingStrategy();
         settings.setStrategy(strategy);
 
+        CheckBox makePrestigeFlag = findViewById(R.id.makePrestigeFlag);
+        boolean isMakePrestige = makePrestigeFlag.isChecked();
+        settings.setMakePrestige(isMakePrestige);
+
         Log.d(TAG, "Settings will be applied: " + settings.toString());
 
         sendMessage(settings);
@@ -66,23 +71,23 @@ public class SettingsActivity extends AppCompatActivity {
         RadioGroup group = findViewById(R.id.strategySwitch);
 
         switch (group.getCheckedRadioButtonId()) {
-            case R.id.cqModeSwitch:
-                return ClickingStrategy.CQ_MODE;
+            case R.id.pushModeSwitch:
+                return ClickingStrategy.PUSH_MODE;
             case R.id.relicModeOn:
                 return ClickingStrategy.RELIC_MODE;
             default:
-                return ClickingStrategy.CQ_MODE;
+                return ClickingStrategy.PUSH_MODE;
         }
     }
 
     private int resolveCheckedStrategy(ClickingStrategy strategy) {
         switch (strategy) {
-            case CQ_MODE:
-                return R.id.cqModeSwitch;
+            case PUSH_MODE:
+                return R.id.pushModeSwitch;
             case RELIC_MODE:
                 return R.id.relicModeOn;
             default:
-                return R.id.cqModeSwitch;
+                return R.id.pushModeSwitch;
         }
     }
 }

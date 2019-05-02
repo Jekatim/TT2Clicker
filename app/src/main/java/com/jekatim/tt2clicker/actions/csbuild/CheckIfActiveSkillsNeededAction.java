@@ -12,9 +12,9 @@ import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
-public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
+public class CheckIfActiveSkillsNeededAction extends ActionWithPeriod {
 
-    private static String TAG = "CheckIfPushWithWCNeededAction";
+    private static String TAG = "CheckIfActiveSkillsNeededAction";
 
     private static final Coordinates fightBossCoordinates = new Coordinates(970, 80);
     private final ColorChecker colorChecker;
@@ -25,7 +25,7 @@ public class CheckIfPushWithWCNeededAction extends ActionWithPeriod {
     private final long startTime;
     private final long prestigeAfter;
 
-    public CheckIfPushWithWCNeededAction(ColorChecker colorChecker, Strategy strategy, int autoPrestigeAfter) {
+    public CheckIfActiveSkillsNeededAction(ColorChecker colorChecker, Strategy strategy, int autoPrestigeAfter) {
         super(185); //sec
         this.colorChecker = colorChecker;
         this.strategy = strategy;

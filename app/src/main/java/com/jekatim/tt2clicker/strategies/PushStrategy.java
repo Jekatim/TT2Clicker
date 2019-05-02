@@ -6,13 +6,11 @@ import android.util.Log;
 import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
 import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
-import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.actions.UpgradeSwordMasterAction;
 import com.jekatim.tt2clicker.actions.csbuild.ActivateSCSkillAction;
 import com.jekatim.tt2clicker.actions.csbuild.CheckIfActiveSkillsNeededAction;
-import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMNeededSkillsAction;
 import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMSkillsAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.settings.SettingsModel;
@@ -25,9 +23,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class RelicsStrategy extends AbstractStrategy {
+public class PushStrategy extends AbstractStrategy {
 
-    private static String TAG = "RelicsStrategy";
+    private static String TAG = "PushStrategy";
 
     private final SettingsModel settings;
     private final ColorChecker colorChecker;
@@ -35,7 +33,7 @@ public class RelicsStrategy extends AbstractStrategy {
     private final List<Action> fastCycledActions;
     private final Queue<Action> oneTimeActions;
 
-    public RelicsStrategy(SettingsModel settings, ColorChecker colorChecker, Context context) {
+    public PushStrategy(SettingsModel settings, ColorChecker colorChecker, Context context) {
         super(context);
         this.settings = settings;
         this.colorChecker = colorChecker;
@@ -61,10 +59,9 @@ public class RelicsStrategy extends AbstractStrategy {
 
     private void fillCycledAction() {
         slowCycledAction.add(new UpgradeHeroesAction(colorChecker));
-        slowCycledAction.add(new UpgradeSwordMasterAction(colorChecker));
-        slowCycledAction.add(new UpgradeSMNeededSkillsAction(colorChecker));
-        slowCycledAction.add(new PickUpEquipmentAction(colorChecker));
-        slowCycledAction.add(new CheckIfActiveSkillsNeededAction(colorChecker, this, settings.getAutoPrestigeAfter()));
+        if (settings.isMakePrestige()) {
+            slowCycledAction.add(new CheckIfActiveSkillsNeededAction(colorChecker, this, settings.getAutoPrestigeAfter()));
+        }
 
         /*********************************************************/
 
@@ -74,7 +71,7 @@ public class RelicsStrategy extends AbstractStrategy {
 
     @Override
     public ClickingStrategy getType() {
-        return ClickingStrategy.RELIC_MODE;
+        return ClickingStrategy.PUSH_MODE;
     }
 
     @Override
