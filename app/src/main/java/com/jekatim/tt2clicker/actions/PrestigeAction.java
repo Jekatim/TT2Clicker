@@ -36,7 +36,7 @@ public class PrestigeAction implements Action {
         if (colorChecker.isGoToSwordMasterTab(tabCoordinates.x, tabCoordinates.y)) {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
-            pause200();
+            pause500();
 
             scrollDown();
 
@@ -72,7 +72,7 @@ public class PrestigeAction implements Action {
     }
 
     private void scrollDown() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             AutoClickerService.instance.scrollDown();
             pause500();
         }

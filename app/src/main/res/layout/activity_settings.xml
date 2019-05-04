@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:checkedButton="@+id/pushModeSwitch"
+        android:checkedButton="@id/pushModeSwitch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -25,13 +25,20 @@
             android:text="Push mode" />
 
         <RadioButton
-            android:id="@+id/relicModeOn"
+            android:id="@+id/relicModeSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:checked="true"
             android:text="Relic mode" />
+
+        <RadioButton
+            android:id="@+id/prestigeModeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="Prestige mode" />
 
     </RadioGroup>
 
@@ -43,7 +50,7 @@
         android:ems="10"
         android:hint="How much minutes wait until prestige"
         android:inputType="number"
-        android:text="30"
+        android:text="40"
         app:layout_constraintStart_toStartOf="@+id/strategySwitch"
         app:layout_constraintTop_toBottomOf="@+id/strategySwitch" />
 
