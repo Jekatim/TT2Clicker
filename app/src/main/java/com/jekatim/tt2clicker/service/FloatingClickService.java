@@ -166,11 +166,12 @@ public class FloatingClickService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "MyBroadcastReceiver() {...}.onReceive()");
-            Toasts.longToast(FloatingClickService.this, "Broadcast received");
             SettingsModel model = (SettingsModel) intent.getExtras().get(SETTINGS_KEY);
             if (model != null) {
+                Toasts.longToast(FloatingClickService.this, "Settings received");
                 onSettingsChanged(model);
             } else {
+                Toasts.longToast(FloatingClickService.this, "Untoggle received");
                 onButtonUntoggle();
             }
         }
