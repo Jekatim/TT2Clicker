@@ -44,13 +44,13 @@ public class PrestigeAction implements Action {
             if (colorChecker.isPresigeButton(prestigeButton.x, prestigeButton.y)) {
                 Log.d(TAG, "clicking on prestige button");
                 AutoClickerService.instance.click(prestigeButton.x, prestigeButton.y);
-                pause200();
+                pause500();
 
                 // click on confirm
                 if (colorChecker.isPresigeConfirmButton(prestigeConfirmButton.x, prestigeConfirmButton.y)) {
                     Log.d(TAG, "Confirming prestige");
                     AutoClickerService.instance.click(prestigeConfirmButton.x, prestigeConfirmButton.y);
-                    pause200();
+                    pause500();
                     // click on confirm2
                     if (colorChecker.isPresigeConfirmButton(prestigeConfirmButton2.x, prestigeConfirmButton2.y)) {
                         Log.d(TAG, "Confirming prestige 2");
