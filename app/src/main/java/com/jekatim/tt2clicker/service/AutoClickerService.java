@@ -52,7 +52,7 @@ public class AutoClickerService extends AccessibilityService {
             path.reset();
             path.moveTo((float) x, (float) y);
             GestureDescription.Builder builder = new GestureDescription.Builder();
-            gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 10L, 10L)).build();
+            gestureDescription = builder.addStroke(new GestureDescription.StrokeDescription(path, 50L, 50L)).build();
             clickGesturesMap.put(clickCoordinates, gestureDescription);
         } else {
             gestureDescription = clickGesturesMap.get(clickCoordinates);
