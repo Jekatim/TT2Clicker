@@ -55,7 +55,7 @@ public class PrestigeAction implements Action {
                     if (colorChecker.isPresigeConfirmButton(prestigeConfirmButton2.x, prestigeConfirmButton2.y)) {
                         Log.d(TAG, "Confirming prestige 2");
                         AutoClickerService.instance.click(prestigeConfirmButton2.x, prestigeConfirmButton2.y);
-                        pauseOn(10000);
+                        pauseOn(20000);
                         strategy.addAfterPrestigeActions();
                     } else {
                         Log.d(TAG, "Missed confirm prestige button 2");
