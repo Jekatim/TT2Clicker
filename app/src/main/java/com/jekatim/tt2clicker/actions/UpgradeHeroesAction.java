@@ -33,6 +33,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
         CommonSteps.closePanel(colorChecker);
         // go to heroes tab
         if (colorChecker.isGoToHeroesTab(tabCoordinates.x, tabCoordinates.y)) {
+            pause200();
             Log.d(TAG, "moving to heroes tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
             pause500();

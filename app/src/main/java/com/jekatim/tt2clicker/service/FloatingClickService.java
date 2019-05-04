@@ -103,6 +103,7 @@ public class FloatingClickService extends Service {
                 case PRESTIGE_MODE:
                     strategy = new PrestigeStrategy(colorChecker, this);
                     strategy.launchStrategy();
+                    break;
                 default:
                     Log.d(TAG, "Unknown strategy");
                     break;

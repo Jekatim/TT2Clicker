@@ -46,6 +46,7 @@ public class AutoClickerService extends AccessibilityService {
     }
 
     public final void click(int x, int y) {
+        Log.d(TAG, "click " + x + ' ' + y);
         clickCoordinates.reset(x, y);
         GestureDescription gestureDescription;
         if (!clickGesturesMap.containsKey(clickCoordinates)) {

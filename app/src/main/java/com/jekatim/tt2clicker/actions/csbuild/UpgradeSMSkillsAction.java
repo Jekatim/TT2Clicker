@@ -36,6 +36,7 @@ public class UpgradeSMSkillsAction implements Action {
         CommonSteps.closePanel(colorChecker);
         // go to sword master tab
         if (colorChecker.isGoToSwordMasterTab(tabCoordinates.x, tabCoordinates.y)) {
+            pause200();
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
             pause500();

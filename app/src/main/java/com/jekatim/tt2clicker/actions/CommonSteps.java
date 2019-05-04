@@ -16,10 +16,12 @@ public class CommonSteps {
     public static void closePanel(ColorChecker colorChecker) {
         // click on cross to close panel
         if (colorChecker.isSlidePanelUpButton(slidePanelDown.x, slidePanelDown.y)) {
+            pause200();
             AutoClickerService.instance.click(slidePanelDown.x, slidePanelDown.y);
             pause500();
         } else {
             if (colorChecker.isClosePanelButton(closePanelCoordinates.x, closePanelCoordinates.y)) {
+                pause200();
                 AutoClickerService.instance.click(closePanelCoordinates.x, closePanelCoordinates.y);
                 pause500();
             } else {

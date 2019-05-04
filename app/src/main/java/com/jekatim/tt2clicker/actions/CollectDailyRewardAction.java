@@ -31,6 +31,7 @@ public class CollectDailyRewardAction implements Action {
         AutoClickerService.instance.click(dailyRewardButton.x, dailyRewardButton.y);
         pause500();
         if (colorChecker.isDailyRewardConfirmButton(dailyRewardConfirmButton.x, dailyRewardConfirmButton.y)) {
+            pause200();
             Log.d(TAG, "Confirming daily reward");
             AutoClickerService.instance.click(dailyRewardConfirmButton.x, dailyRewardConfirmButton.y);
             // wait until splash for 2 sec

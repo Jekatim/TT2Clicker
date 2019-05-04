@@ -10,6 +10,7 @@ import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
+import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
 public class CheckIfActiveSkillsNeededAction extends ActionWithPeriod {
