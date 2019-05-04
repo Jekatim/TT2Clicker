@@ -4,21 +4,14 @@ import android.content.Context;
 import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
-import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
 import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
 import com.jekatim.tt2clicker.actions.PrestigeAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
-import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.actions.UpgradeSwordMasterAction;
-import com.jekatim.tt2clicker.actions.csbuild.ActivateSCSkillAction;
-import com.jekatim.tt2clicker.actions.csbuild.CheckIfActiveSkillsNeededAction;
 import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMSkillsAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
-import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
