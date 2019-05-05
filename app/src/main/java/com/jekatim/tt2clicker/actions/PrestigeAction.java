@@ -20,6 +20,7 @@ public class PrestigeAction implements Action {
     private final Strategy strategy;
 
     private static final Coordinates tabCoordinates = new Coordinates(30, 1900);
+    private static final Coordinates upgradeSMButtonCoordinates = new Coordinates(765, 1365);
     private static final Coordinates prestigeButton = new Coordinates(788, 1790);
     private static final Coordinates prestigeConfirmButton = new Coordinates(425, 1480);
     private static final Coordinates prestigeConfirmButton2 = new Coordinates(630, 1270);
@@ -39,6 +40,11 @@ public class PrestigeAction implements Action {
             Log.d(TAG, "moving to SM tab");
             AutoClickerService.instance.click(tabCoordinates.x, tabCoordinates.y);
             pause500();
+
+            // click on upgrade button
+            Log.d(TAG, "Upgrading sm to max");
+            AutoClickerService.instance.click(upgradeSMButtonCoordinates.x, upgradeSMButtonCoordinates.y);
+            pause200();
 
             scrollDown();
 
