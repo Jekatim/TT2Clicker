@@ -17,6 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static String TAG = "SettingsActivity";
     public static String SETTINGS_KEY = "Settings_message";
+    public static String EXIT_KEY = "Close_message";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
         readSettings();
 
         findViewById(R.id.applySettingsButton).setOnClickListener(v -> applySettings());
+        findViewById(R.id.exitButton).setOnClickListener(v -> closeApplication());
     }
 
     private void readSettings() {
@@ -60,8 +62,11 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
+    private void closeApplication() {
+        System.exit(1);
+    }
+
     public void sendMessage(SettingsModel settings) {
-        Log.d(TAG, "MainActivity.send()");
         Intent sendableIntent = new Intent(FloatingClickService.MyBroadcastReceiver.class.getName());
         sendableIntent.putExtra(SETTINGS_KEY, settings);
         LocalBroadcastManager.getInstance(this).sendBroadcast(sendableIntent);
