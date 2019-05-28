@@ -6,6 +6,7 @@ import android.util.Log;
 import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
 import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
+import com.jekatim.tt2clicker.actions.CollectPetsAction;
 import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
@@ -53,6 +54,7 @@ public class RelicsStrategy extends AbstractStrategy {
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
         oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
+        oneTimeActions.add(new CollectPetsAction(colorChecker));
 
         slowCycledAction.clear();
         fastCycledActions.clear();
