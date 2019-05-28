@@ -66,7 +66,7 @@ public class PrestigeAction implements Action {
                         Log.d(TAG, "Confirming prestige 2");
                         pause2000();
                         AutoClickerService.instance.click(prestigeConfirmButton2.x, prestigeConfirmButton2.y);
-                        pauseOn(10000);
+                        pauseOn(15000);
                         strategy.addAfterPrestigeActions();
                     } else {
                         Log.d(TAG, "Missed confirm prestige button 2");
