@@ -9,10 +9,9 @@ import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
 import com.jekatim.tt2clicker.actions.CollectPetsAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
-import com.jekatim.tt2clicker.actions.UpgradeSwordMasterAction;
 import com.jekatim.tt2clicker.actions.csbuild.ActivateSCSkillAction;
 import com.jekatim.tt2clicker.actions.csbuild.CheckIfActiveSkillsNeededAction;
-import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMSkillsAction;
+import com.jekatim.tt2clicker.actions.csbuild.UpgradeSwordMasterAndSkillsAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.utils.ColorChecker;
@@ -49,8 +48,7 @@ public class PushStrategy extends AbstractStrategy {
     public void addAfterPrestigeActions() {
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
-        oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
-        oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
+        oneTimeActions.add(new UpgradeSwordMasterAndSkillsAction(colorChecker));
         oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
         oneTimeActions.add(new CollectPetsAction(colorChecker));
 
