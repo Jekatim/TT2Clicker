@@ -27,7 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
         readSettings();
 
         findViewById(R.id.applySettingsButton).setOnClickListener(v -> applySettings());
-        findViewById(R.id.exitButton).setOnClickListener(v -> closeApplication());
+        findViewById(R.id.exitButton).setOnClickListener(v -> System.exit(1));
     }
 
     private void readSettings() {
@@ -63,10 +63,6 @@ public class SettingsActivity extends AppCompatActivity {
         sendMessage(settings);
 
         finish();
-    }
-
-    private void closeApplication() {
-        System.exit(1);
     }
 
     public void sendMessage(SettingsModel settings) {

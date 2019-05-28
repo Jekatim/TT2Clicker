@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.onBackPressed();
             }
         });
+        findViewById(R.id.stopServiceButton).setOnClickListener(v -> finish());
     }
 
     @Override
