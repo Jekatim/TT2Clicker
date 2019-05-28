@@ -25,5 +25,5 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 </android.support.constraint.ConstraintLayout>
