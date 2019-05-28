@@ -30,7 +30,7 @@ public class Screenshooter {
 
             return screen != null ? screen.getPixel(x, y) : -1;
         } catch (IOException | InterruptedException e) {
-            Log.e(TAG, "Error in screeshooter", e);
+            Log.e(TAG, "Error in screenshooter", e);
         }
         return -1;
     }

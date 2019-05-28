@@ -49,6 +49,7 @@ public class RelicsStrategy extends AbstractStrategy {
     @Override
     public void addAfterPrestigeActions() {
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
+        oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
         oneTimeActions.add(new UpgradeSwordMasterAction(colorChecker));
         oneTimeActions.add(new UpgradeSMSkillsAction(colorChecker));
         oneTimeActions.add(new CollectDailyRewardAction(colorChecker));

@@ -18,10 +18,10 @@ public class ColorChecker {
         this.context = context;
     }
 
-    public boolean isPresigeButton(int x, int y) {
+    public boolean isPrestigeButton(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.prestige_button));
     }
-    public boolean isPresigeConfirmButton(int x, int y) {
+    public boolean isPrestigeConfirmButton(int x, int y) {
         return isColorMatch(x, y, ContextCompat.getColor(context, R.color.prestige_confirm_button));
     }
 

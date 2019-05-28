@@ -18,6 +18,7 @@ import android.widget.ToggleButton;
 import com.jekatim.tt2clicker.R;
 import com.jekatim.tt2clicker.SettingsActivity;
 import com.jekatim.tt2clicker.settings.SettingsModel;
+import com.jekatim.tt2clicker.strategies.PrestigeStrategy;
 import com.jekatim.tt2clicker.strategies.PushStrategy;
 import com.jekatim.tt2clicker.strategies.RelicsStrategy;
 import com.jekatim.tt2clicker.strategies.Strategy;
@@ -99,6 +100,10 @@ public class FloatingClickService extends Service {
                     strategy = new RelicsStrategy(settings, colorChecker, this);
                     strategy.launchStrategy();
                     break;
+                case PRESTIGE_MODE:
+                    strategy = new PrestigeStrategy(colorChecker, this);
+                    strategy.launchStrategy();
+                    break;
                 default:
                     Log.d(TAG, "Unknown strategy");
                     break;
@@ -161,11 +166,12 @@ public class FloatingClickService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "MyBroadcastReceiver() {...}.onReceive()");
-            Toasts.longToast(FloatingClickService.this, "Broadcast received");
             SettingsModel model = (SettingsModel) intent.getExtras().get(SETTINGS_KEY);
             if (model != null) {
+                Toasts.longToast(FloatingClickService.this, "Settings received");
                 onSettingsChanged(model);
             } else {
+                Toasts.longToast(FloatingClickService.this, "Untoggle received");
                 onButtonUntoggle();
             }
         }

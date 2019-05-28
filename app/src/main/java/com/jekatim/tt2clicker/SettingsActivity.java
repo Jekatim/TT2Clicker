@@ -39,6 +39,9 @@ public class SettingsActivity extends AppCompatActivity {
         int id = resolveCheckedStrategy(model.getStrategy());
         RadioGroup group = findViewById(R.id.strategySwitch);
         group.check(id);
+
+        CheckBox makePrestigeFlag = findViewById(R.id.makePrestigeFlag);
+        makePrestigeFlag.setChecked(model.isMakePrestige());
     }
 
     private void applySettings() {
@@ -78,8 +81,10 @@ public class SettingsActivity extends AppCompatActivity {
         switch (group.getCheckedRadioButtonId()) {
             case R.id.pushModeSwitch:
                 return ClickingStrategy.PUSH_MODE;
-            case R.id.relicModeOn:
+            case R.id.relicModeSwitch:
                 return ClickingStrategy.RELIC_MODE;
+            case R.id.prestigeModeSwitch:
+                return ClickingStrategy.PRESTIGE_MODE;
             default:
                 return ClickingStrategy.PUSH_MODE;
         }
@@ -90,7 +95,9 @@ public class SettingsActivity extends AppCompatActivity {
             case PUSH_MODE:
                 return R.id.pushModeSwitch;
             case RELIC_MODE:
-                return R.id.relicModeOn;
+                return R.id.relicModeSwitch;
+            case PRESTIGE_MODE:
+                return R.id.prestigeModeSwitch;
             default:
                 return R.id.pushModeSwitch;
         }
