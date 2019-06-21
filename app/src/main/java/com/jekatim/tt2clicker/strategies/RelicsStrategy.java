@@ -11,7 +11,7 @@ import com.jekatim.tt2clicker.actions.PickUpEquipmentAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
 import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.actions.UpgradeSwordMasterAction;
-import com.jekatim.tt2clicker.actions.csbuild.ActivateSCAndDSSkillAction;
+import com.jekatim.tt2clicker.actions.csbuild.ActivateSupportSkillsAction;
 import com.jekatim.tt2clicker.actions.csbuild.CheckIfActiveSkillsNeededAction;
 import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMNeededSkillsAction;
 import com.jekatim.tt2clicker.actions.csbuild.UpgradeSMSkillsAction;
@@ -72,7 +72,7 @@ public class RelicsStrategy extends AbstractStrategy {
         /*********************************************************/
 
         fastCycledActions.add(new CollectAllClicksAction());
-        fastCycledActions.add(new ActivateSCAndDSSkillAction(colorChecker));
+        fastCycledActions.add(new ActivateSupportSkillsAction(colorChecker));
     }
 
     @Override

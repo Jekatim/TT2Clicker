@@ -77,8 +77,8 @@ public class SettingsActivity extends AppCompatActivity {
         switch (group.getCheckedRadioButtonId()) {
             case R.id.pushModeSwitch:
                 return ClickingStrategy.PUSH_MODE;
-            case R.id.relicModeSwitch:
-                return ClickingStrategy.RELIC_MODE;
+            case R.id.clicksModeSwitch:
+                return ClickingStrategy.CLICKS_MODE;
             case R.id.prestigeModeSwitch:
                 return ClickingStrategy.PRESTIGE_MODE;
             default:
@@ -90,8 +90,8 @@ public class SettingsActivity extends AppCompatActivity {
         switch (strategy) {
             case PUSH_MODE:
                 return R.id.pushModeSwitch;
-            case RELIC_MODE:
-                return R.id.relicModeSwitch;
+            case CLICKS_MODE:
+                return R.id.clicksModeSwitch;
             case PRESTIGE_MODE:
                 return R.id.prestigeModeSwitch;
             default:

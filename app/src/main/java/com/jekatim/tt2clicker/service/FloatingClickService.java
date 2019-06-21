@@ -18,9 +18,9 @@ import android.widget.ToggleButton;
 import com.jekatim.tt2clicker.R;
 import com.jekatim.tt2clicker.SettingsActivity;
 import com.jekatim.tt2clicker.settings.SettingsModel;
+import com.jekatim.tt2clicker.strategies.ClicksOnlyStrategy;
 import com.jekatim.tt2clicker.strategies.PrestigeStrategy;
 import com.jekatim.tt2clicker.strategies.PushStrategy;
-import com.jekatim.tt2clicker.strategies.RelicsStrategy;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 import com.jekatim.tt2clicker.utils.Screenshooter;
@@ -69,7 +69,7 @@ public class FloatingClickService extends Service {
         toggle.setTextOff("Off");
 
         settings = new SettingsModel();
-        strategy = new RelicsStrategy(settings, colorChecker, this);
+        strategy = new PushStrategy(settings, colorChecker, this);
 
         toggle.setOnClickListener(v -> {
             if (strategy.isLaunched()) {
@@ -96,8 +96,8 @@ public class FloatingClickService extends Service {
                     strategy = new PushStrategy(settings, colorChecker, this);
                     strategy.launchStrategy();
                     break;
-                case RELIC_MODE:
-                    strategy = new RelicsStrategy(settings, colorChecker, this);
+                case CLICKS_MODE:
+                    strategy = new ClicksOnlyStrategy(colorChecker, this);
                     strategy.launchStrategy();
                     break;
                 case PRESTIGE_MODE:

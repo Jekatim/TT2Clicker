@@ -25,12 +25,12 @@
             android:text="Push mode" />
 
         <RadioButton
-            android:id="@+id/relicModeSwitch"
+            android:id="@+id/clicksModeSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:text="Relic mode" />
+            android:text="Clicks mode" />
 
         <RadioButton
             android:id="@+id/prestigeModeSwitch"
