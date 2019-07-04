@@ -1,4 +1,4 @@
-package com.jekatim.tt2clicker.actions.csbuild;
+package com.jekatim.tt2clicker.actions.unused;
 
 import android.util.Log;
 

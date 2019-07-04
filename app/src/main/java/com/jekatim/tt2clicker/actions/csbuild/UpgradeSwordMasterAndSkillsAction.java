@@ -59,10 +59,8 @@ public class UpgradeSwordMasterAndSkillsAction implements Action {
             Log.d(TAG, "Upgrading ds to 1");
             AutoClickerService.instance.click(upgradeDSSkillCoordinates.x, upgradeDSSkillCoordinates.y);
             pause200();
-            Log.d(TAG, "Upgrading HoM to max");
+            Log.d(TAG, "Upgrading HoM to 1");
             AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x, upgradeHoMSkillCoordinates.y);
-            pause200();
-            AutoClickerService.instance.click(upgradeHoMSkillCoordinates.x - 65, upgradeHoMSkillCoordinates.y);
             pause200();
             Log.d(TAG, "Upgrading fs to 1");
             AutoClickerService.instance.click(upgradeFSSkillCoordinates.x, upgradeFSSkillCoordinates.y);

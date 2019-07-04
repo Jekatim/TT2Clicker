@@ -10,7 +10,6 @@ import com.jekatim.tt2clicker.settings.Coordinates;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
-import static com.jekatim.tt2clicker.actions.CommonSteps.pause200;
 import static com.jekatim.tt2clicker.actions.CommonSteps.pause500;
 
 public class CheckIfActiveSkillsNeededAction extends ActionWithPeriod {
@@ -21,7 +20,7 @@ public class CheckIfActiveSkillsNeededAction extends ActionWithPeriod {
     private final ColorChecker colorChecker;
     private final Strategy strategy;
     private int launchesCounter = 0;
-    private final int pushesLimit = 5;
+    private final int pushesLimit = 8;
 
     private final long startTime;
     private final long prestigeAfter;
@@ -71,7 +70,6 @@ public class CheckIfActiveSkillsNeededAction extends ActionWithPeriod {
 
     private void addPush() {
         strategy.addOneTimeAction(new ActivateWCSkillAction(colorChecker));
-        strategy.addOneTimeAction(new ActivateHandOfMidasSkillAction(colorChecker));
         launchesCounter++;
     }
 }
