@@ -20,7 +20,7 @@ import com.jekatim.tt2clicker.SettingsActivity;
 import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.strategies.ClicksOnlyStrategy;
 import com.jekatim.tt2clicker.strategies.PrestigeStrategy;
-import com.jekatim.tt2clicker.strategies.PushStrategy;
+import com.jekatim.tt2clicker.strategies.SCPushStrategy;
 import com.jekatim.tt2clicker.strategies.Strategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 import com.jekatim.tt2clicker.utils.Screenshooter;
@@ -69,7 +69,7 @@ public class FloatingClickService extends Service {
         toggle.setTextOff("Off");
 
         settings = new SettingsModel();
-        strategy = new PushStrategy(settings, colorChecker, this);
+        strategy = new SCPushStrategy(settings, colorChecker, this);
 
         toggle.setOnClickListener(v -> {
             if (strategy.isLaunched()) {
@@ -92,8 +92,8 @@ public class FloatingClickService extends Service {
         Log.d(TAG, "AutoClickerService is running? :" + isServiceRunning);
         if (isServiceRunning) {
             switch (settings.getStrategy()) {
-                case PUSH_MODE:
-                    strategy = new PushStrategy(settings, colorChecker, this);
+                case SC_PUSH_MODE:
+                    strategy = new SCPushStrategy(settings, colorChecker, this);
                     strategy.launchStrategy();
                     break;
                 case CLICKS_MODE:

@@ -8,7 +8,7 @@ import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
 import com.jekatim.tt2clicker.actions.CollectPetsAction;
 import com.jekatim.tt2clicker.actions.PrestigeAction;
 import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
-import com.jekatim.tt2clicker.actions.csbuild.UpgradeSwordMasterAndSkillsAction;
+import com.jekatim.tt2clicker.actions.scbuild.UpgradeSwordMasterAndSkillsToOneAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
@@ -36,7 +36,7 @@ public class PrestigeStrategy extends AbstractStrategy {
     public void addAfterPrestigeActions() {
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
         oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
-        oneTimeActions.add(new UpgradeSwordMasterAndSkillsAction(colorChecker));
+        oneTimeActions.add(new UpgradeSwordMasterAndSkillsToOneAction(colorChecker));
         oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
         oneTimeActions.add(new CollectPetsAction(colorChecker));
     }

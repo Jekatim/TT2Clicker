@@ -76,19 +76,19 @@ public class SettingsActivity extends AppCompatActivity {
 
         switch (group.getCheckedRadioButtonId()) {
             case R.id.pushModeSwitch:
-                return ClickingStrategy.PUSH_MODE;
+                return ClickingStrategy.SC_PUSH_MODE;
             case R.id.clicksModeSwitch:
                 return ClickingStrategy.CLICKS_MODE;
             case R.id.prestigeModeSwitch:
                 return ClickingStrategy.PRESTIGE_MODE;
             default:
-                return ClickingStrategy.PUSH_MODE;
+                return ClickingStrategy.SC_PUSH_MODE;
         }
     }
 
     private int resolveCheckedStrategy(ClickingStrategy strategy) {
         switch (strategy) {
-            case PUSH_MODE:
+            case SC_PUSH_MODE:
                 return R.id.pushModeSwitch;
             case CLICKS_MODE:
                 return R.id.clicksModeSwitch;

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
-import com.jekatim.tt2clicker.actions.csbuild.ActivateSupportSkillsAction;
+import com.jekatim.tt2clicker.actions.scbuild.ActivateAllSkillsAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
@@ -31,7 +31,7 @@ public class ClicksOnlyStrategy extends AbstractStrategy {
 
     private void fillCycledAction() {
         fastCycledActions.add(new CollectAllClicksAction());
-        fastCycledActions.add(new ActivateSupportSkillsAction(colorChecker));
+        fastCycledActions.add(new ActivateAllSkillsAction(colorChecker));
     }
 
     @Override

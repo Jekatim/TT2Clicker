@@ -5,32 +5,67 @@ import android.util.Log;
 
 import com.jekatim.tt2clicker.actions.Action;
 import com.jekatim.tt2clicker.actions.CollectAllClicksAction;
+import com.jekatim.tt2clicker.actions.CollectDailyRewardAction;
+import com.jekatim.tt2clicker.actions.CollectPetsAction;
+import com.jekatim.tt2clicker.actions.ScrollUpAfterPrestigeAction;
+import com.jekatim.tt2clicker.actions.UpgradeHeroesAction;
 import com.jekatim.tt2clicker.actions.scbuild.ActivateAllSkillsAction;
+import com.jekatim.tt2clicker.actions.scbuild.CheckIfUpgradeSCNeededAction;
+import com.jekatim.tt2clicker.actions.scbuild.UpgradeSwordMasterAndSkillsToOneAction;
 import com.jekatim.tt2clicker.settings.ClickingStrategy;
+import com.jekatim.tt2clicker.settings.SettingsModel;
 import com.jekatim.tt2clicker.utils.ColorChecker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class SCPushStrategy extends AbstractStrategy {
 
     private static String TAG = "SCPushStrategy";
 
+    private final SettingsModel settings;
     private final ColorChecker colorChecker;
+    private final List<Action> slowCycledAction;
     private final List<Action> fastCycledActions;
+    private final Queue<Action> oneTimeActions;
 
-    protected SCPushStrategy(ColorChecker colorChecker, Context context) {
+    public SCPushStrategy(SettingsModel settings, ColorChecker colorChecker, Context context) {
         super(context);
-
+        this.settings = settings;
         this.colorChecker = colorChecker;
+        this.slowCycledAction = new ArrayList<>();
         this.fastCycledActions = new ArrayList<>();
+        this.oneTimeActions = new LinkedBlockingQueue<>();
+
+        fillCycledAction();
+    }
+
+    @Override
+    public void addAfterPrestigeActions() {
+        oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
+        oneTimeActions.add(new ScrollUpAfterPrestigeAction(colorChecker));
+        oneTimeActions.add(new UpgradeSwordMasterAndSkillsToOneAction(colorChecker));
+        oneTimeActions.add(new CollectDailyRewardAction(colorChecker));
+        oneTimeActions.add(new CollectPetsAction(colorChecker));
+
+        slowCycledAction.clear();
+        fastCycledActions.clear();
 
         fillCycledAction();
     }
 
     private void fillCycledAction() {
+        slowCycledAction.add(new UpgradeHeroesAction(colorChecker));
+        if (settings.isMakePrestige()) {
+            slowCycledAction.add(new CheckIfUpgradeSCNeededAction(colorChecker, this, settings.getAutoPrestigeAfter()));
+        }
+
+        /*********************************************************/
+
         fastCycledActions.add(new CollectAllClicksAction());
         fastCycledActions.add(new ActivateAllSkillsAction(colorChecker));
     }
@@ -58,11 +93,27 @@ public class SCPushStrategy extends AbstractStrategy {
     }
 
     private void control() {
-        for (Action fastAction : fastCycledActions) {
+        while (oneTimeActions.peek() != null) {
             if (!isLaunched) {
                 return;
             }
-            fastAction.perform();
+            Action action = oneTimeActions.poll();
+            action.perform();
         }
+        for (Action slowAction : slowCycledAction) {
+            for (Action fastAction : fastCycledActions) {
+                if (!isLaunched) {
+                    return;
+                }
+                // make sure that all fast clicks executed on between all other long-running actions
+                fastAction.perform();
+            }
+            slowAction.perform();
+        }
+    }
+
+    @Override
+    public void addOneTimeAction(Action action) {
+        oneTimeActions.add(action);
     }
 }

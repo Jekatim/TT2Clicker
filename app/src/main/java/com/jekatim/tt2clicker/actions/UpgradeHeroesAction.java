@@ -17,7 +17,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     private static final Coordinates tabCoordinates = new Coordinates(200, 1900);
     private static final Coordinates upgradeLastButton = new Coordinates(900, 1500);
 
-    private final int scroll = 6;
+    private final int scroll = 8;
 
     public UpgradeHeroesAction(ColorChecker colorChecker) {
         super(60); //sec
@@ -58,7 +58,7 @@ public class UpgradeHeroesAction extends ActionWithPeriod {
     }
 
     private void scrollUp() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             AutoClickerService.instance.scrollUp();
             pause500();
         }

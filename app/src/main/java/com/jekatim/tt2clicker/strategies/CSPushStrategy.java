@@ -23,9 +23,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class PushStrategy extends AbstractStrategy {
+public class CSPushStrategy extends AbstractStrategy {
 
-    private static String TAG = "PushStrategy";
+    private static String TAG = "CSPushStrategy";
 
     private final SettingsModel settings;
     private final ColorChecker colorChecker;
@@ -33,7 +33,7 @@ public class PushStrategy extends AbstractStrategy {
     private final List<Action> fastCycledActions;
     private final Queue<Action> oneTimeActions;
 
-    public PushStrategy(SettingsModel settings, ColorChecker colorChecker, Context context) {
+    public CSPushStrategy(SettingsModel settings, ColorChecker colorChecker, Context context) {
         super(context);
         this.settings = settings;
         this.colorChecker = colorChecker;
@@ -72,7 +72,7 @@ public class PushStrategy extends AbstractStrategy {
 
     @Override
     public ClickingStrategy getType() {
-        return ClickingStrategy.PUSH_MODE;
+        return ClickingStrategy.CS_PUSH_MODE;
     }
 
     @Override
